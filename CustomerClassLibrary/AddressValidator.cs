@@ -30,21 +30,5 @@ namespace CustomerClassLibrary
             RuleFor(Address => Address.Country).NotEmpty().WithMessage("The field is required").
                 Must(field => field == "USA" || field == "Canada").WithMessage("The field can be only USA or Canada");
         }
-
-        //public List<string> ValidateAdress(Address anyAddress)
-        //{
-        //    var result = new List<string>();
-        //    var results = new List<ValidationResult>();
-        //    var context = new ValidationContext(anyAddress);
-
-        //    if (!Validator.TryValidateObject(anyAddress, context, results, true))
-        //    {
-        //        foreach (var error in results)
-        //        {
-        //            result.Add(error.ErrorMessage);
-        //        }
-        //    }
-        //    return result;
-        //}
     }
 }

@@ -28,9 +28,6 @@ namespace CustomerLibraryTests
 
             }
 
-            //List<string> errorList = addressValidator.ValidateAdress(address);
-
-
             Assert.Equal("The field is required", errorList.FirstOrDefault(x => x.Item1 == "AdressLine").Item2);
             Assert.Equal("The field is required", errorList.FirstOrDefault(x => x.Item1 == "City").Item2);
             Assert.Equal("The field is required", errorList.FirstOrDefault(x => x.Item1 == "PostalCode").Item2);
