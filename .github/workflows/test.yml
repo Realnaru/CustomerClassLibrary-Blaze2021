@@ -18,17 +18,23 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
+      working-directory: ./CustomerClassLibraryTests
       run: dotnet restore
     - name: Build
+      working-directory: ./CustomerClassLibraryTests
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=TestResults/
+      working-directory: ./CustomerClassLibraryTests
+      run: dotnet test --collect:"XPlat Code Coverage"
+    - name: TestCodeCov
+      working-directory: ./CustomerClassLibrary.Tests
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=TestResults/ 
     - uses: codecov/codecov-action@v1
       with:
-        files: .\CustomerLibraryTests\TestResults\coverage.opencover.xml
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        #working-directory: ./CustomerClassLibraryTests/TestResults/
+        files: ./CustomerClassLibraryTests/TestResults/coverage.opencover.xml
         flags: unittests 
         name: codecov-umbrella
         fail_ci_if_error: true 
         verbose: true
-
-      
