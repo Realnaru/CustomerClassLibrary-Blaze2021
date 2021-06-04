@@ -23,7 +23,7 @@ namespace CustomerLibraryTests
             
 
             Customer customer1 = new Customer();
-
+            //new comment
             //customer1.FirstName = "123456789012345678901234567890123456789012345678901234567890";
             //customer1.LastName = "Vasya";
             customer1.AdressesList = new List<Address>();
