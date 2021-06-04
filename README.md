@@ -1,0 +1,1 @@
+[![codecov](https://codecov.io/gh/Realnaru/CustomerClassLibrary-Blaze2021/branch/master/graph/badge.svg?token=ENH881E70V)](https://codecov.io/gh/Realnaru/CustomerClassLibrary-Blaze2021)
