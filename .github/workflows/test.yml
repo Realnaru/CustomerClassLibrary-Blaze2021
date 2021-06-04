@@ -25,7 +25,7 @@ jobs:
       run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=TestResults/
     - uses: codecov/codecov-action@v1
       with:
-        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        token: ${{ a5881544-c2ff-4b96-b711-51ae96cb3f4b }} # not required for public repos
         files: ./CustomerLibraryTests/TestResults/coverage.opencover.xml
         flags: unittests 
         name: codecov-umbrella
