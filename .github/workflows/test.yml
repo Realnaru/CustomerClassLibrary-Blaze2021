@@ -16,22 +16,16 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: 5.x.x
     - name: Restore dependencies
-      working-directory: ./CustomerLibraryTests
       run: dotnet restore
     - name: Build
-      working-directory: ./CustomerLibraryTests
       run: dotnet build --no-restore
     - name: Test
-      working-directory: ./CustomerLibraryTests
-      run: dotnet test --collect:"XPlat Code Coverage"
-    - name: TestCodeCov
-      working-directory: ./CustomerLibraryTests
-      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=TestResults/ 
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=TestResults/
     - uses: codecov/codecov-action@v1
       with:
-        #working-directory: ./CustomerClassLibraryTests/TestResults/
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
         files: ./CustomerLibraryTests/TestResults/coverage.opencover.xml
         flags: unittests 
         name: codecov-umbrella
