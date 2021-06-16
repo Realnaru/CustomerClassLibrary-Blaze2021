@@ -20,6 +20,10 @@ namespace CustomerClassLibrary
 
     public class Address
     {
+        public int AddressId { get; set; }
+
+        public int CustomerId { get; set; }
+
         [Required(ErrorMessage = "The field is required"), 
             MaxLength(100, ErrorMessage = "Maximum length is 100 characters")]
 

@@ -9,9 +9,11 @@ namespace CustomerClassLibrary
 {
     public class Customer : Person
     {
-        [Required(ErrorMessage = "The field is required"), 
-            MinLength(1, ErrorMessage = "Minimum length is 1 item")]
-        public List<Address> AdressesList { get; set; }
+        public int CustomerId { get; set; }
+
+        [Required(ErrorMessage = "The field is required"),
+            MinLength(1, ErrorMessage = "The field is required")]
+        public List<Address> AdressesList { get; set; } = new List<Address>();
 
         [RegularExpression(@"^\+?\d{10, 14}$", ErrorMessage = "Phone Number should have E.164 standart")]
         public string PhoneNumber { get; set; }
@@ -21,11 +23,21 @@ namespace CustomerClassLibrary
                       ErrorMessage = "Email adress should be valid")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "The field is required"), 
-            MinLength(1, ErrorMessage = "Minimum length is 1 item")]
-        public List<string> Note { get; set; }
+        [Required(ErrorMessage = "The field is required"),
+            MinLength(1, ErrorMessage = "The field is required")]
+        public List<CustomerNote> Note { get; set; } = new List<CustomerNote>();
 
         public decimal? TotalPurshasesAmount { get; set; }
+
+        public void AddAddress(Address address)
+        {
+            AdressesList.Add(address);
+        }
+
+        public void AddNote(CustomerNote note)
+        {
+            Note.Add(note);
+        }
 
     }
 }

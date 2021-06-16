@@ -14,11 +14,13 @@ namespace CustomerLibraryTests
         public void ShouldCreateCustomer()
         {
             Customer customer = new Customer();
+            Assert.Equal(0, customer.CustomerId);
             Assert.Null(customer.FirstName);
             Assert.Null(customer.LastName);
+            Assert.NotNull(customer.AdressesList);
             Assert.Null(customer.PhoneNumber);
             Assert.Null(customer.Email);
-            Assert.Null(customer.Note);
+            Assert.NotNull(customer.Note);
             Assert.Null(customer.TotalPurshasesAmount);
 
         }
@@ -30,6 +32,7 @@ namespace CustomerLibraryTests
 
             var adress = new List<Address>();
 
+            customer.CustomerId = 1;
             customer.FirstName = "Harry";
             customer.LastName = "Potter";
             customer.PhoneNumber = "(605) 475-6961";
@@ -37,6 +40,7 @@ namespace CustomerLibraryTests
             customer.AdressesList = adress;
             customer.TotalPurshasesAmount = 303000;
 
+            Assert.Equal(1, customer.CustomerId);
             Assert.Equal("Harry", customer.FirstName);
             Assert.Equal("Potter", customer.LastName);
             Assert.Equal("(605) 475-6961", customer.PhoneNumber);
@@ -49,6 +53,28 @@ namespace CustomerLibraryTests
             customer1.TotalPurshasesAmount = null;
             Assert.Null(customer1.TotalPurshasesAmount);
 
+        }
+
+        [Fact]
+        public void ShouldBeAbleToAddAddress()
+        {
+            Customer customer = new Customer();
+            Address address = new Address();
+
+            customer.AddAddress(address);
+
+            Assert.Equal(address, customer.AdressesList[0]);
+        }
+
+        [Fact]
+        public void ShouldBeAbleToAddNote()
+        {
+            Customer customer = new Customer();
+            CustomerNote note = new CustomerNote();
+
+            customer.AddNote(note);
+
+            Assert.Equal(note, customer.Note[0]);
         }
     }
 
