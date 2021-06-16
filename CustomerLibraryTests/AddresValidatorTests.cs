@@ -42,5 +42,23 @@ namespace CustomerLibraryTests
             Assert.Equal("Maximum length is 20 characters", errorList1[4]);
             Assert.Equal("The field can be only USA or Canada", errorList1[5]);
         }
+
+        [Fact]
+        public void ShouldNotReturnErrorMessagesIfCountryIsValid()
+        {
+            Address address1 = new Address();
+            AddressValidator addressValidator = new AddressValidator();
+            List<string> errorList = addressValidator.ValidateAdress(address1);
+
+            address1.AdressLine = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+            address1.AdressLine2 = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+            address1.City = "123456789012345678901234567890123456789012345678901234567890";
+            address1.PostalCode = "1234567890";
+            address1.State = "12345678901234567890123456789012345678901234567890";
+            address1.Country = "Canada";
+
+            Assert.Equal(5, errorList.Count);
+
+        }
     }
 }
