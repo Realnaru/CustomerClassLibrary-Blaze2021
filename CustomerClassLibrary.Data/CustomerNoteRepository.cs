@@ -34,9 +34,41 @@ namespace CustomerClassLibrary.Data
                 command.Parameters.Add(noteParam);
 
                 command.ExecuteNonQuery();
-                connection.Close();
-
+               
             }
+
         }
+
+        public CustomerNote Read(int customerId)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                var command = new SqlCommand("SELECT * FROM [dbo].customer_note " +
+                    "WHERE customer_id = @customer_id", connection);
+
+                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int) {
+                    Value = customerId
+                };
+
+                command.Parameters.Add(customerIdParam);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new CustomerNote()
+                        {
+                            CustomerId = (Int32)reader["customer_id"],
+                            NoteId = (Int32)reader["note_id"],
+                            Note = reader["note"].ToString()
+                        };
+                    }
+                }
+            }
+            return null;
+        }
+       
     }
 }

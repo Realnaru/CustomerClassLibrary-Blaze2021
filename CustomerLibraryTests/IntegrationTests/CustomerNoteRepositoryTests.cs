@@ -23,13 +23,46 @@ namespace CustomerLibraryTests.IntegrationTests
         public void ShouldbeAbleToCreateCustomerNote()
         {
             var customerNoteRepository = new CustomerNoteRepository();
-            var customerNote = new CustomerNote();
+            var customerRepository = new CustomerRepository();
 
-            
-            customerNote.CustomerId = 2;
-            customerNote.Note = "Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff";
+            customerRepository.DeleteAll();
+
+            var customerNote = new CustomerNote();
+            var fixture = new CustomerRepositoryFixture();
+            var customer = fixture.MockCustomer();
+            int customerId = customerRepository.Create(customer);
+
+            customerNote.CustomerId = customerId;
+            customerNote.Note = "Kitty ipsum dolor sit amet, shed everywhere shed everywhere";
 
             customerNoteRepository.Create(customerNote);
+          
+        }
+
+        [Fact]
+        public void ShouldbeAbleToReadCustomerNote()
+        {
+            var customerNoteRepository = new CustomerNoteRepository();
+            var customerRepository = new CustomerRepository();
+            var fixture = new CustomerRepositoryFixture();
+
+            customerRepository.DeleteAll();
+
+            var customerNote = new CustomerNote();
+            
+            var customer = fixture.MockCustomer();
+            int customerId = customerRepository.Create(customer);
+
+            customerNote.CustomerId = customerId;
+            customerNote.Note = "Kitty ipsum dolor sit amet, shed everywhere shed everywhere";
+
+            customerNoteRepository.Create(customerNote);
+
+            var createdNote = customerNoteRepository.Read(customerNote.CustomerId);
+
+            Assert.NotNull(createdNote);
+            Assert.Equal(customerId, customerNote.CustomerId);
+            Assert.Equal("Kitty ipsum dolor sit amet, shed everywhere shed everywhere", createdNote.Note);
         }
     }
 }
