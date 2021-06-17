@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using CustomerClassLibrary.Data.Common;
 
 namespace CustomerClassLibrary 
 {
@@ -31,12 +32,26 @@ namespace CustomerClassLibrary
 
         public void AddAddress(Address address)
         {
-            AdressesList.Add(address);
+            if (CustomerId == address.CustomerId)
+            {
+                AdressesList.Add(address);
+            } else
+            {
+                throw new WrongIdException();
+            }
+           
         }
 
         public void AddNote(CustomerNote note)
         {
-            Note.Add(note);
+            if (note.CustomerId == CustomerId)
+            {
+                Note.Add(note);
+            } else
+            {
+                throw new WrongIdException();
+            }
+             
         }
 
     }

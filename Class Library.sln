@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerClassLibrary", "Cus
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerLibraryTests", "CustomerLibraryTests\CustomerLibraryTests.csproj", "{F976F7CD-7287-4ECD-A0A5-28FBC9109D80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerClassLibrary.Data", "CustomerClassLibrary.Data\CustomerClassLibrary.Data.csproj", "{A51099F3-1E2E-4311-BAD1-1C525796C47D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerClassLibrary.Data", "CustomerClassLibrary.Data\CustomerClassLibrary.Data.csproj", "{A51099F3-1E2E-4311-BAD1-1C525796C47D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FF0C0B48-1E47-442B-A328-AE95A7A1BD6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{4A889042-B347-413B-9E1B-CF9A7FC13A5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +34,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8AA77CA4-54CF-41C4-BE60-8F81063D0F83} = {4A889042-B347-413B-9E1B-CF9A7FC13A5F}
+		{F976F7CD-7287-4ECD-A0A5-28FBC9109D80} = {FF0C0B48-1E47-442B-A328-AE95A7A1BD6D}
+		{A51099F3-1E2E-4311-BAD1-1C525796C47D} = {4A889042-B347-413B-9E1B-CF9A7FC13A5F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A86CC67-09EE-480D-8F94-7806728C4E56}

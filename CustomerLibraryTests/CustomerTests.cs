@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CustomerClassLibrary;
+using CustomerClassLibrary.Data.Common;
 using Xunit;
 
 namespace CustomerLibraryTests
@@ -67,6 +68,20 @@ namespace CustomerLibraryTests
         }
 
         [Fact]
+        public void ShouldNotBeAbleToAddAddressWithWrongId()
+        {
+            Customer customer = new Customer();
+            Address address = new Address();
+
+            customer.CustomerId = 1;
+            address.AddressId = 2;
+
+            Assert.Throws<WrongIdException>(() => customer.AddAddress(address));
+
+            
+        }
+
+        [Fact]
         public void ShouldBeAbleToAddNote()
         {
             Customer customer = new Customer();
@@ -75,6 +90,17 @@ namespace CustomerLibraryTests
             customer.AddNote(note);
 
             Assert.Equal(note, customer.Note[0]);
+        }
+
+        [Fact]
+        public void ShouldNoBeAbleToAddNoteWithWrongId()
+        {
+            Customer customer = new Customer();
+            customer.CustomerId = 1;
+            CustomerNote note = new CustomerNote();
+            note.CustomerId = 2;
+
+            Assert.Throws<WrongIdException>(() => customer.AddNote(note));
         }
     }
 
