@@ -30,7 +30,9 @@ namespace CustomerLibraryTests.IntegrationTests
             customer.Email = "hogwards@mail.com";
             customer.TotalPurshasesAmount = 1000;
 
-            customerRepository.Create(customer);
+            int customerId = customerRepository.Create(customer);
+
+            Assert.NotEqual(0, customerId);
 
         }
 
@@ -98,7 +100,6 @@ namespace CustomerLibraryTests.IntegrationTests
             var deletedCustomer = customerRepository.Read(customerId);
 
             Assert.Null(deletedCustomer);
-           ;
 
         }
     }

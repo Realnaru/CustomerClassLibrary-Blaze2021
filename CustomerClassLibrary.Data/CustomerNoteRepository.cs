@@ -10,14 +10,16 @@ namespace CustomerClassLibrary.Data
 {
     public class CustomerNoteRepository : BaseRepository
     {
-        public void Create(CustomerNote customerNote)
+        public int Create(CustomerNote customerNote)
         {
+            int noteId;
+
             using (var connection = GetConnection())
             {
                 connection.Open();
 
                 var command = new SqlCommand("INSERT INTO [dbo].customer_note (customer_id, note)" +
-                    "VALUES (@customer_id, @note)", connection);
+                    "VALUES (@customer_id, @note) SELECT CAST(scope_identity() AS int)", connection);
 
                 var customer_idParam = new SqlParameter("@customer_id", SqlDbType.Int)
                 {
@@ -33,9 +35,11 @@ namespace CustomerClassLibrary.Data
                 command.Parameters.Add(customer_idParam);
                 command.Parameters.Add(noteParam);
 
-                command.ExecuteNonQuery();
-               
+                noteId = (Int32)command.ExecuteScalar();
+
             }
+
+            return noteId;
 
         }
 
@@ -68,6 +72,51 @@ namespace CustomerClassLibrary.Data
                 }
             }
             return null;
+        }
+
+        public void Update(CustomerNote customerNote)
+        {
+            using(var connection = GetConnection())
+            {
+                connection.Open();
+
+                var command = new SqlCommand("Update [dbo].customer_note SET note=@note WHERE customer_id = @customer_id", connection);
+
+                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
+                {
+                    Value = customerNote.CustomerId
+                };
+
+                var noteParam = new SqlParameter("@note", SqlDbType.NVarChar)
+                {
+                    Value = customerNote.Note
+                };
+
+                command.Parameters.Add(customerIdParam);
+                command.Parameters.Add(noteParam);
+
+                command.ExecuteNonQuery();
+     
+            }
+        }
+
+        public void Delete(int customerId)
+        {
+            using(var connection = GetConnection())
+            {
+                connection.Open();
+
+                var command = new SqlCommand("DELETE FROM [dbo].customer_note WHERE customer_id = @customer_id", connection);
+
+                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
+                {
+                    Value = customerId
+                };
+
+                command.Parameters.Add(customerIdParam);
+
+                command.ExecuteNonQuery();
+            }
         }
        
     }
