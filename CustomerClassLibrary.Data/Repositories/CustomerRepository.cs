@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CustomerClassLibrary.Common;
+using CustomerClassLibrary.Data.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -6,13 +8,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CustomerClassLibrary.Data
 {
-    public class CustomerRepository : BaseRepository
+    public class CustomerRepository : BaseRepository, IEntityRepository<Customer>
     {
         int customerId;
         public int Create(Customer customer)
         {
+            var validator = new CustomerValidator();
+            List<string> results = validator.ValidateCustomer(customer);
+
+            if (results.Count != 0)
+            {
+                
+                throw new WrongDataException($"Customer data is invalid. {string.Join(" ", results)}");
+            }
+
             using (var connection = GetConnection())
             {
                 connection.Open();
@@ -57,7 +69,7 @@ namespace CustomerClassLibrary.Data
             return customerId;
         }
 
-        public Customer Read(int customerId)
+        public  Customer Read(int customerId)
         {
             using (var connection = GetConnection())
             {
@@ -86,7 +98,7 @@ namespace CustomerClassLibrary.Data
                             TotalPurshasesAmount = (decimal)reader["total_purchase_amount"]
                         };
                     }
-                }
+                } 
             }
             return null;
         }

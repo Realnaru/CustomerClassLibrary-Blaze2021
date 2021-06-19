@@ -1,4 +1,5 @@
 ﻿using CustomerClassLibrary;
+using CustomerClassLibrary.Common;
 using CustomerClassLibrary.Data;
 using System;
 using System.Collections.Generic;
@@ -26,13 +27,29 @@ namespace CustomerLibraryTests.IntegrationTests
 
             customer.FirstName = "John";
             customer.LastName = "Doe";
-            customer.PhoneNumber = "123456";
-            customer.Email = "hogwards@mail.com";
+            customer.PhoneNumber = "1111111";
+            customer.Email = "jd@mail.com";
             customer.TotalPurshasesAmount = 1000;
+            customer.AddAddress(new Address());
+            customer.AddNote(new CustomerNote());
 
             int customerId = customerRepository.Create(customer);
 
             Assert.NotEqual(0, customerId);
+        }
+
+        [Fact]
+        public void ShouldThrowExceptionIfCustomerHasWrongData()
+        {
+            var customerRepository = new CustomerRepository();
+            var customer = new Customer();
+
+            customer.FirstName = "John";
+            customer.PhoneNumber = "12345611111111111111";
+            customer.Email = "111111111111111111111111111";
+            customer.TotalPurshasesAmount = 1000;
+
+            Assert.Throws<WrongDataException>(() => customerRepository.Create(customer));
 
         }
 

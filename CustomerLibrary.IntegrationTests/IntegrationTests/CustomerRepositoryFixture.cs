@@ -30,6 +30,8 @@ namespace CustomerLibraryTests.IntegrationTests
             customer.PhoneNumber = "1111111";
             customer.Email = "jd@gmail.com";
             customer.TotalPurshasesAmount = 100;
+            customer.AddAddress(new Address());
+            customer.AddNote(new CustomerNote());
 
             return customer;
         }

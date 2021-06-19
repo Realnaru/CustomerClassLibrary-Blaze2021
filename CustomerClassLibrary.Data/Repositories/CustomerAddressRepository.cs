@@ -145,8 +145,5 @@ namespace CustomerClassLibrary.Data
                 command.ExecuteNonQuery();
             }
         }
-
-
-        
     }
 }

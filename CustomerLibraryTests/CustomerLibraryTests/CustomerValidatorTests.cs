@@ -25,7 +25,7 @@ namespace CustomerLibraryTests
             Customer customer1 = new Customer();
 
             customer1.AdressesList = new List<Address>();
-            customer1.PhoneNumber = "12345";
+            customer1.PhoneNumber = "11b111111111";
             customer1.Email = "12345";
             customer1.Note = new List<CustomerNote>();
 
@@ -35,8 +35,6 @@ namespace CustomerLibraryTests
             Assert.Equal("Phone Number should have E.164 standart", errorList1[1]);
             Assert.Equal("Email adress should be valid", errorList1[2]);
             Assert.Equal("The field is required", errorList1[3]);
-
-
 
         }
     }

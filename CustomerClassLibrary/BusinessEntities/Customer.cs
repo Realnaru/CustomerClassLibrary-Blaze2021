@@ -16,7 +16,7 @@ namespace CustomerClassLibrary
             MinLength(1, ErrorMessage = "The field is required")]
         public List<Address> AdressesList { get; set; } = new List<Address>();
 
-        [RegularExpression(@"^\+?\d{10, 14}$", ErrorMessage = "Phone Number should have E.164 standart")]
+        [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Phone Number should have E.164 standart")]
         public string PhoneNumber { get; set; }
 
         [RegularExpression(@"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
