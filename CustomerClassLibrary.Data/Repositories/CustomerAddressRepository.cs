@@ -111,6 +111,44 @@ namespace CustomerClassLibrary.Data
             return null;
         }
 
+        public List<Address> ReadByCustomerId(int customerId)
+        {
+            List<Address> foundAddresses = new List<Address>();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                var command = new SqlCommand("SELECT * FROM [dbo].customer_address WHERE customer_id = @customer_Id", connection);
+
+                var addressIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
+                {
+                    Value = customerId
+                };
+
+                command.Parameters.Add(addressIdParam);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        foundAddresses.Add(new Address()
+                        {
+                            CustomerId = (Int32)reader["customer_id"],
+                            AdressLine = reader["address_line"].ToString(),
+                            AdressLine2 = reader["address_line2"].ToString(),
+                            AddressType = Enum.Parse<AddressType>(reader["address_type"].ToString()),
+                            City = reader["city"].ToString(),
+                            PostalCode = reader["postal_code"].ToString(),
+                            State = reader["state"].ToString(),
+                            Country = reader["country"].ToString()
+                        });
+                    }
+                }
+            }
+            return foundAddresses;
+        }
+
         public void Update(Address address)
         {
             using(var connection = GetConnection())

@@ -118,6 +118,40 @@ namespace CustomerClassLibrary.Data
                 command.ExecuteNonQuery();
             }
         }
-       
+
+        public List<CustomerNote> ReadNoteByCutomerId(int customerId)
+        {
+            List<CustomerNote> notes = new List<CustomerNote>();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                var command = new SqlCommand("SELECT * FROM [dbo].customer_note " +
+                    "WHERE customer_id = @customer_id", connection);
+
+                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
+                {
+                    Value = customerId
+                };
+
+                command.Parameters.Add(customerIdParam);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        notes.Add(new CustomerNote()
+                        {
+                            CustomerId = (Int32)reader["customer_id"],
+                            NoteId = (Int32)reader["note_id"],
+                            Note = reader["note"].ToString()
+                        });     
+                    }
+                }
+            }
+            return notes;
+        }
+
     }
 }

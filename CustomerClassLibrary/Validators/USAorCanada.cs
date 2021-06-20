@@ -13,13 +13,13 @@ namespace CustomerClassLibrary
         public override bool IsValid(object value)
         {
             var inputValue = value as string;
-            var isValid = true;
+            var isValid = false;
 
             if (!string.IsNullOrEmpty(inputValue))
             {
-                if (inputValue != "USA" || inputValue != "Canada")
+                if (inputValue == "USA" || inputValue == "Canada")
                 {
-                    isValid = false;
+                    isValid = true;
                 }
             }
 

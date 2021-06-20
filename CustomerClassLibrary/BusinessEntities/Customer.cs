@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using CustomerClassLibrary.Data.Common;
+using CustomerClassLibrary.Common;
 
 namespace CustomerClassLibrary 
 {
@@ -30,8 +31,19 @@ namespace CustomerClassLibrary
 
         public decimal? TotalPurshasesAmount { get; set; }
 
+        public int AddressesCount = 0;
+        public int NoteCount = 0;
+
         public void AddAddress(Address address)
         {
+            var addressValidator = new AddressValidator();
+            List<string> results = addressValidator.ValidateAdress(address);
+
+            if (results.Count != 0)
+            {
+                throw new WrongDataException($"Address data is invalid. {string.Join(" ", results)}");
+            }
+
             if (CustomerId == address.CustomerId)
             {
                 AdressesList.Add(address);

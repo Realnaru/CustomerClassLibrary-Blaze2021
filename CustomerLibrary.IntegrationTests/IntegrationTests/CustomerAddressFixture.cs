@@ -29,7 +29,7 @@ namespace CustomerLibrary.IntegrationTests.IntegrationTests
             address.AdressLine2 = "Main St";
             address.AddressType = AddressType.Billing;
             address.PostalCode = "123456";
-            address.Country = "USA";
+            address.Country = "Canada";
             address.City = "Anytown";
             address.State = "Anystate";
             

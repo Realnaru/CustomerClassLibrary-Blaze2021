@@ -57,8 +57,9 @@ namespace CustomerLibraryTests.IntegrationTests
             
             customerRepository.DeleteAll();
 
-            var customer = fixtureCustomer.MockCustomer();
             var address = fixtureAddress.MockAddress();
+            var customer = fixtureCustomer.MockCustomer();
+            
 
             int customerId = customerRepository.Create(customer);
             address.CustomerId = customerId;
@@ -148,6 +149,54 @@ namespace CustomerLibraryTests.IntegrationTests
             var deletedAddress = customerAdressRepository.Read(addressId);
 
             Assert.Null(deletedAddress);
+        }
+
+        [Fact] 
+        public void ShouldReadAddressesByCustomerId()
+        {
+            var customerRepository = new CustomerRepository();
+            var customerAddressRepository = new CustomerAddressRepository();
+            var fixtureCustomer = new CustomerRepositoryFixture();
+
+            var customerAdressRepository = new CustomerAddressRepository();
+            var fixtureAddress = new CustomerAddressFixture();
+
+            customerRepository.DeleteAll();
+
+            var customer = fixtureCustomer.MockCustomer();
+            var address = fixtureAddress.MockAddress();
+
+            int customerId = customerRepository.Create(customer);
+
+            address.CustomerId = customerId;
+
+            int addressId = customerAdressRepository.Create(address);
+
+            var createdAddress = customerAddressRepository.Read(addressId);
+
+            createdAddress.AdressLine = "245";
+            createdAddress.AdressLine2 = "Belleville Road";
+            createdAddress.AddressType = AddressType.Shipping;
+            createdAddress.City = "Napanee";
+            createdAddress.PostalCode = "K7R3M7";
+            createdAddress.State = "Ontario";
+            createdAddress.Country = "Canada";
+
+            customerAddressRepository.Update(createdAddress);
+
+            List<Address> addresses = customerAddressRepository.ReadByCustomerId(customerId);
+
+            var updatedAddress = addresses[0];
+
+            Assert.Equal("245", updatedAddress.AdressLine);
+            Assert.Equal("Belleville Road", updatedAddress.AdressLine2);
+            Assert.Equal(AddressType.Shipping, updatedAddress.AddressType);
+            Assert.Equal("Napanee", updatedAddress.City);
+            Assert.Equal("K7R3M7", updatedAddress.PostalCode);
+            Assert.Equal("Ontario", updatedAddress.State);
+            Assert.Equal("Canada", updatedAddress.Country);
+
+
         }
     }
 }

@@ -15,5 +15,7 @@ namespace CustomerClassLibrary.Data.Repositories
         public void Update(TEntity entity);
 
         public void Delete(TEntity entity);
+        List<Address> ReadByCustomerId(int customerId);
+        List<CustomerNote> ReadNoteByCustomerId(int customerId);
     }
 }

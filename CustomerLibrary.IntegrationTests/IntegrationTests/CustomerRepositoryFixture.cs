@@ -1,5 +1,6 @@
 ﻿using CustomerClassLibrary;
 using CustomerClassLibrary.Data;
+using CustomerLibrary.IntegrationTests.IntegrationTests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,13 +25,17 @@ namespace CustomerLibraryTests.IntegrationTests
 
         public Customer MockCustomer()
         {
+            var fixtureAddress = new CustomerAddressFixture();
+
+            var address = fixtureAddress.MockAddress();
+
             var customer = new Customer();
             customer.FirstName = "John";
             customer.LastName = "Doe";
             customer.PhoneNumber = "1111111";
             customer.Email = "jd@gmail.com";
             customer.TotalPurshasesAmount = 100;
-            customer.AddAddress(new Address());
+            customer.AddAddress(address);
             customer.AddNote(new CustomerNote());
 
             return customer;

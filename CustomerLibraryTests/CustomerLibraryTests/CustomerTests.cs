@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CustomerClassLibrary;
+using CustomerClassLibrary.Common;
 using CustomerClassLibrary.Data.Common;
+using CustomerLibrary.IntegrationTests.IntegrationTests;
 using Xunit;
 
 namespace CustomerLibraryTests
@@ -59,8 +61,10 @@ namespace CustomerLibraryTests
         [Fact]
         public void ShouldBeAbleToAddAddress()
         {
+            var addressFixture = new CustomerAddressFixture();
             Customer customer = new Customer();
-            Address address = new Address();
+
+            Address address = addressFixture.MockAddress();
 
             customer.AddAddress(address);
 
@@ -70,15 +74,27 @@ namespace CustomerLibraryTests
         [Fact]
         public void ShouldNotBeAbleToAddAddressWithWrongId()
         {
+            var addressFixture = new CustomerAddressFixture();
             Customer customer = new Customer();
-            Address address = new Address();
+            Address address = addressFixture.MockAddress();
 
             customer.CustomerId = 1;
-            address.AddressId = 2;
+            address.CustomerId = 2;
 
             Assert.Throws<WrongIdException>(() => customer.AddAddress(address));
+            Assert.Empty(customer.AdressesList);
+        }
 
-            
+        [Fact]
+        public void ShouldThrowExceptionIfAddressHasWrongData()
+        {
+            Customer customer = new Customer();
+            Address address = new Address();
+            customer.CustomerId = 1;
+            address.CustomerId = 1;
+
+            Assert.Throws<WrongDataException>(() => customer.AddAddress(address));
+            Assert.Empty(customer.AdressesList);
         }
 
         [Fact]

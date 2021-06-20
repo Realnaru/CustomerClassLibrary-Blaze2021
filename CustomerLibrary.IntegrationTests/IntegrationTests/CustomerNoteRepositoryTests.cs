@@ -120,5 +120,31 @@ namespace CustomerLibraryTests.IntegrationTests
 
             Assert.Null(deletedNote);
         }
+
+        [Fact]
+        public void ShouldToGetNotesByCustomerId()
+        {
+            var customerNoteRepository = new CustomerNoteRepository();
+            var customerRepository = new CustomerRepository();
+            var fixture = new CustomerRepositoryFixture();
+
+            customerRepository.DeleteAll();
+
+            var customerNote = new CustomerNote();
+
+            var customer = fixture.MockCustomer();
+            int customerId = customerRepository.Create(customer);
+
+            customerNote.CustomerId = customerId;
+            customerNote.Note = "Kitty ipsum dolor sit amet, shed everywhere shed everywhere";
+
+            customerNoteRepository.Create(customerNote);
+
+            List<CustomerNote> Notes = customerNoteRepository.ReadNoteByCutomerId(customerId);
+
+            var createdNote = Notes[0];
+            Assert.Equal("Kitty ipsum dolor sit amet, shed everywhere shed everywhere", createdNote.Note);
+
+        }
     }
 }

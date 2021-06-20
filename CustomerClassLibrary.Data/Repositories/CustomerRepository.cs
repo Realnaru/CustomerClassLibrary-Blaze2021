@@ -4,9 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace CustomerClassLibrary.Data
@@ -17,6 +14,7 @@ namespace CustomerClassLibrary.Data
         public int Create(Customer customer)
         {
             var validator = new CustomerValidator();
+
             List<string> results = validator.ValidateCustomer(customer);
 
             if (results.Count != 0)
@@ -188,6 +186,14 @@ namespace CustomerClassLibrary.Data
             }
         }
 
+        public List<Address> ReadByCustomerId(int customerId)
+        {
+            throw new NotImplementedException();
+        }
 
+        public List<CustomerNote> ReadNoteByCustomerId(int customerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
