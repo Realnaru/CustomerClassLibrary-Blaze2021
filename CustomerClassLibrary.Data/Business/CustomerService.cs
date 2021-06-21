@@ -57,7 +57,6 @@ namespace CustomerClassLibrary.Business
             return customerId;
         }
            
-
         public Customer GetCustomer(int customerId)
         {
             var customer =  _customerRepository.Read(customerId);
