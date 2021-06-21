@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using CustomerClassLibrary.Data;
 using CustomerClassLibrary.Data.Repositories;
 
@@ -33,17 +34,29 @@ namespace CustomerClassLibrary.Business
 
         public int CreateCustomer(Customer customer)
         {
-            foreach (var address in customer.AdressesList)
+            int customerId;
+
+            using (var transactionScope = new TransactionScope())
             {
-                _addressRepository.Create(address);
+                foreach (var address in customer.AdressesList)
+                {
+                    _addressRepository.Create(address);
+                }
+
+                foreach (var note in customer.Note)
+                {
+                    _noteRepository.Create(note);
+                }
+
+                 customerId = _customerRepository.Create(customer);
+
+                transactionScope.Complete();
+
             }
 
-            foreach (var note in customer.Note)
-            {
-                _noteRepository.Create(note);
-            }
-            return _customerRepository.Create(customer);
+            return customerId;
         }
+           
 
         public Customer GetCustomer(int customerId)
         {
@@ -56,23 +69,29 @@ namespace CustomerClassLibrary.Business
 
         public void ChangeCustomer(Customer customer)
         {
-            _customerRepository.Update(customer);
-
-            foreach (var address in customer.AdressesList)
+            using (var transactionScope = new TransactionScope())
             {
-                _addressRepository.Update(address);
-            }
+                _customerRepository.Update(customer);
 
-            foreach (var note in customer.Note)
-            {
-                _noteRepository.Update(note);
+                foreach (var address in customer.AdressesList)
+                {
+                    _addressRepository.Update(address);
+                }
+
+                foreach (var note in customer.Note)
+                {
+                    _noteRepository.Update(note);
+                }
+
+                transactionScope.Complete();
             }
+            
         }
 
         public void DeleteCustomer(Customer customer)
         {
             _customerRepository.Delete(customer);
-
+            /*
             foreach (var address in customer.AdressesList)
             {
                 _addressRepository.Delete(address);
@@ -82,6 +101,7 @@ namespace CustomerClassLibrary.Business
             {
                 _noteRepository.Delete(note);
             }
+            */
         }
     }
 }
