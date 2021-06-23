@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using CustomerClassLibrary.Data.Common;
 using CustomerClassLibrary.Common;
+using CustomerClassLibrary.Validators;
 
 namespace CustomerClassLibrary 
 {
@@ -14,7 +15,7 @@ namespace CustomerClassLibrary
         public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "The field is required"),
-            MinLength(1, ErrorMessage = "The field is required")]
+            EnsureOneItemAttribute(ErrorMessage = "The field is required")]
         public List<Address> AdressesList { get; set; } = new List<Address>();
 
         [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Phone Number should have E.164 standart")]
@@ -26,7 +27,7 @@ namespace CustomerClassLibrary
         public string Email { get; set; }
 
         [Required(ErrorMessage = "The field is required"),
-            MinLength(1, ErrorMessage = "The field is required")]
+            EnsureOneItemAttribute(ErrorMessage = "The field is required")]
         public List<CustomerNote> Note { get; set; } = new List<CustomerNote>();
 
         public decimal? TotalPurshasesAmount { get; set; }
