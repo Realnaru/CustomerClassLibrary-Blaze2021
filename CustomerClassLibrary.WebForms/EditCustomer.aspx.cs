@@ -8,26 +8,23 @@ using System.Web.UI.WebControls;
 
 namespace CustomerClassLibrary.WebForms
 {
-    public partial class CustomerList : System.Web.UI.Page
+    public partial class EditCustomer : System.Web.UI.Page
     {
         private CustomerService _customerService;
-        public List<Customer> Customers { get; set; }
 
-        public Customer Customer1 { get; set; }
-
-        public CustomerList()
+        public EditCustomer()
         {
             _customerService = new CustomerService();
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadCustomers();
+
         }
 
-        public void LoadCustomers()
+        public void ShowCustomer(int customerId)
         {
-            Customers = _customerService.GetAllCustomers();
+
+
         }
-        
     }
 }

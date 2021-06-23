@@ -77,6 +77,23 @@ namespace CustomerLibraryTests.IntegrationTests
         }
 
         [Fact]
+        public void ShouldBeAbleToReadAllCustomers()
+        {
+            var customerRepository = new CustomerRepository();
+            var fixture = new CustomerRepositoryFixture();
+            customerRepository.DeleteAll();
+            var customer = fixture.MockCustomer();
+            var secondCustomer = fixture.MockCustomer();
+            int customerId = customerRepository.Create(customer);
+            customerRepository.Create(secondCustomer);
+
+            List<Customer> customers = customerRepository.ReadAll();
+
+            Assert.Equal(2, customers.Count);
+            
+        }
+
+        [Fact]
         public void ShouldBeAbleToUpdateCustomer()
         {
             var customerRepository = new CustomerRepository();

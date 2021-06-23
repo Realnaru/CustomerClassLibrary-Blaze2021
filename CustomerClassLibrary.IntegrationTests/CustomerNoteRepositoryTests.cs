@@ -140,7 +140,7 @@ namespace CustomerLibraryTests.IntegrationTests
 
             customerNoteRepository.Create(customerNote);
 
-            List<CustomerNote> Notes = customerNoteRepository.ReadNoteByCutomerId(customerId);
+            List<CustomerNote> Notes = customerNoteRepository.ReadNoteByCustomerId(customerId);
 
             var createdNote = Notes[0];
             Assert.Equal("Kitty ipsum dolor sit amet, shed everywhere shed everywhere", createdNote.Note);

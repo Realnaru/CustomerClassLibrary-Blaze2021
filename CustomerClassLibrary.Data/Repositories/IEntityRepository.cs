@@ -12,6 +12,8 @@ namespace CustomerClassLibrary.Data.Repositories
 
         public TEntity Read(int entityId);
 
+        public List<Customer> ReadAll();
+
         public void Update(TEntity entity);
 
         public void Delete(TEntity entity);

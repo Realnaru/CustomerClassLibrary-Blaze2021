@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using CustomerClassLibrary.Data.Repositories;
 
 namespace CustomerClassLibrary.Data
 {
-    public class CustomerNoteRepository : BaseRepository
+    public class CustomerNoteRepository : BaseRepository, IEntityRepository<CustomerNote>
     {
         public int Create(CustomerNote customerNote)
         {
@@ -52,7 +53,8 @@ namespace CustomerClassLibrary.Data
                 var command = new SqlCommand("SELECT * FROM [dbo].customer_note " +
                     "WHERE customer_id = @customer_id", connection);
 
-                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int) {
+                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
+                {
                     Value = customerId
                 };
 
@@ -76,7 +78,7 @@ namespace CustomerClassLibrary.Data
 
         public void Update(CustomerNote customerNote)
         {
-            using(var connection = GetConnection())
+            using (var connection = GetConnection())
             {
                 connection.Open();
 
@@ -96,13 +98,13 @@ namespace CustomerClassLibrary.Data
                 command.Parameters.Add(noteParam);
 
                 command.ExecuteNonQuery();
-     
+
             }
         }
 
         public void Delete(int customerId)
         {
-            using(var connection = GetConnection())
+            using (var connection = GetConnection())
             {
                 connection.Open();
 
@@ -119,7 +121,7 @@ namespace CustomerClassLibrary.Data
             }
         }
 
-        public List<CustomerNote> ReadNoteByCutomerId(int customerId)
+        public List<CustomerNote> ReadNoteByCustomerId(int customerId)
         {
             List<CustomerNote> notes = new List<CustomerNote>();
 
@@ -146,12 +148,30 @@ namespace CustomerClassLibrary.Data
                             CustomerId = (Int32)reader["customer_id"],
                             NoteId = (Int32)reader["note_id"],
                             Note = reader["note"].ToString()
-                        });     
+                        });
                     }
                 }
             }
             return notes;
         }
 
+        public void Delete(CustomerNote entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Customer> ReadAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Address> ReadByCustomerId(int customerId)
+        {
+            throw new NotImplementedException();
+        }
+
     }
+
+        
+    
 }

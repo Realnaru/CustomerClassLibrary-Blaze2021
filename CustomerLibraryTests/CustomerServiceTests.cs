@@ -93,6 +93,43 @@ namespace CustomerLibraryTests.CustomerLibraryTests
         }
 
         [Fact]
+        public void ShouldGetAllCustomers()
+        {
+            var customerFixture = new CustomerRepositoryFixture();
+            var addressFixture = new CustomerAddressFixture();
+
+            var customerMock = new Mock<IEntityRepository<Customer>>();
+            var addressMock = new Mock<IEntityRepository<Address>>();
+            var noteMock = new Mock<IEntityRepository<CustomerNote>>();
+
+            var customerExpected = customerFixture.MockCustomer();
+            var addressExpected = addressFixture.MockAddress();
+            var noteExpected = new CustomerNote();
+
+            List<Customer> customers = new List<Customer>();
+
+            List<Address> expectedAddresses = new List<Address>();
+            expectedAddresses.Add(addressExpected);
+
+            List<CustomerNote> expectedNotes = new List<CustomerNote>();
+            expectedNotes.Add(noteExpected);
+
+            customerMock.Setup(x => x.Read(1)).Returns(() => customerExpected);
+            addressMock.Setup(x => x.ReadByCustomerId(1)).Returns(expectedAddresses);
+            noteMock.Setup(x => x.ReadNoteByCustomerId(1)).Returns(expectedNotes);
+
+            var customerService = new CustomerService(customerMock.Object, addressMock.Object, noteMock.Object);
+
+            var customer = customerService.GetCustomer(1);
+            var address = customer.AdressesList[0];
+            var note = customer.Note[0];
+
+            Assert.Equal(customerExpected, customer);
+            Assert.Equal(addressExpected, address);
+            Assert.Equal(noteExpected, note);
+        }
+
+        [Fact]
         public void ShouldUpdateCustomer()
         {
             var customerMock = new Mock<IEntityRepository<Customer>>();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomerClassLibrary.Data.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CustomerClassLibrary.Data
 {
-    public class CustomerAddressRepository : BaseRepository
+    public class CustomerAddressRepository : BaseRepository, IEntityRepository<Address>
     {
         public int Create(Address address)
         {
@@ -94,17 +95,22 @@ namespace CustomerClassLibrary.Data
                 {
                     if (reader.Read())
                     {
-                        return new Address()
+                        var addressType = reader["address_type"]?.ToString();
+
+                        if (addressType is not null)
                         {
-                            CustomerId = (Int32)reader["customer_id"],
-                            AdressLine = reader["address_line"].ToString(),
-                            AdressLine2 = reader["address_line2"].ToString(),
-                            AddressType = (AddressType)Enum.Parse(typeof(AddressType), "address_type"),
-                            City = reader["city"].ToString(),
-                            PostalCode = reader["postal_code"].ToString(),
-                            State = reader["state"].ToString(),
-                            Country = reader["country"].ToString()
-                        };
+                            return new Address()
+                            {
+                                CustomerId = (Int32)reader["customer_id"],
+                                AdressLine = reader["address_line"].ToString(),
+                                AdressLine2 = reader["address_line2"].ToString(),
+                                AddressType = (AddressType)Enum.Parse(typeof(AddressType), addressType),
+                                City = reader["city"].ToString(),
+                                PostalCode = reader["postal_code"].ToString(),
+                                State = reader["state"].ToString(),
+                                Country = reader["country"].ToString()
+                            };
+                        }    
                     }
                 }
             }
@@ -132,20 +138,28 @@ namespace CustomerClassLibrary.Data
                 {
                     while (reader.Read())
                     {
-                        foundAddresses.Add(new Address()
+                        var addressType = reader["address_type"]?.ToString();
+
+                        if (addressType is not null)
                         {
-                            CustomerId = (Int32)reader["customer_id"],
-                            AdressLine = reader["address_line"].ToString(),
-                            AdressLine2 = reader["address_line2"].ToString(),
-                            AddressType = (AddressType)Enum.Parse(typeof(AddressType), "address_type"),
-                            City = reader["city"].ToString(),
-                            PostalCode = reader["postal_code"].ToString(),
-                            State = reader["state"].ToString(),
-                            Country = reader["country"].ToString()
-                        });
+                            foundAddresses.Add(new Address()
+                            {
+                                CustomerId = (Int32)reader["customer_id"],
+                                AdressLine = reader["address_line"].ToString(),
+                                AdressLine2 = reader["address_line2"].ToString(),
+                                AddressType = (AddressType)Enum.Parse(typeof(AddressType), addressType),
+                                City = reader["city"].ToString(),
+                                PostalCode = reader["postal_code"].ToString(),
+                                State = reader["state"].ToString(),
+                                Country = reader["country"].ToString()
+                            });
+                        }
+
+                        
                     }
                 }
             }
+
             return foundAddresses;
         }
 
@@ -182,6 +196,21 @@ namespace CustomerClassLibrary.Data
 
                 command.ExecuteNonQuery();
             }
+        }
+
+        public List<Customer> ReadAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Address entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CustomerNote> ReadNoteByCustomerId(int customerId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

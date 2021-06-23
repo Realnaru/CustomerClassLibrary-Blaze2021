@@ -13,13 +13,15 @@ namespace CustomerClassLibrary.Business
     {
         private readonly IEntityRepository<Customer> _customerRepository;
 
-        public readonly IEntityRepository<Address> _addressRepository;
+        private readonly IEntityRepository<Address> _addressRepository;
 
-        public readonly IEntityRepository<CustomerNote> _noteRepository;
+        private readonly IEntityRepository<CustomerNote> _noteRepository;
 
         public CustomerService()
         {
             _customerRepository = new CustomerRepository();
+            _addressRepository = new CustomerAddressRepository();
+            _noteRepository = new CustomerNoteRepository();
         }
 
         public CustomerService(IEntityRepository<Customer> customerRepository, IEntityRepository<Address> addressRepository,
@@ -38,17 +40,19 @@ namespace CustomerClassLibrary.Business
 
             using (var transactionScope = new TransactionScope())
             {
+                 customerId = _customerRepository.Create(customer);
+
                 foreach (var address in customer.AdressesList)
                 {
+                     address.CustomerId = customerId;
                     _addressRepository.Create(address);
                 }
 
                 foreach (var note in customer.Note)
                 {
+                     note.CustomerId = customerId;
                     _noteRepository.Create(note);
                 }
-
-                 customerId = _customerRepository.Create(customer);
 
                 transactionScope.Complete();
 
@@ -64,6 +68,19 @@ namespace CustomerClassLibrary.Business
             customer.Note = _noteRepository.ReadNoteByCustomerId(customerId);
             return customer;
 
+        }
+
+        public List<Customer> GetAllCustomers()
+        {
+            List<Customer> customers = _customerRepository.ReadAll();
+            
+            foreach (var customer in customers)
+            { 
+                customer.AdressesList = _addressRepository.ReadByCustomerId(customer.CustomerId);
+                customer.Note = _noteRepository.ReadNoteByCustomerId(customer.CustomerId);
+            }
+
+            return customers;
         }
 
         public void ChangeCustomer(Customer customer)
