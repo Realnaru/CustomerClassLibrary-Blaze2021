@@ -9,7 +9,7 @@ namespace CustomerClassLibrary
 {
     public class AddressValidator
     {
-        public List<string> ValidateAdress(Address anyAddress)
+        public List<String> ValidateAdress(Address anyAddress)
         {
             var result = new List<string>();
             var results = new List<ValidationResult>();
@@ -17,8 +17,10 @@ namespace CustomerClassLibrary
 
             if (!Validator.TryValidateObject(anyAddress, context, results, true))
             {
+              
                 foreach (var error in results)
                 {
+
                     result.Add(error.ErrorMessage);
                 }
             }

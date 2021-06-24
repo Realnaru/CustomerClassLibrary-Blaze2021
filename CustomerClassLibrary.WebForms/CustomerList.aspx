@@ -17,5 +17,5 @@
             </tr> 
         <%} %>
     </table>
-    <a class="btn btn-lg btn-primary" href ="AddCustomer">Add new customer</a>
+    <a class="btn btn-lg btn-primary" href ="CustomerAdd">Add new customer</a>
 </asp:Content>

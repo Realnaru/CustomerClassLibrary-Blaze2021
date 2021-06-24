@@ -11,7 +11,7 @@ namespace CustomerLibraryTests
     public class AddresValidatorTests
     {
         [Fact]
-        public void ShouldReturnErrorMessages()
+        public void ShouldReturnErrorMessagesWithFieldNames()
         {
             Address address = new Address();
             AddressValidator addressValidator = new AddressValidator();
@@ -19,6 +19,7 @@ namespace CustomerLibraryTests
             List<string> errorList = addressValidator.ValidateAdress(address);
 
             Assert.Equal("The field is required", errorList[0]);
+            //Assert.Equal("AddressList", errorList[0].FieldName);
             Assert.Equal("The field is required", errorList[1]);
             Assert.Equal("The field is required", errorList[2]);
             Assert.Equal("The field is required", errorList[3]);
@@ -36,6 +37,8 @@ namespace CustomerLibraryTests
             List<string> errorList1 = addressValidator.ValidateAdress(address1);
 
             Assert.Equal("Maximum length is 100 characters", errorList1[0]);
+            //Assert.Equal("AddressLine", errorList1[0].FieldName);
+
             Assert.Equal("Maximum length is 100 characters", errorList1[1]);
             Assert.Equal("Maximum length is 50 characters", errorList1[2]);
             Assert.Equal("Maximum length is 6 characters", errorList1[3]);

@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerClassLibrary.Integr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerClassLibrary.WebForms", "CustomerClassLibrary.WebForms\CustomerClassLibrary.WebForms.csproj", "{8EB7D831-EAFF-4E68-88C2-AF765D2CA7DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerClassLibrary.WebForms.Tests", "CustomerClassLibrary.WebForms.Tests\CustomerClassLibrary.WebForms.Tests.csproj", "{79ADB4E7-EBD1-4932-9613-7BCC3BD09E1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerClassLibrary.WebForms.Tests", "CustomerClassLibrary.WebForms.Tests\CustomerClassLibrary.WebForms.Tests.csproj", "{79ADB4E7-EBD1-4932-9613-7BCC3BD09E1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +58,7 @@ Global
 		{F976F7CD-7287-4ECD-A0A5-28FBC9109D80} = {FF0C0B48-1E47-442B-A328-AE95A7A1BD6D}
 		{A51099F3-1E2E-4311-BAD1-1C525796C47D} = {4A889042-B347-413B-9E1B-CF9A7FC13A5F}
 		{09115383-144D-443F-9A92-F5FA8E37B8A2} = {FF0C0B48-1E47-442B-A328-AE95A7A1BD6D}
+		{8EB7D831-EAFF-4E68-88C2-AF765D2CA7DF} = {4A889042-B347-413B-9E1B-CF9A7FC13A5F}
 		{79ADB4E7-EBD1-4932-9613-7BCC3BD09E1A} = {FF0C0B48-1E47-442B-A328-AE95A7A1BD6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

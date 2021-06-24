@@ -78,8 +78,8 @@ namespace CustomerLibraryTests.CustomerLibraryTests
             expectedNotes.Add(noteExpected);
 
             customerMock.Setup(x => x.Read(1)).Returns(() => customerExpected);
-            addressMock.Setup(x => x.ReadByCustomerId(1)).Returns(expectedAddresses);
-            noteMock.Setup(x => x.ReadNoteByCustomerId(1)).Returns(expectedNotes);
+            addressMock.Setup(x => x.ReadAll(1)).Returns(expectedAddresses);
+            noteMock.Setup(x => x.ReadAll(1)).Returns(expectedNotes);
 
             var customerService = new CustomerService(customerMock.Object, addressMock.Object, noteMock.Object);
 
@@ -115,8 +115,8 @@ namespace CustomerLibraryTests.CustomerLibraryTests
             expectedNotes.Add(noteExpected);
 
             customerMock.Setup(x => x.Read(1)).Returns(() => customerExpected);
-            addressMock.Setup(x => x.ReadByCustomerId(1)).Returns(expectedAddresses);
-            noteMock.Setup(x => x.ReadNoteByCustomerId(1)).Returns(expectedNotes);
+            addressMock.Setup(x => x.ReadAll(1)).Returns(expectedAddresses);
+            noteMock.Setup(x => x.ReadAll(1)).Returns(expectedNotes);
 
             var customerService = new CustomerService(customerMock.Object, addressMock.Object, noteMock.Object);
 
