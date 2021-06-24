@@ -12,8 +12,8 @@
                 <td><%= customer.PhoneNumber %></td>
                 <td><%= customer.Email %></td>
                 <td><%= customer.TotalPurshasesAmount %></td>
-                <td><a class="btn btn-primary" href="EditCustomer?customerId=<%= customer.CustomerId %>">Edit</a></td>
-                <td><a class="btn btn-primary" href ="#">Delete</a></td>
+                <td><a class="btn btn-primary" href="CustomerEdit?customerId=<%= customer.CustomerId %>">Edit</a></td>
+                <td><a class="btn btn-primary" href="CustomerDelete?customerId=<%= customer.CustomerId %>">Delete</a></td>
             </tr> 
         <%} %>
     </table>
