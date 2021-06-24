@@ -9,19 +9,20 @@ namespace CustomerClassLibrary
 {
     public class AddressValidator
     {
-        public List<String> ValidateAdress(Address anyAddress)
+        public List<Tuple<string, string>> ValidateAdress(Address anyAddress)
         {
-            var result = new List<string>();
+            var result = new List<Tuple<string, string>>();
             var results = new List<ValidationResult>();
             var context = new ValidationContext(anyAddress);
 
             if (!Validator.TryValidateObject(anyAddress, context, results, true))
             {
-              
                 foreach (var error in results)
                 {
-
-                    result.Add(error.ErrorMessage);
+                    foreach (var member in error.MemberNames)
+                    {
+                        result.Add(new Tuple<string, string>(member, error.ErrorMessage));
+                    }          
                 }
             }
             return result;

@@ -38,7 +38,7 @@ namespace CustomerClassLibrary
         public void AddAddress(Address address)
         {
             var addressValidator = new AddressValidator();
-            List<string> results = addressValidator.ValidateAdress(address);
+            List<Tuple<string, string>> results = addressValidator.ValidateAdress(address);
 
             if (results.Count != 0)
             {

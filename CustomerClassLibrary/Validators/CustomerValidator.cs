@@ -9,9 +9,10 @@ namespace CustomerClassLibrary
 {
     public class CustomerValidator
     {
-        public List<string> ValidateCustomer(Customer anyCustomer)
+        public List<Tuple<string,string>> ValidateCustomer(Customer anyCustomer)
+
         {
-            var result = new List<string>();
+            var result = new List<Tuple<string, string>>();
             var results = new List<ValidationResult>();
             var context = new ValidationContext(anyCustomer);
 
@@ -19,7 +20,11 @@ namespace CustomerClassLibrary
             {
                 foreach (var error in results)
                 {
-                    result.Add(error.ErrorMessage);
+                    foreach (var member in error.MemberNames)
+                    {
+                        result.Add(new Tuple<string, string>(member, error.ErrorMessage));
+                    }
+                    
                 }
             }
             return result;

@@ -16,15 +16,23 @@ namespace CustomerLibraryTests
             Address address = new Address();
             AddressValidator addressValidator = new AddressValidator();
 
-            List<string> errorList = addressValidator.ValidateAdress(address);
+            List<Tuple<string, string>> errorList = addressValidator.ValidateAdress(address);
 
-            Assert.Equal("The field is required", errorList[0]);
-            //Assert.Equal("AddressList", errorList[0].FieldName);
-            Assert.Equal("The field is required", errorList[1]);
-            Assert.Equal("The field is required", errorList[2]);
-            Assert.Equal("The field is required", errorList[3]);
-            Assert.Equal("The field is required", errorList[4]);
+            Assert.Equal("AdressLine", errorList[0].Item1);
+            Assert.Equal("The field is required", errorList[0].Item2);
 
+            Assert.Equal("City", errorList[1].Item1);
+            Assert.Equal("The field is required", errorList[1].Item2);
+
+            Assert.Equal("PostalCode", errorList[2].Item1);
+            Assert.Equal("The field is required", errorList[2].Item2);
+
+            Assert.Equal("State", errorList[3].Item1);
+            Assert.Equal("The field is required", errorList[3].Item2);
+
+            Assert.Equal("Country", errorList[4].Item1);
+            Assert.Equal("The field is required", errorList[4].Item2);
+           
             Address address1 = new Address();
 
             address1.AdressLine = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
@@ -34,24 +42,34 @@ namespace CustomerLibraryTests
             address1.State = "12345678901234567890123456789012345678901234567890";
             address1.Country = "Russia";
 
-            List<string> errorList1 = addressValidator.ValidateAdress(address1);
+            List<Tuple<string, string>> errorList1 = addressValidator.ValidateAdress(address1);
 
-            Assert.Equal("Maximum length is 100 characters", errorList1[0]);
-            //Assert.Equal("AddressLine", errorList1[0].FieldName);
+            Assert.Equal("AdressLine", errorList1[0].Item1);
+            Assert.Equal("Maximum length is 100 characters", errorList1[0].Item2);
 
-            Assert.Equal("Maximum length is 100 characters", errorList1[1]);
-            Assert.Equal("Maximum length is 50 characters", errorList1[2]);
-            Assert.Equal("Maximum length is 6 characters", errorList1[3]);
-            Assert.Equal("Maximum length is 20 characters", errorList1[4]);
-            Assert.Equal("The field can be only USA or Canada", errorList1[5]);
+            Assert.Equal("AdressLine2", errorList1[1].Item1);
+            Assert.Equal("Maximum length is 100 characters", errorList1[1].Item2);
+
+            Assert.Equal("City", errorList1[2].Item1);
+            Assert.Equal("Maximum length is 50 characters", errorList1[2].Item2);
+
+            Assert.Equal("PostalCode", errorList1[3].Item1);
+            Assert.Equal("Maximum length is 6 characters", errorList1[3].Item2);
+
+            Assert.Equal("State", errorList1[4].Item1);
+            Assert.Equal("Maximum length is 20 characters", errorList1[4].Item2);
+
+            Assert.Equal("Country", errorList1[5].Item1);
+            Assert.Equal("The field can be only USA or Canada", errorList1[5].Item2);
+           
         }
-
+        
         [Fact]
         public void ShouldNotReturnErrorMessagesIfCountryIsValid()
         {
             Address address1 = new Address();
             AddressValidator addressValidator = new AddressValidator();
-            List<string> errorList = addressValidator.ValidateAdress(address1);
+            List<Tuple<string, string>> errorList = addressValidator.ValidateAdress(address1);
 
             address1.AdressLine = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
             address1.AdressLine2 = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
@@ -61,7 +79,6 @@ namespace CustomerLibraryTests
             address1.Country = "Canada";
 
             Assert.Equal(5, errorList.Count);
-
         }
-    }
+    }   
 }

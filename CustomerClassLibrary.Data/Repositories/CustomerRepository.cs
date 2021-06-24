@@ -15,7 +15,7 @@ namespace CustomerClassLibrary.Data
         {
             var validator = new CustomerValidator();
 
-            List<string> results = validator.ValidateCustomer(customer);
+            List<Tuple<string, string>> results = validator.ValidateCustomer(customer);
 
             if (results.Count != 0)
             {
