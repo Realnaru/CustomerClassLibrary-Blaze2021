@@ -17,6 +17,11 @@ namespace CustomerClassLibrary.WebForms
         {
             _customerService = new CustomerService();
         }
+
+        public CustomerList(CustomerService customerService)
+        {
+            _customerService = customerService;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadCustomers();

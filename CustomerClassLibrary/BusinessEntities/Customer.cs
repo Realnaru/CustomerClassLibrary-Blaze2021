@@ -50,7 +50,7 @@ namespace CustomerClassLibrary
                 AdressesList.Add(address);
             } else
             {
-                throw new WrongIdException();
+                throw new WrongIdException("Wrong customer ID");
             }
            
         }
@@ -59,10 +59,17 @@ namespace CustomerClassLibrary
         {
             if (note.CustomerId == CustomerId)
             {
-                Note.Add(note);
+                if (note != null && note.Note != "")
+                {
+                    Note.Add(note);
+                } else
+                {
+                    throw new WrongDataException("Note should not be empty");
+                }
+                
             } else
             {
-                throw new WrongIdException();
+                throw new WrongIdException("Wrong customer Id");
             }
              
         }

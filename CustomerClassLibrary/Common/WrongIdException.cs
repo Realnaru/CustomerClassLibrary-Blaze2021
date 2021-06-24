@@ -8,5 +8,8 @@ namespace CustomerClassLibrary.Data.Common
 {
     public class WrongIdException : Exception
     {
+        public WrongIdException(string message) : base(message)
+        {
+        }
     }
 }
