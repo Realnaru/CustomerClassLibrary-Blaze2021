@@ -15,6 +15,15 @@ namespace CustomerClassLibrary.WebForms
     {
 
         /// <summary>
+        /// id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox id;
+
+        /// <summary>
         /// firstName control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace CustomerClassLibrary.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox email;
+
+        /// <summary>
+        /// purchaseAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox purchaseAmount;
 
         /// <summary>
         /// note control.

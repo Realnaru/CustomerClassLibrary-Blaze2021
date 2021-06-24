@@ -13,8 +13,6 @@ namespace CustomerClassLibrary.WebForms
         private CustomerService _customerService;
         public List<Customer> Customers { get; set; }
 
-        public Customer Customer1 { get; set; }
-
         public CustomerList()
         {
             _customerService = new CustomerService();

@@ -64,8 +64,8 @@ namespace CustomerClassLibrary.Business
         public Customer GetCustomer(int customerId)
         {
             var customer =  _customerRepository.Read(customerId);
-            customer.AdressesList = _addressRepository.ReadByCustomerId(customerId);
-            customer.Note = _noteRepository.ReadNoteByCustomerId(customerId);
+            customer.AdressesList = _addressRepository.ReadAll(customerId);
+            customer.Note = _noteRepository.ReadAll(customerId);
             return customer;
 
         }
@@ -76,8 +76,8 @@ namespace CustomerClassLibrary.Business
             
             foreach (var customer in customers)
             { 
-                customer.AdressesList = _addressRepository.ReadByCustomerId(customer.CustomerId);
-                customer.Note = _noteRepository.ReadNoteByCustomerId(customer.CustomerId);
+                customer.AdressesList = _addressRepository.ReadAll(customer.CustomerId);
+                customer.Note = _noteRepository.ReadAll(customer.CustomerId);
             }
 
             return customers;

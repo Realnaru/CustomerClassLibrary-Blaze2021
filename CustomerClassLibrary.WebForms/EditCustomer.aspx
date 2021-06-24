@@ -5,9 +5,15 @@
 
     <div class="row">
         <div class="col-lg-6">
-             <div class="form-group">
-    <asp:Label runat="server" Text="First name"></asp:Label>
-    <asp:TextBox ID="firstName" CssClass="form-control" runat="server"></asp:TextBox>
+
+    <div class="form-group">
+        <asp:Label runat="server" Text="Id"></asp:Label>
+        <asp:TextBox ID="id" CssClass="form-control" runat="server"></asp:TextBox>
+    </div>  
+            
+    <div class="form-group">
+        <asp:Label runat="server" Text="First name"></asp:Label>
+        <asp:TextBox ID="firstName" CssClass="form-control" runat="server"></asp:TextBox>
     </div>    
     
     <div class="form-group">
@@ -23,6 +29,11 @@
     <div class="form-group">
         <asp:Label runat="server" Text="Email"></asp:Label>
         <asp:TextBox ID="email" CssClass="form-control" runat="server"></asp:TextBox>
+     </div>
+
+    <div class="form-group">
+        <asp:Label runat="server" Text="Email"></asp:Label>
+        <asp:TextBox ID="purchaseAmount" CssClass="form-control" runat="server"></asp:TextBox>
      </div>
 
     <div class="form-group">
@@ -70,4 +81,9 @@
         </div>
 
     </div>
+
+    <asp:Button runat="server" CssClass="btn btn-primary" 
+                OnClick="OnSaveClick" 
+                Text="Save" />
+
 </asp:Content>

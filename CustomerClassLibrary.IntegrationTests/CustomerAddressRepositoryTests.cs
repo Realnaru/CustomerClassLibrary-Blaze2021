@@ -184,7 +184,7 @@ namespace CustomerLibraryTests.IntegrationTests
 
             customerAddressRepository.Update(createdAddress);
 
-            List<Address> addresses = customerAddressRepository.ReadByCustomerId(customerId);
+            List<Address> addresses = customerAddressRepository.ReadAll(customerId);
 
             var updatedAddress = addresses[0];
 

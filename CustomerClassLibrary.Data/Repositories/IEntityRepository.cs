@@ -12,12 +12,12 @@ namespace CustomerClassLibrary.Data.Repositories
 
         public TEntity Read(int entityId);
 
-        public List<Customer> ReadAll();
+        public List<TEntity> ReadAll();
+
+        public List<TEntity> ReadAll(int entityId);
 
         public void Update(TEntity entity);
 
         public void Delete(TEntity entity);
-        List<Address> ReadByCustomerId(int customerId);
-        List<CustomerNote> ReadNoteByCustomerId(int customerId);
     }
 }

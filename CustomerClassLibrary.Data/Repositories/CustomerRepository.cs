@@ -215,12 +215,9 @@ namespace CustomerClassLibrary.Data
             }
         }
 
-        public List<Address> ReadByCustomerId(int customerId)
-        {
-            throw new NotImplementedException();
-        }
+        //----------------------------------------------//
 
-        public List<CustomerNote> ReadNoteByCustomerId(int customerId)
+        public List<Customer> ReadAll(int entityId)
         {
             throw new NotImplementedException();
         }

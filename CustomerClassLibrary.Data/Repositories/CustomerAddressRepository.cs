@@ -14,7 +14,7 @@ namespace CustomerClassLibrary.Data
         public int Create(Address address)
         {
             int addressId;
-            using(var connection = GetConnection())
+            using (var connection = GetConnection())
             {
                 connection.Open();
 
@@ -110,14 +110,14 @@ namespace CustomerClassLibrary.Data
                                 State = reader["state"].ToString(),
                                 Country = reader["country"].ToString()
                             };
-                        }    
+                        }
                     }
                 }
             }
             return null;
         }
 
-        public List<Address> ReadByCustomerId(int customerId)
+        public List<Address> ReadAll(int customerId)
         {
             List<Address> foundAddresses = new List<Address>();
 
@@ -155,7 +155,7 @@ namespace CustomerClassLibrary.Data
                             });
                         }
 
-                        
+
                     }
                 }
             }
@@ -165,7 +165,7 @@ namespace CustomerClassLibrary.Data
 
         public void Update(Address address)
         {
-            using(var connection = GetConnection())
+            using (var connection = GetConnection())
             {
                 connection.Open();
 
@@ -198,17 +198,14 @@ namespace CustomerClassLibrary.Data
             }
         }
 
-        public List<Customer> ReadAll()
+        //---------------------------------------------//
+
+        public List<Address> ReadAll()
         {
             throw new NotImplementedException();
         }
 
         public void Delete(Address entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<CustomerNote> ReadNoteByCustomerId(int customerId)
         {
             throw new NotImplementedException();
         }

@@ -75,6 +75,39 @@ namespace CustomerClassLibrary.Data
             }
             return null;
         }
+        public List<CustomerNote> ReadAll(int customerId)
+        {
+            List<CustomerNote> notes = new List<CustomerNote>();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                var command = new SqlCommand("SELECT * FROM [dbo].customer_note " +
+                    "WHERE customer_id = @customer_id", connection);
+
+                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
+                {
+                    Value = customerId
+                };
+
+                command.Parameters.Add(customerIdParam);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        notes.Add(new CustomerNote()
+                        {
+                            CustomerId = (Int32)reader["customer_id"],
+                            NoteId = (Int32)reader["note_id"],
+                            Note = reader["note"].ToString()
+                        });
+                    }
+                }
+            }
+            return notes;
+        }
 
         public void Update(CustomerNote customerNote)
         {
@@ -121,55 +154,17 @@ namespace CustomerClassLibrary.Data
             }
         }
 
-        public List<CustomerNote> ReadNoteByCustomerId(int customerId)
+        //------------------------------------------------//
+
+        public List<CustomerNote> ReadAll()
         {
-            List<CustomerNote> notes = new List<CustomerNote>();
-
-            using (var connection = GetConnection())
-            {
-                connection.Open();
-
-                var command = new SqlCommand("SELECT * FROM [dbo].customer_note " +
-                    "WHERE customer_id = @customer_id", connection);
-
-                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
-                {
-                    Value = customerId
-                };
-
-                command.Parameters.Add(customerIdParam);
-
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        notes.Add(new CustomerNote()
-                        {
-                            CustomerId = (Int32)reader["customer_id"],
-                            NoteId = (Int32)reader["note_id"],
-                            Note = reader["note"].ToString()
-                        });
-                    }
-                }
-            }
-            return notes;
+            throw new NotImplementedException();
         }
 
         public void Delete(CustomerNote entity)
         {
             throw new NotImplementedException();
         }
-
-        public List<Customer> ReadAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Address> ReadByCustomerId(int customerId)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 
         
