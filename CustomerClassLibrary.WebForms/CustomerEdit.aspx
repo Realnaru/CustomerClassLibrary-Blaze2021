@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CustomerEdit.aspx.cs" Inherits="CustomerClassLibrary.WebForms.EditCustomer" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CustomerEdit.aspx.cs" Inherits="CustomerClassLibrary.WebForms.CustomerEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h1>Edit customer</h1>
@@ -45,7 +45,7 @@
 
         <div class="col-lg-6">
 
-            <div class="form-group">
+    <div class="form-group">
     <asp:Label runat="server" Text="Address line"></asp:Label>
     <asp:TextBox ID="addressLine" CssClass="form-control" runat="server"></asp:TextBox>
     </div>    
@@ -79,6 +79,46 @@
         <asp:TextBox ID="country" CssClass="form-control" runat="server"></asp:TextBox>
      </div>
         </div>
+
+        <asp:Repeater ID="addressRepeater" runat="server">
+        <ItemTemplate>
+            <div class="form-group">
+                <asp:Label runat="server" Text="AddressLine"></asp:Label>
+                <asp:TextBox ID="addressLineRepeater" Text='<%# Eval("AdressLine") %>' CssClass="form-control" runat="server"></asp:TextBox>
+            </div>  
+    
+            <div class="form-group">
+                <asp:Label runat="server" Text="AddressLine2"></asp:Label>
+                <asp:TextBox ID="addressLine2Repeater" Text='<%# Eval("AdressLine2") %>'  CssClass="form-control" runat="server"></asp:TextBox>
+            </div> 
+
+            <div class="form-group">
+                <asp:Label runat="server" Text="AddressType"></asp:Label>
+                <asp:TextBox ID="AddressTypeRepeater" Text='<%# Eval("AddressType") %>'  CssClass="form-control" runat="server"></asp:TextBox>
+            </div> 
+
+            <div class="form-group">
+                <asp:Label runat="server" Text="City"></asp:Label>
+                <asp:TextBox ID="cityRepeater" Text='<%# Eval("City") %>'  CssClass="form-control" runat="server"></asp:TextBox>
+            </div> 
+
+            <div class="form-group">
+                <asp:Label runat="server" Text="Postal Code"></asp:Label>
+                <asp:TextBox ID="postelCodeRepeater" Text='<%# Eval("PostalCode") %>'  CssClass="form-control" runat="server"></asp:TextBox>
+            </div> 
+
+            <div class="form-group">
+                <asp:Label runat="server" Text="State"></asp:Label>
+                <asp:TextBox ID="stateRepeater" Text='<%# Eval("State") %>'  CssClass="form-control" runat="server"></asp:TextBox>
+            </div> 
+
+            <div class="form-group">
+                <asp:Label runat="server" Text="AddressLine2"></asp:Label>
+                <asp:TextBox ID="countryRepeater" Text='<%# Eval("Country") %>'  CssClass="form-control" runat="server"></asp:TextBox>
+            </div> 
+            
+        </ItemTemplate>
+    </asp:Repeater>
 
     </div>
 

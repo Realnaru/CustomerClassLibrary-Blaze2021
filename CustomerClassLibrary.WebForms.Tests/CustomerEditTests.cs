@@ -7,12 +7,12 @@ using Xunit;
 
 namespace CustomerClassLibrary.WebForms.Tests
 {
-    public class AddCustomerTests
+    public class CustomerEditTests
     {
         [Fact]
-        public void ShouldbeAbleToCreateAddCustomer()
+        public void ShouldBeAbleToCreateCustomerEdit()
         {
-            var addCustomer = new AddCustomer();
+            var customerEdit = new CustomerEdit();        
         }
     }
 }

@@ -9,6 +9,6 @@ namespace CustomerClassLibrary.WebForms.Tests
         public void ShouldBeAbleTocreateCustomerList()
         {
             var customerList = new CustomerList();
-;        }
+        }
     }
 }

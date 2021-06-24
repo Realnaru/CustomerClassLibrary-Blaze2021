@@ -8,11 +8,13 @@
              <div class="form-group">
     <asp:Label runat="server" Text="First name"></asp:Label>
     <asp:TextBox ID="firstName" CssClass="form-control" runat="server"></asp:TextBox>
+    
     </div>    
     
     <div class="form-group">
         <asp:Label runat="server" Text="Last name"></asp:Label>
         <asp:TextBox ID="lastName" CssClass="form-control" runat="server"></asp:TextBox>
+        <asp:Label ID="error" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
@@ -23,6 +25,11 @@
     <div class="form-group">
         <asp:Label runat="server" Text="Email"></asp:Label>
         <asp:TextBox ID="email" CssClass="form-control" runat="server"></asp:TextBox>
+     </div>
+
+    <div class="form-group">
+        <asp:Label runat="server" Text="Email"></asp:Label>
+        <asp:TextBox ID="purchaseAmount" CssClass="form-control" runat="server"></asp:TextBox>
      </div>
 
     <div class="form-group">
@@ -71,12 +78,7 @@
 
     </div>
 
-   
-
     <asp:Button runat="server" CssClass="btn btn-primary btn-lg" 
                 OnClick="OnAddClick" 
                 Text="Save" />
-
-    
-
 </asp:Content>

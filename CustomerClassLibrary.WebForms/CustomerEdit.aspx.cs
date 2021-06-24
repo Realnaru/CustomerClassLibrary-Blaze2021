@@ -8,11 +8,11 @@ using System.Web.UI.WebControls;
 
 namespace CustomerClassLibrary.WebForms
 {
-    public partial class EditCustomer : System.Web.UI.Page
+    public partial class CustomerEdit : System.Web.UI.Page
     {
         private CustomerService _customerService;
 
-        public EditCustomer()
+        public CustomerEdit()
         {
             _customerService = new CustomerService();
         }
@@ -45,6 +45,7 @@ namespace CustomerClassLibrary.WebForms
 
                 note.Text = customerNote.Note;
 
+               
                 addressLine.Text = address.AdressLine;
                 addressLine2.Text = address.AdressLine2;
                 addressType.Text = address.AddressType.ToString();
@@ -52,6 +53,9 @@ namespace CustomerClassLibrary.WebForms
                 postalcode.Text = address.PostalCode;
                 state.Text = address.State;
                 country.Text = address.Country;
+
+                addressRepeater.DataSource = customer.AdressesList;
+                addressRepeater.DataBind();
             }
            
         }

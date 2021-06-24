@@ -26,14 +26,14 @@ namespace CustomerClassLibrary.WebForms
 
         public void OnAddClick(object sender, EventArgs e)
         {
-           
+
             var customer = new Customer()
             {
                 FirstName = firstName?.Text,
                 LastName = lastName?.Text,
-                PhoneNumber = phoneNumber.Text,
-                Email = email.Text,
-                TotalPurshasesAmount = 0,
+                PhoneNumber = phoneNumber?.Text,
+                Email = email?.Text,
+                TotalPurshasesAmount = Convert.ToDecimal(purchaseAmount?.Text)
             };
             
 
@@ -53,24 +53,20 @@ namespace CustomerClassLibrary.WebForms
                 Note = note?.Text
             };
 
-            customer.AddAddress(address);
-            customer.AddNote(customerNote);
-
             try
             {
+                customer.AddAddress(address);
+                customer.AddNote(customerNote);
                 _customerService.CreateCustomer(customer);
             }
-            catch (WrongDataException err)
+            catch (WrongDataException ex)
             {
-                firstName.Text = err.Message;
+                error.Text = ex.Message;
             }
             finally
             {
                 Response?.Redirect("CustomerList");
             }
-            
-
-            Response?.Redirect("CustomerList");
         }
     }
 }

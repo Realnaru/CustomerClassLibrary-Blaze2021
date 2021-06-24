@@ -11,7 +11,7 @@ namespace CustomerClassLibrary.WebForms
 {
 
 
-    public partial class EditCustomer
+    public partial class CustomerEdit
     {
 
         /// <summary>
@@ -139,5 +139,14 @@ namespace CustomerClassLibrary.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox country;
+
+        /// <summary>
+        /// addressRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater addressRepeater;
     }
 }

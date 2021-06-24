@@ -33,6 +33,15 @@ namespace CustomerClassLibrary.WebForms
         protected global::System.Web.UI.WebControls.TextBox lastName;
 
         /// <summary>
+        /// error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label error;
+
+        /// <summary>
         /// phoneNumber control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace CustomerClassLibrary.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox email;
+
+        /// <summary>
+        /// purchaseAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox purchaseAmount;
 
         /// <summary>
         /// note control.
