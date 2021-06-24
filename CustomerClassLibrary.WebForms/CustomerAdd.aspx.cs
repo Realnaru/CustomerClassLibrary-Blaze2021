@@ -58,15 +58,19 @@ namespace CustomerClassLibrary.WebForms
                 customer.AddAddress(address);
                 customer.AddNote(customerNote);
                 _customerService.CreateCustomer(customer);
+                Response?.Redirect("CustomerList");
             }
             catch (WrongDataException ex)
             {
                 error.Text = ex.Message;
             }
-            finally
-            {
-                Response?.Redirect("CustomerList");
-            }
         }
+
+       /* public decimal ConvertToDecimal(string anyText)
+        {
+            decimal.TryParse(anyText, out result);
+
+        }*/
     }
+
 }
