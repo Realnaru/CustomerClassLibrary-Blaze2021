@@ -21,6 +21,9 @@ namespace CustomerLibraryTests
             Assert.Equal("AdressLine", errorList[0].Item1);
             Assert.Equal("The field is required", errorList[0].Item2);
 
+            //Assert.Equal("AddressType", errorList[1].Item1);
+            //Assert.Equal("The field can be only Shipping or Billing", errorList[1].Item2);
+
             Assert.Equal("City", errorList[1].Item1);
             Assert.Equal("The field is required", errorList[1].Item2);
 
@@ -50,6 +53,9 @@ namespace CustomerLibraryTests
             Assert.Equal("AdressLine2", errorList1[1].Item1);
             Assert.Equal("Maximum length is 100 characters", errorList1[1].Item2);
 
+            //Assert.Equal("AddressType", errorList1[2].Item1);
+            //Assert.Equal("The field can be only Shipping or Billing", errorList1[2].Item2);
+
             Assert.Equal("City", errorList1[2].Item1);
             Assert.Equal("Maximum length is 50 characters", errorList1[2].Item2);
 
@@ -78,7 +84,7 @@ namespace CustomerLibraryTests
             address1.State = "12345678901234567890123456789012345678901234567890";
             address1.Country = "Canada";
 
-            Assert.Equal(5, errorList.Count);
+            Assert.Equal(6, errorList.Count);
         }
     }   
 }

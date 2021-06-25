@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using CustomerClassLibrary.Validators;
 
 namespace CustomerClassLibrary
 {
@@ -31,7 +32,7 @@ namespace CustomerClassLibrary
 
         [MaxLength(100, ErrorMessage = "Maximum length is 100 characters")]
         public string AdressLine2 { get; set; }
-
+        //[ShippingOrBilling(ErrorMessage ="The field can be only Shipping or Billing")]
         public AddressType AddressType { get; set; }
 
         [Required(ErrorMessage = "The field is required"), MaxLength(50, ErrorMessage = "Maximum length is 50 characters")]

@@ -37,7 +37,7 @@ namespace CustomerLibraryTests
             Assert.Equal("The field is required", errorList1[0].Item2);
 
             Assert.Equal("PhoneNumber", errorList1[1].Item1);
-            Assert.Equal("Phone Number should have E.164 standart", errorList1[1].Item2);
+            Assert.Equal("Phone Number should have E164 standart", errorList1[1].Item2);
 
             Assert.Equal("Email", errorList1[2].Item1);
             Assert.Equal("Email adress should be valid", errorList1[2].Item2);

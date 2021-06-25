@@ -18,7 +18,7 @@ namespace CustomerClassLibrary
             EnsureOneItemAttribute(ErrorMessage = "The field is required")]
         public List<Address> AdressesList { get; set; } = new List<Address>();
 
-        [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Phone Number should have E.164 standart")]
+        [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Phone Number should have E164 standart")]
         public string PhoneNumber { get; set; }
 
         [RegularExpression(@"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
@@ -31,9 +31,6 @@ namespace CustomerClassLibrary
         public List<CustomerNote> Note { get; set; } = new List<CustomerNote>();
 
         public decimal? TotalPurshasesAmount { get; set; }
-
-        public int AddressesCount = 0;
-        public int NoteCount = 0;
 
         public void AddAddress(Address address)
         {

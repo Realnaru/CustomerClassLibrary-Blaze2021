@@ -16,6 +16,11 @@ namespace CustomerClassLibrary.WebForms
         {
             _customerService = new CustomerService();
         }
+
+        public CustomerEdit(CustomerService customerService)
+        {
+            _customerService = customerService;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -62,28 +67,38 @@ namespace CustomerClassLibrary.WebForms
 
         public void OnSaveClick(object sender, EventArgs e)
         {
+            decimal totalAmount;
+            int customerId;
+            AddressType typeOfAddress;
+
+
+            decimal.TryParse(purchaseAmount?.Text, out totalAmount);
+            int.TryParse(id?.Text, out customerId);
+            Enum.TryParse(addressType?.Text, out typeOfAddress);
+            
+
             var customer = new Customer();
             var address = new Address();
             var customerNote = new CustomerNote();
             
-            customer.CustomerId = Convert.ToInt32(id.Text);
-            customer.FirstName = firstName.Text;
-            customer.LastName = lastName.Text;
-            customer.PhoneNumber = phoneNumber.Text;
-            customer.Email = email.Text;
-            customer.TotalPurshasesAmount = Convert.ToDecimal(purchaseAmount.Text);
+            customer.CustomerId = customerId;
+            customer.FirstName = firstName?.Text;
+            customer.LastName = lastName?.Text;
+            customer.PhoneNumber = phoneNumber?.Text;
+            customer.Email = email?.Text;
+            customer.TotalPurshasesAmount = totalAmount;
 
-            customerNote.CustomerId = Convert.ToInt32(id.Text);
-            customerNote.Note = note.Text;
+            customerNote.CustomerId = customerId;
+            customerNote.Note = note?.Text;
 
-            address.CustomerId = Convert.ToInt32(id.Text);
-            address.AdressLine = addressLine.Text;
-            address.AdressLine2 = addressLine2.Text;
-            address.AddressType = (AddressType)Enum.Parse(typeof(AddressType), addressType?.Text, true);
-            address.City = city.Text;
-            address.PostalCode = postalcode.Text;
-            address.State = state.Text;
-            address.Country = country.Text;
+            address.CustomerId = customerId;
+            address.AdressLine = addressLine?.Text;
+            address.AdressLine2 = addressLine2?.Text;
+            address.AddressType = typeOfAddress;
+            address.City = city?.Text;
+            address.PostalCode = postalcode?.Text;
+            address.State = state?.Text;
+            address.Country = country?.Text;
 
             customer.AddAddress(address);
             customer.AddNote(customerNote);
