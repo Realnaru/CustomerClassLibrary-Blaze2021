@@ -31,7 +31,10 @@ namespace CustomerClassLibrary.WebForms
             
             
             decimal.TryParse(purchaseAmount?.Text, out totalAmount);
+
             Enum.TryParse(addressType?.Text, out typeOfAddress);
+           
+            
             
             var customer = new Customer()
             {
@@ -68,11 +71,7 @@ namespace CustomerClassLibrary.WebForms
             }
             catch (WrongDataException ex)
             {
-                //lastNameError.Text = ex.Message;
-                ShowValidationErrors(ex);
-                //string errorMessages = ex.Message;
-                //errorMessages = errorMessages.Replace('(', ' ').Replace(')', '.');
-                //List<string> errorMessagesAsList = errorMessages.Split('.').ToList<string>();
+                ShowValidationErrors(ex); 
             }
         }
 

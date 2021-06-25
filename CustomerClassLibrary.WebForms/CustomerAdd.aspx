@@ -55,10 +55,10 @@
         <asp:TextBox ID="addressLine2" CssClass="form-control" runat="server"></asp:TextBox>
      </div>
 
-    <div class="form-group">
+     <div class="form-group">
         <asp:Label runat="server" Text="Address type"></asp:Label>
         <asp:TextBox ID="addressType" CssClass="form-control" runat="server"></asp:TextBox>
-        <asp:Label ID="addressTypeError" runat="server" Text=""></asp:Label>
+        <asp:Label ID="addressTypeError" runat="server" Text=""></asp:Label>   
      </div>
 
     <div class="form-group">

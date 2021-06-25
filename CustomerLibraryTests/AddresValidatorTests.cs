@@ -75,16 +75,17 @@ namespace CustomerLibraryTests
         {
             Address address1 = new Address();
             AddressValidator addressValidator = new AddressValidator();
-            List<Tuple<string, string>> errorList = addressValidator.ValidateAdress(address1);
 
-            address1.AdressLine = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
-            address1.AdressLine2 = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
-            address1.City = "123456789012345678901234567890123456789012345678901234567890";
-            address1.PostalCode = "1234567890";
-            address1.State = "12345678901234567890123456789012345678901234567890";
+            address1.AdressLine = "123456";
+            address1.AdressLine2 = "123456";
+            address1.AddressType = AddressType.Billing;
+            address1.City = "123456";
+            address1.PostalCode = "123456";
+            address1.State = "1234567";
             address1.Country = "Canada";
-
-            Assert.Equal(6, errorList.Count);
+            
+            List<Tuple<string, string>> errorList = addressValidator.ValidateAdress(address1);
+            Assert.Equal(0, errorList.Count);
         }
     }   
 }

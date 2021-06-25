@@ -16,7 +16,7 @@ namespace CustomerClassLibrary.Validators
             var isValid = false;
             AddressType typeOfAddress;
 
-            if (!string.IsNullOrEmpty(inputValue))
+              if (!string.IsNullOrEmpty(inputValue))
             {
               
                 if (Enum.TryParse<AddressType>(inputValue, out typeOfAddress) == true)
