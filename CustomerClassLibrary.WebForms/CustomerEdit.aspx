@@ -4,11 +4,9 @@
     <h1>Edit customer</h1>
 
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
 
     <div class="form-group">
-        <asp:Label runat="server" Text="Id"></asp:Label>
-        <asp:TextBox ID="id" CssClass="form-control" runat="server"></asp:TextBox>
     </div>  
             
     <div class="form-group">
@@ -41,89 +39,40 @@
         <asp:TextBox ID="note" CssClass="form-control" runat="server"></asp:TextBox>
      </div>
 
-        </div>
-
-        <div class="col-lg-6">
-
-    <div class="form-group">
-    <asp:Label runat="server" Text="Address line"></asp:Label>
-    <asp:TextBox ID="addressLine" CssClass="form-control" runat="server"></asp:TextBox>
-    </div>    
-    
-    <div class="form-group">
-        <asp:Label runat="server" Text="Address line 2"></asp:Label>
-        <asp:TextBox ID="addressLine2" CssClass="form-control" runat="server"></asp:TextBox>
-     </div>
-
-    <div class="form-group">
-        <asp:Label runat="server" Text="Address type"></asp:Label>
-        <asp:TextBox ID="addressType" CssClass="form-control" runat="server"></asp:TextBox>
-     </div>
-
-    <div class="form-group">
-        <asp:Label runat="server" Text="City"></asp:Label>
-        <asp:TextBox ID="city" CssClass="form-control" runat="server"></asp:TextBox>
-     </div>
-    <div class="form-group">
-        <asp:Label runat="server" Text="Postal code"></asp:Label>
-        <asp:TextBox ID="postalcode" CssClass="form-control" runat="server"></asp:TextBox>
-     </div>
-
-     <div class="form-group">
-        <asp:Label runat="server" Text="State"></asp:Label>
-        <asp:TextBox ID="state" CssClass="form-control" runat="server"></asp:TextBox>
-     </div>
-
-     <div class="form-group">
-        <asp:Label runat="server" Text="Country"></asp:Label>
-        <asp:TextBox ID="country" CssClass="form-control" runat="server"></asp:TextBox>
-     </div>
-        </div>
-
-        <asp:Repeater ID="addressRepeater" runat="server">
-        <ItemTemplate>
-            <div class="form-group">
-                <asp:Label runat="server" Text="AddressLine"></asp:Label>
-                <asp:TextBox ID="addressLineRepeater" Text='<%# Eval("AdressLine") %>' CssClass="form-control" runat="server"></asp:TextBox>
-            </div>  
-    
-            <div class="form-group">
-                <asp:Label runat="server" Text="AddressLine2"></asp:Label>
-                <asp:TextBox ID="addressLine2Repeater" Text='<%# Eval("AdressLine2") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="AddressType"></asp:Label>
-                <asp:TextBox ID="AddressTypeRepeater" Text='<%# Eval("AddressType") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="City"></asp:Label>
-                <asp:TextBox ID="cityRepeater" Text='<%# Eval("City") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="Postal Code"></asp:Label>
-                <asp:TextBox ID="postelCodeRepeater" Text='<%# Eval("PostalCode") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="State"></asp:Label>
-                <asp:TextBox ID="stateRepeater" Text='<%# Eval("State") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="AddressLine2"></asp:Label>
-                <asp:TextBox ID="countryRepeater" Text='<%# Eval("Country") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-            
-        </ItemTemplate>
-    </asp:Repeater>
-
-    </div>
+    <asp:TextBox ID="id" CssClass="form-control" type="hidden" runat="server"></asp:TextBox>
 
     <asp:Button runat="server" CssClass="btn btn-primary" 
                 OnClick="OnSaveClick" 
                 Text="Save" />
+
+        </div>
+
+    <div class="col-lg-8">
+
+        <table class="table">
+        <tr><th>Address line</th><th>Address line 2</th><th>Phone Number</th><th>Address type</th><th>City</th>
+            <th>Postal code</th><th>State</th><th>Country</th>
+        </tr>
+        <% foreach (var address in Addresses)
+            { %>
+            <tr>
+                <td><%= address.AdressLine %></td>
+                <td><%= address.AdressLine2 %></td>
+                <td><%= address.AddressType %></td>
+                <td><%= address.City %></td>
+                <td><%= address.PostalCode %></td>
+                <td><%= address.State %></td>
+                <td><%= address.Country %></td>
+                <td><a class="btn btn-primary" href="AddressEdit?addressId=<%= address.AddressId %>">Edit</a></td>
+                <td><a class="btn btn-primary" href="CustomerDelete?customerId=<%= address.CustomerId %>">Delete</a></td>
+            </tr> 
+        <%} %>
+    </table>
+
+    </div>
+
+    </div>
+
+    
 
 </asp:Content>

@@ -101,6 +101,7 @@ namespace CustomerClassLibrary.Data
                         {
                             return new Address()
                             {
+                                AddressId = (Int32)reader["address_id"],
                                 CustomerId = (Int32)reader["customer_id"],
                                 AdressLine = reader["address_line"].ToString(),
                                 AdressLine2 = reader["address_line2"].ToString(),
@@ -144,6 +145,7 @@ namespace CustomerClassLibrary.Data
                         {
                             foundAddresses.Add(new Address()
                             {
+                                AddressId = (Int32)reader["address_id"],
                                 CustomerId = (Int32)reader["customer_id"],
                                 AdressLine = reader["address_line"].ToString(),
                                 AdressLine2 = reader["address_line2"].ToString(),

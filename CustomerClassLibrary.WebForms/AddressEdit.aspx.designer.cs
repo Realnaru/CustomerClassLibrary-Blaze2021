@@ -11,70 +11,70 @@ namespace CustomerClassLibrary.WebForms
 {
 
 
-    public partial class CustomerEdit
+    public partial class AddressEdit
     {
 
         /// <summary>
-        /// firstName control.
+        /// addressLine control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox firstName;
+        protected global::System.Web.UI.WebControls.TextBox addressLine;
 
         /// <summary>
-        /// lastName control.
+        /// addressLine2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lastName;
+        protected global::System.Web.UI.WebControls.TextBox addressLine2;
 
         /// <summary>
-        /// phoneNumber control.
+        /// addressType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox phoneNumber;
+        protected global::System.Web.UI.WebControls.TextBox addressType;
 
         /// <summary>
-        /// email control.
+        /// city control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.TextBox city;
 
         /// <summary>
-        /// purchaseAmount control.
+        /// postalCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox purchaseAmount;
+        protected global::System.Web.UI.WebControls.TextBox postalCode;
 
         /// <summary>
-        /// note control.
+        /// state control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox note;
+        protected global::System.Web.UI.WebControls.TextBox state;
 
         /// <summary>
-        /// id control.
+        /// country control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox id;
+        protected global::System.Web.UI.WebControls.TextBox country;
     }
 }

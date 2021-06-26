@@ -20,8 +20,11 @@ namespace CustomerClassLibrary.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            var customer = new Customer();
+            customer.AdressesList.Add(new Address());
 
+            addressRepeater.DataSource = customer.AdressesList;
+            addressRepeater.DataBind();
         }
 
         public void OnAddClick(object sender, EventArgs e)
