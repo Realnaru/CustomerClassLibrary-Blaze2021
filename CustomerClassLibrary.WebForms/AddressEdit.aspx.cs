@@ -10,7 +10,10 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class AddressEdit : System.Web.UI.Page
     {
+
         private AddressService _addressService;
+        private int AddressId { get; set; }
+        private int CustomerId { get; set; }
 
         public AddressEdit()
         {
@@ -20,10 +23,15 @@ namespace CustomerClassLibrary.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
             int addressIdReq;
-
             int.TryParse(Request.QueryString["addressId"], out addressIdReq);
+            AddressId = addressIdReq;
+            CustomerId = _addressService.GetAddress(addressIdReq).CustomerId;
 
-            LoadAddress(addressIdReq);
+            if (!IsPostBack)
+            { 
+                LoadAddress(AddressId);
+            }
+       
         }
 
         public void LoadAddress(int addressId)
@@ -33,7 +41,7 @@ namespace CustomerClassLibrary.WebForms
                 var address = _addressService.GetAddress(addressId);
 
                 addressLine.Text = address.AdressLine;
-                addressLine2.Text = address.AdressLine2;
+                line2.Text = address.AdressLine2;
                 addressType.Text = address.AddressType.ToString();
                 city.Text = address.City;
                 postalCode.Text = address.PostalCode;
@@ -42,5 +50,28 @@ namespace CustomerClassLibrary.WebForms
             }
 
         }
+        public void OnSaveClick(object sender, EventArgs e)
+        {
+
+                var address = new Address();
+                AddressType typeOfAddress;
+
+                Enum.TryParse<AddressType>(addressType?.Text, out typeOfAddress);
+
+                address.AddressId = AddressId;
+                address.AdressLine = addressLine.Text;
+                address.AddressType = typeOfAddress;
+                address.AdressLine2 = line2?.Text;
+                address.City = city?.Text;
+                address.PostalCode = postalCode?.Text;
+                address.State = state?.Text;
+                address.Country = country?.Text;
+                
+
+                _addressService.ChangeAddress(address);
+                Response?.Redirect($"CustomerEdit?customerId={CustomerId}");
+
+        }
+
     }
 }

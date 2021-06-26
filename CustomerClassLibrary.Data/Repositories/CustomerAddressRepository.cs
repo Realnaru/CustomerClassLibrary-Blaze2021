@@ -172,8 +172,9 @@ namespace CustomerClassLibrary.Data
                 connection.Open();
 
                 var command = new SqlCommand("UPDATE [dbo].customer_address SET address_line = @address_line, address_line2 = @address_line2, address_type = @address_type, " +
-                    "city = @city, postal_code = @postal_code, state = @state, country = @country", connection);
+                    "city = @city, postal_code = @postal_code, state = @state, country = @country  WHERE address_id = @address_id", connection);
 
+                command.Parameters.Add(new SqlParameter("@address_id", SqlDbType.Int) { Value = address.AddressId });
                 command.Parameters.Add(new SqlParameter("@address_line", SqlDbType.NVarChar, 100) { Value = address.AdressLine });
                 command.Parameters.Add(new SqlParameter("@address_line2", SqlDbType.NVarChar, 100) { Value = address.AdressLine2 });
                 command.Parameters.Add(new SqlParameter("@address_type", SqlDbType.VarChar, 8) { Value = address.AddressType.ToString() });

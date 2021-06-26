@@ -4,7 +4,7 @@
     <h1>Edit customer</h1>
 
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
 
     <div class="form-group">
     </div>  
@@ -47,11 +47,11 @@
 
         </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-9">
 
         <table class="table">
-        <tr><th>Address line</th><th>Address line 2</th><th>Phone Number</th><th>Address type</th><th>City</th>
-            <th>Postal code</th><th>State</th><th>Country</th>
+        <tr><th>Address line</th><th>Address line 2</th><th>Address type</th><th>City</th><th>Postal code</th>
+            <th>State</th><th>Country</th>
         </tr>
         <% foreach (var address in Addresses)
             { %>

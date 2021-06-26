@@ -16,7 +16,7 @@
     
     <div class="form-group">
         <asp:Label runat="server" Text="Address line 2"></asp:Label>
-        <asp:TextBox ID="addressLine2" CssClass="form-control" runat="server"></asp:TextBox>
+        <asp:TextBox ID="line2" CssClass="form-control" runat="server"></asp:TextBox>
      </div>
 
     <div class="form-group">
@@ -44,9 +44,12 @@
         <asp:TextBox ID="country" CssClass="form-control" runat="server"></asp:TextBox>
      </div>
 
-    <asp:Button runat="server" CssClass="btn btn-primary" 
-                Text="Save" />
-
         </div>
+
+    </div>
+
+    <asp:Button runat="server" CssClass="btn btn-primary btn-lg" 
+        OnClick="OnSaveClick" 
+        Text="Save" />
 
 </asp:Content>

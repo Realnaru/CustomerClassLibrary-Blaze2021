@@ -98,16 +98,6 @@ namespace CustomerClassLibrary.WebForms
             emailError.Text = errorMessagesAsList.Find(x => x.Contains("Email"));
             
         }
-
-        public void ShowCustomerValidationErrors(WrongDataException ex)
-        {
-            string errorMessages = ex.Message;
-            errorMessages = errorMessages.Replace('(', ' ').Replace(')', '.');
-            List<string> errorMessagesAsList = errorMessages.Split('.').ToList<string>();
-        }
-
-
-
     }
 
 }

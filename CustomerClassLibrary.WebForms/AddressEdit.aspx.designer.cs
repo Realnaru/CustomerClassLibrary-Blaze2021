@@ -24,13 +24,13 @@ namespace CustomerClassLibrary.WebForms
         protected global::System.Web.UI.WebControls.TextBox addressLine;
 
         /// <summary>
-        /// addressLine2 control.
+        /// line2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox addressLine2;
+        protected global::System.Web.UI.WebControls.TextBox line2;
 
         /// <summary>
         /// addressType control.
