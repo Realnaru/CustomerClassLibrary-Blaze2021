@@ -16,6 +16,8 @@ namespace CustomerClassLibrary.WebForms
 
         public List<CustomerNote> Notes { get; set; }
 
+        public int CustomerId{get;set;}
+
         public CustomerEdit()
         {
             _customerService = new CustomerService();
@@ -27,10 +29,12 @@ namespace CustomerClassLibrary.WebForms
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-           if (!IsPostBack)
+            int customerIdReq;
+            int.TryParse(Request.QueryString["customerId"], out customerIdReq);
+            CustomerId = customerIdReq;
+
+            if (!IsPostBack)
             {
-                int customerIdReq;
-                int.TryParse(Request.QueryString["customerId"], out customerIdReq);
                 Addresses = LoadCustomer(customerIdReq);
                 Notes = GetNotes(customerIdReq);
             }
@@ -77,6 +81,7 @@ namespace CustomerClassLibrary.WebForms
             _customerService.ChangeCustomer(customer);
 
             Response?.Redirect("CustomerList");
+            //Response?.Redirect($"CustomerEdit?customerId={CustomerId}");
         }
 
         public List<CustomerNote> GetNotes(int customerId)

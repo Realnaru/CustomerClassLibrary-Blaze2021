@@ -20,6 +20,27 @@ namespace CustomerLibraryTests
         }
 
         [Fact]
+        public void ShouldBeAbleToCreateNote()
+        {
+            var noteMock = new Mock<IEntityRepository<CustomerNote>>();
+
+            var noteToCreate = new CustomerNote() { Note = "Kitty Ipsum", NoteId = 1, CustomerId = 1 };
+
+            int expectedId = 1;
+            int noteId;
+
+
+            noteMock.Setup(x => x.Create(noteToCreate)).Returns(expectedId);
+
+            var noteService = new NoteService(noteMock.Object);
+
+            noteId = noteService.CreateNote(noteToCreate);
+
+            noteMock.Verify(x => x.Create(noteToCreate), Times.Exactly(1));
+            Assert.Equal(expectedId, noteId);
+        }
+
+        [Fact]
         public void ShouldBeAbleToGetNote()
         {
             var noteMock = new Mock<IEntityRepository<CustomerNote>>();
@@ -55,6 +76,30 @@ namespace CustomerLibraryTests
             noteMock.Verify(x => x.Update(noteToUpdate), Times.Exactly(1));
         }
 
+        [Fact]
+        public void ShouldBeAbleToGetAllNotes()
+        {
+            var noteMock = new Mock<IEntityRepository<CustomerNote>>();
+
+            var noteToGet = new CustomerNote() { Note = "Kitty Ipsum", NoteId = 1, CustomerId = 1 };
+
+            List<CustomerNote> notesToReturn = new List<CustomerNote>();
+            notesToReturn.Add(noteToGet);
+
+            List<CustomerNote> returnedNotes = new List<CustomerNote>();
+
+            int customerId = 1;
+
+
+            noteMock.Setup(x => x.ReadAll(customerId)).Returns(notesToReturn);
+
+            var noteService = new NoteService(noteMock.Object);
+
+            returnedNotes =  noteService.GetAllNotes(customerId);
+
+            noteMock.Verify(x => x.ReadAll(customerId), Times.Exactly(1));
+            Assert.NotNull(returnedNotes);
+        }
 
     }
 }

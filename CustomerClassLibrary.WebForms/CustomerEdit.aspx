@@ -63,8 +63,8 @@
                 <td><%= address.PostalCode %></td>
                 <td><%= address.State %></td>
                 <td><%= address.Country %></td>
-                <td><a class="btn btn-primary" href="AddressEdit?addressId=<%= address.AddressId %>">Edit</a></td>
-                <td><a class="btn btn-primary" href="CustomerDelete?customerId=<%= address.CustomerId %>">Delete</a></td>
+                <td><a  href="AddressEdit?addressId=<%= address.AddressId %>">Edit</a></td>
+                <td><a  href="CustomerDelete?customerId=<%= address.CustomerId %>">Delete</a></td>
             </tr> 
         <%} %>
     </table>
@@ -78,14 +78,22 @@
         <% foreach (var note in Notes)
             { %>
             <tr>
-                <td width="80%"><%= note.Note %></td>
+                <td width="70%"><%= note.Note %></td>
                 
-                <td class="text-center" width="10%"><a class="btn btn-primary" href="NoteEdit?noteId=<%= note.NoteId %>">Edit</a></td>
-                <td class="text-center" width="10%"><a class="btn btn-primary" href="CustomerDelete?customerId=<%= note.NoteId %>">Delete</a></td>
+                <td class="text-center" width="10%"><a  href="NoteEdit?noteId=<%= note.NoteId %>">Edit</a></td>
+                <td class="text-center" width="10%"><a  href="CustomerDelete?customerId=<%= note.NoteId %>">Delete</a></td>
             </tr> 
         <%} %>
-    </table>
 
+            <tr>
+                <td class="text-right" colspan="3"><a class="btn btn-primary" href="AddressGroupEdit?customerId=<%= CustomerId %>">Edit all</a>
+                                                   <a class="btn btn-primary" href="NoteAdd?customerId=<%= CustomerId %>">Add note</a>
+            </td>
+            </tr>
+            
+
+    </table>
+               
             </div>
 
         </div>

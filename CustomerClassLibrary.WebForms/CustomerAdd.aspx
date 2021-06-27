@@ -87,45 +87,9 @@
 
     </div>
 
-    <asp:Repeater ID="addressRepeater" runat="server">
-        <ItemTemplate>
-            <div class="form-group">
-                <asp:Label runat="server" Text="AddressLine"></asp:Label>
-                <asp:TextBox ID="addressLineRepeater" Text='<%# Eval("AdressLine") %>' CssClass="form-control" runat="server"></asp:TextBox>
-            </div>  
-    
-            <div class="form-group">
-                <asp:Label runat="server" Text="AddressLine2"></asp:Label>
-                <asp:TextBox ID="addressLine2Repeater" Text='<%# Eval("AdressLine2") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="AddressType"></asp:Label>
-                <asp:TextBox ID="AddressTypeRepeater" Text='<%# Eval("AddressType") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="City"></asp:Label>
-                <asp:TextBox ID="cityRepeater" Text='<%# Eval("City") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="Postal Code"></asp:Label>
-                <asp:TextBox ID="postelCodeRepeater" Text='<%# Eval("PostalCode") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="State"></asp:Label>
-                <asp:TextBox ID="stateRepeater" Text='<%# Eval("State") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-
-            <div class="form-group">
-                <asp:Label runat="server" Text="AddressLine2"></asp:Label>
-                <asp:TextBox ID="countryRepeater" Text='<%# Eval("Country") %>'  CssClass="form-control" runat="server"></asp:TextBox>
-            </div> 
-            
-        </ItemTemplate>
-    </asp:Repeater>
+            <%--<asp:Button runat="server" CssClass="btn btn-primary btn-lg" 
+                OnClick="OnMoreClick" 
+                Text="More" />--%>
 
     <asp:Button runat="server" CssClass="btn btn-primary btn-lg" 
                 OnClick="OnAddClick" 

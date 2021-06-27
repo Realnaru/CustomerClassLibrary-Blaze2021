@@ -107,6 +107,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AddressEdit.aspx" />
+    <Content Include="AddressGroupEdit.aspx" />
     <Content Include="CustomerAdd.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -130,6 +131,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="NoteAdd.aspx" />
     <Content Include="NoteEdit.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -172,6 +174,13 @@
     </Compile>
     <Compile Include="AddressEdit.aspx.designer.cs">
       <DependentUpon>AddressEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddressGroupEdit.aspx.cs">
+      <DependentUpon>AddressGroupEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddressGroupEdit.aspx.designer.cs">
+      <DependentUpon>AddressGroupEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="CustomerAdd.aspx.cs">
       <DependentUpon>CustomerAdd.aspx</DependentUpon>
@@ -226,6 +235,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="NoteAdd.aspx.cs">
+      <DependentUpon>NoteAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoteAdd.aspx.designer.cs">
+      <DependentUpon>NoteAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="NoteEdit.aspx.cs">
       <DependentUpon>NoteEdit.aspx</DependentUpon>
