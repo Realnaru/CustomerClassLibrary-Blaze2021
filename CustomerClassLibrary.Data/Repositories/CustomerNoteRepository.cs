@@ -135,17 +135,17 @@ namespace CustomerClassLibrary.Data
             }
         }
 
-        public void Delete(int customerId)
+        public void Delete(int noteId)
         {
             using (var connection = GetConnection())
             {
                 connection.Open();
 
-                var command = new SqlCommand("DELETE FROM [dbo].customer_note WHERE customer_id = @customer_id", connection);
+                var command = new SqlCommand("DELETE FROM [dbo].customer_note WHERE note_id = @note_id", connection);
 
-                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
+                var customerIdParam = new SqlParameter("@note_id", SqlDbType.Int)
                 {
-                    Value = customerId
+                    Value = noteId
                 };
 
                 command.Parameters.Add(customerIdParam);

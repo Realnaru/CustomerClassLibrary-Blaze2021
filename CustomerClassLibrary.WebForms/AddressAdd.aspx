@@ -4,6 +4,7 @@
     <h1>Add new customer</h1>
 
     <div class="row">
+
         <div class="col-lg-6">
              <div class="form-group">
     <asp:Label runat="server" Text="Address line"></asp:Label>
@@ -47,6 +48,7 @@
      </div>
 
         </div>
+    </div>
 
     <asp:Button runat="server" CssClass="btn btn-primary btn-lg" 
     OnClick="OnAddClick" 

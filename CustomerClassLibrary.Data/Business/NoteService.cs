@@ -40,6 +40,11 @@ namespace CustomerClassLibrary.Data.Business
         {
             return _noteRepository.ReadAll(customerId);
         }
+
+        public void DeleteNote(int noteId)
+        {
+             _noteRepository.Delete(noteId);
+        }
     }
 
    

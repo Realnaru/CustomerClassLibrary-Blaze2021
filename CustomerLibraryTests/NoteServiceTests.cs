@@ -101,5 +101,24 @@ namespace CustomerLibraryTests
             Assert.NotNull(returnedNotes);
         }
 
+        [Fact]
+        public void ShouldBeAbleToDeleteNote()
+        {
+            var noteMock = new Mock<IEntityRepository<CustomerNote>>();
+
+            var noteToDelete = new CustomerNote() { Note = "Kitty Ipsum", NoteId = 1 };
+
+            int noteId = noteToDelete.NoteId;
+
+
+            noteMock.Setup(x => x.Delete(noteToDelete.NoteId));
+
+            var noteService = new NoteService(noteMock.Object);
+
+            noteService.DeleteNote(noteId);
+
+            noteMock.Verify(x => x.Delete(noteId), Times.Exactly(1));
+        }
+
     }
 }

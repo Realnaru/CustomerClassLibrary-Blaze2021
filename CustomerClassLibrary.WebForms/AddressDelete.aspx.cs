@@ -22,11 +22,12 @@ namespace CustomerClassLibrary.WebForms
         {
             int addressId;
             int.TryParse(Request.QueryString["addressId"], out addressId);
-            var address = _addressService.GetAddress(addressId);
-            CustomerId = address.CustomerId;
-
+            
             if (addressId != 0)
             {
+                var address = _addressService.GetAddress(addressId);
+                CustomerId = address.CustomerId;
+
                 _addressService.DeleteAddress(address.AddressId);
 
                 Response?.Redirect($"CustomerEdit?customerId={CustomerId}");

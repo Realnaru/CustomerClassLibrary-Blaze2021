@@ -48,8 +48,8 @@
         <tr><th>Address line</th><th>Address line 2</th><th>Address type</th><th>City</th><th>Postal code</th>
             <th>State</th><th>Country</th><th class="text-center" colspan="2">Actions</th>
         </tr>
-        <% foreach (var address in Addresses)
-            { %>
+        <% foreach (var address in Addresses) %>
+         <%   { %>
             <tr>
                 <td><%= address.AdressLine %></td>
                 <td><%= address.AdressLine2 %></td>
@@ -75,34 +75,30 @@
                  <table class="table">
         <tr><th>Note</th><th class="text-center" colspan="2">Actions</th>
         </tr>
-        <% foreach (var note in Notes)
-            { %>
+        <% foreach (var note in Notes) %>
+          <%  { %>
             <tr>
                 <td width="70%"><%= note.Note %></td>
                 
                 <td class="text-center" width="10%"><a  href="NoteEdit?noteId=<%= note.NoteId %>">Edit</a></td>
-                <td class="text-center" width="10%"><a  href="CustomerDelete?customerId=<%= note.NoteId %>">Delete</a></td>
+                <td class="text-center" width="10%"><a  href="NoteDelete?noteId=<%= note.NoteId %>">Delete</a></td>
             </tr> 
         <%} %>
 
             <tr>
-                <td class="text-right" colspan="3"><a class="btn btn-primary" href="AddressGroupEdit?customerId=<%= CustomerId %>">Edit all</a>
+                <td class="text-right" colspan="3"><a class="btn btn-primary" href="NoteGroupEdit?customerId=<%= CustomerId %>">Edit all</a>
                                                    <a class="btn btn-primary" href="NoteAdd?customerId=<%= CustomerId %>">Add note</a>
             </td>
             </tr>
             
-
     </table>
                
             </div>
 
         </div>
        
-
     </div>
 
     </div>
-
-    
 
 </asp:Content>
