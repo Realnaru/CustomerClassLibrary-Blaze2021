@@ -25,6 +25,7 @@ namespace CustomerClassLibrary.WebForms
             int noteIdReq;
             int.TryParse(Request.QueryString["noteId"], out noteIdReq);
             NoteId = noteIdReq;
+            CustomerId = _noteService.GetNote(noteIdReq).CustomerId;
             
 
             if (!IsPostBack)
@@ -49,6 +50,8 @@ namespace CustomerClassLibrary.WebForms
             note.Note = noteText?.Text;
 
             _noteService.ChangeNote(note);
+
+            Response?.Redirect($"CustomerEdit?customerId={CustomerId}");
 
         }
     }
