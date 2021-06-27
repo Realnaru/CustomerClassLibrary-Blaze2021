@@ -39,6 +39,11 @@ namespace CustomerClassLibrary.Data.Business
            
         }
 
+        public void DeleteAddress(int addressId)
+        {
+            _addressRepository.Delete(addressId);
+        }
+
         
     }
 }

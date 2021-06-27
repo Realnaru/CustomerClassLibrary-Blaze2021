@@ -221,5 +221,10 @@ namespace CustomerClassLibrary.Data
         {
             throw new NotImplementedException();
         }
+
+        public void Delete(int entityId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

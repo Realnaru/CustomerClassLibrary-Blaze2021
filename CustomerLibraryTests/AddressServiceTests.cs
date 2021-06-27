@@ -76,5 +76,25 @@ namespace CustomerLibraryTests
             addressMock.Verify(x => x.Read(1), Times.Exactly(1));
             Assert.Equal(addressToGet, address);
         }
+
+        [Fact]
+        public void ShouldBeAbleToDeleteAddress()
+        {
+            var addressMock = new Mock<IEntityRepository<Address>>();
+            var addressFixture = new CustomerAddressFixture();
+
+            var addressToDelete = addressFixture.MockAddress();
+            addressToDelete.AddressId = 1;
+            int addressId = addressToDelete.AddressId;
+
+
+            addressMock.Setup(x => x.Delete(addressToDelete));
+
+            var addressService = new AddressService(addressMock.Object);
+
+            addressService.DeleteAddress(addressId);
+
+            addressMock.Verify(x => x.Delete(addressId), Times.Exactly(1));
+        }
     }
 }

@@ -106,6 +106,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AddressAdd.aspx" />
+    <Content Include="AddressDelete.aspx" />
     <Content Include="AddressEdit.aspx" />
     <Content Include="AddressGroupEdit.aspx" />
     <Content Include="CustomerAdd.aspx" />
@@ -168,6 +170,20 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressAdd.aspx.cs">
+      <DependentUpon>AddressAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddressAdd.aspx.designer.cs">
+      <DependentUpon>AddressAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddressDelete.aspx.cs">
+      <DependentUpon>AddressDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddressDelete.aspx.designer.cs">
+      <DependentUpon>AddressDelete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddressEdit.aspx.cs">
       <DependentUpon>AddressEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

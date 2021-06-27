@@ -19,5 +19,8 @@ namespace CustomerClassLibrary.Data.Repositories
         public void Update(TEntity entity);
 
         public void Delete(TEntity entity);
+
+        public void Delete(int entityId);
+
     }
 }

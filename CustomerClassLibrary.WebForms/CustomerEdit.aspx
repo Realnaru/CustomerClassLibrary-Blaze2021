@@ -34,11 +34,6 @@
         <asp:TextBox ID="purchaseAmount" CssClass="form-control" runat="server"></asp:TextBox>
      </div>
 
-    <div class="form-group">
-        <asp:Label runat="server" Text="Note"></asp:Label>
-        <asp:TextBox ID="note" CssClass="form-control" runat="server"></asp:TextBox>
-     </div>
-
     <asp:TextBox ID="id" CssClass="form-control" type="hidden" runat="server"></asp:TextBox>
 
     <asp:Button runat="server" CssClass="btn btn-primary" 
@@ -64,9 +59,14 @@
                 <td><%= address.State %></td>
                 <td><%= address.Country %></td>
                 <td><a  href="AddressEdit?addressId=<%= address.AddressId %>">Edit</a></td>
-                <td><a  href="CustomerDelete?customerId=<%= address.CustomerId %>">Delete</a></td>
+                <td><a  href="AddressDelete?addressId=<%= address.AddressId %>">Delete</a></td>
             </tr> 
         <%} %>
+            <tr>
+                <td class="text-right" colspan="9"><a class="btn btn-primary" href="AddressGroupEdit?customerId=<%= CustomerId %>">Edit all</a>
+                                                   <a class="btn btn-primary" href="AddressAdd?customerId=<%= CustomerId %>">Add address</a>
+            </td>
+            </tr>
     </table>
 
         <div class="row">
