@@ -1,9 +1,13 @@
 ﻿<%@ Page Title="CustomerList" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CustomerList.aspx.cs" Inherits="CustomerClassLibrary.WebForms.CustomerList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <table class="table">
+    <div class ="row">
+
+        <div class="col-lg-12">
+
+            <table class="table">
         <tr><th>Customer list</th></tr>
-        <tr><th>First name</th><th>Last name</th><th>Phone Number</th><th>Email</th><th>Total purchase amount</th</tr>
+        <tr><th>First name</th><th>Last name</th><th>Phone Number</th><th>Email</th><th>Total purchase amount</th><th class="text-center" colspan="2">Actions</th></tr>
         <% foreach (var customer in Customers)
             { %>
             <tr>
@@ -18,4 +22,9 @@
         <%} %>
     </table>
     <a class="btn btn-lg btn-primary" href ="CustomerAdd">Add new customer</a>
+
+        </div>
+
+    </div>
+    
 </asp:Content>

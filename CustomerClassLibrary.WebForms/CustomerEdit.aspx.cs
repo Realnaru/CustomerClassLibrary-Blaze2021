@@ -14,6 +14,8 @@ namespace CustomerClassLibrary.WebForms
 
         public List<Address> Addresses { get; set; }
 
+        public List<CustomerNote> Notes { get; set; }
+
         public CustomerEdit()
         {
             _customerService = new CustomerService();
@@ -30,6 +32,7 @@ namespace CustomerClassLibrary.WebForms
                 int customerIdReq;
                 int.TryParse(Request.QueryString["customerId"], out customerIdReq);
                 Addresses = LoadCustomer(customerIdReq);
+                Notes = GetNotes(customerIdReq);
             }
     
         }
@@ -58,8 +61,7 @@ namespace CustomerClassLibrary.WebForms
         {
             decimal totalAmount;
             int customerId;
-            AddressType typeOfAddress;
-
+            
             decimal.TryParse(purchaseAmount?.Text, out totalAmount);
             int.TryParse(id?.Text, out customerId);
             
@@ -75,6 +77,13 @@ namespace CustomerClassLibrary.WebForms
             _customerService.ChangeCustomer(customer);
 
             Response?.Redirect("CustomerList");
+        }
+
+        public List<CustomerNote> GetNotes(int customerId)
+        {
+            var customer = _customerService.GetCustomer(customerId);
+            List<CustomerNote> notes = customer.Note;
+            return notes;
         }
     }
 }

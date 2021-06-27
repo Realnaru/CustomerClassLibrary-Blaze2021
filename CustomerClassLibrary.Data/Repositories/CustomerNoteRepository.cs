@@ -44,18 +44,18 @@ namespace CustomerClassLibrary.Data
 
         }
 
-        public CustomerNote Read(int customerId)
+        public CustomerNote Read(int noteId)
         {
             using (var connection = GetConnection())
             {
                 connection.Open();
 
                 var command = new SqlCommand("SELECT * FROM [dbo].customer_note " +
-                    "WHERE customer_id = @customer_id", connection);
+                    "WHERE note_id = @note_id", connection);
 
-                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
+                var customerIdParam = new SqlParameter("@note_id", SqlDbType.Int)
                 {
-                    Value = customerId
+                    Value = noteId
                 };
 
                 command.Parameters.Add(customerIdParam);
@@ -115,11 +115,11 @@ namespace CustomerClassLibrary.Data
             {
                 connection.Open();
 
-                var command = new SqlCommand("Update [dbo].customer_note SET note=@note WHERE customer_id = @customer_id", connection);
+                var command = new SqlCommand("Update [dbo].customer_note SET note=@note WHERE note_id = @note_id", connection);
 
-                var customerIdParam = new SqlParameter("@customer_id", SqlDbType.Int)
+                var customerIdParam = new SqlParameter("@note_id", SqlDbType.Int)
                 {
-                    Value = customerNote.CustomerId
+                    Value = customerNote.NoteId
                 };
 
                 var noteParam = new SqlParameter("@note", SqlDbType.NVarChar)

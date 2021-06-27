@@ -51,7 +51,7 @@
 
         <table class="table">
         <tr><th>Address line</th><th>Address line 2</th><th>Address type</th><th>City</th><th>Postal code</th>
-            <th>State</th><th>Country</th>
+            <th>State</th><th>Country</th><th class="text-center" colspan="2">Actions</th>
         </tr>
         <% foreach (var address in Addresses)
             { %>
@@ -68,6 +68,28 @@
             </tr> 
         <%} %>
     </table>
+
+        <div class="row">
+            <div class =" col-lg-8">
+
+                 <table class="table">
+        <tr><th>Note</th><th class="text-center" colspan="2">Actions</th>
+        </tr>
+        <% foreach (var note in Notes)
+            { %>
+            <tr>
+                <td width="80%"><%= note.Note %></td>
+                
+                <td class="text-center" width="10%"><a class="btn btn-primary" href="NoteEdit?noteId=<%= note.NoteId %>">Edit</a></td>
+                <td class="text-center" width="10%"><a class="btn btn-primary" href="CustomerDelete?customerId=<%= note.NoteId %>">Delete</a></td>
+            </tr> 
+        <%} %>
+    </table>
+
+            </div>
+
+        </div>
+       
 
     </div>
 

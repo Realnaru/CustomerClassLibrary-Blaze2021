@@ -57,7 +57,7 @@ namespace CustomerLibraryTests
         }
 
         [Fact]
-        public void ShouldBeAbleToGetCustomer()
+        public void ShouldBeAbleToGetAddress()
         {
             var addressMock = new Mock<IEntityRepository<Address>>();
             var addressFixture = new CustomerAddressFixture();

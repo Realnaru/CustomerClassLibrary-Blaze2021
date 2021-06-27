@@ -57,9 +57,9 @@ namespace CustomerLibraryTests.IntegrationTests
             customerNote.CustomerId = customerId;
             customerNote.Note = "Kitty ipsum dolor sit amet, shed everywhere shed everywhere";
 
-            customerNoteRepository.Create(customerNote);
+            int noteId = customerNoteRepository.Create(customerNote);
 
-            var createdNote = customerNoteRepository.Read(customerNote.CustomerId);
+            var createdNote = customerNoteRepository.Read(noteId);
 
             Assert.NotNull(createdNote);
             Assert.Equal(customerId, createdNote.CustomerId);
@@ -83,12 +83,13 @@ namespace CustomerLibraryTests.IntegrationTests
             customerNote.CustomerId = customerId;
             customerNote.Note = "Kitty ipsum dolor sit amet, shed everywhere shed everywhere";
 
-            customerNoteRepository.Create(customerNote);
+            int noteId = customerNoteRepository.Create(customerNote);
 
+            customerNote.NoteId = noteId;
             customerNote.Note = "Purr jum eat the grass rip the couch scratched sumbathe, shed everywhere rip the couch sleep in the sink fluffy fur canip scratched";
             customerNoteRepository.Update(customerNote);
 
-            var createdNote = customerNoteRepository.Read(customerNote.CustomerId);
+            var createdNote = customerNoteRepository.Read(noteId);
 
             Assert.NotNull(createdNote);
             Assert.Equal(customerId, createdNote.CustomerId);
