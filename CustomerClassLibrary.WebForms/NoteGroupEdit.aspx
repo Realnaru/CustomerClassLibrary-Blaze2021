@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     
-    <asp:Repeater ID="AddressRepeater" runat="server">
+    <asp:Repeater ID="NoteRepeater" runat="server">
 
         <ItemTemplate>
             <asp:Table runat="server">
@@ -12,7 +12,7 @@
 
                         <div class="form-group">
                             <asp:Label runat="server" Text="Note"></asp:Label>
-                            <asp:TextBox ID="addressLineRepeater" Text='<%# Eval("Note") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="note" Text='<%# Eval("Note") %>' CssClass="form-control" runat="server"></asp:TextBox>
                         </div>  
 
                     </asp:TableCell>
