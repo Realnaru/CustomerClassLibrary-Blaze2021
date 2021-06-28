@@ -82,6 +82,7 @@ namespace CustomerClassLibrary.WebForms
             List<string> errorMessagesAsList = errorMessages.Split('.').ToList<string>();
 
             addressLineError.Text = errorMessagesAsList.Find(x => x.Contains("AdressLine"));
+            addressLine2Error.Text = errorMessagesAsList.Find(x => x.Contains("AdressLine2"));
             addressTypeError.Text = errorMessagesAsList.Find(x => x.Contains("AddressType"));
             cityError.Text = errorMessagesAsList.Find(x => x.Contains("City"));
             postalcodeError.Text = errorMessagesAsList.Find(x => x.Contains("PostalCode"));

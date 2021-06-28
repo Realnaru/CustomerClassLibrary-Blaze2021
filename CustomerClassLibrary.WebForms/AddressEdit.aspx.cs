@@ -60,7 +60,7 @@ namespace CustomerClassLibrary.WebForms
                 Enum.TryParse<AddressType>(addressType?.Text, out typeOfAddress);
 
                 address.AddressId = AddressId;
-                address.AdressLine = addressLine.Text;
+                address.AdressLine = addressLine?.Text;
                 address.AddressType = typeOfAddress;
                 address.AdressLine2 = line2?.Text;
                 address.City = city?.Text;

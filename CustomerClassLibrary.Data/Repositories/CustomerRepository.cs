@@ -177,7 +177,8 @@ namespace CustomerClassLibrary.Data
             {
                 throw new WrongDataException($"Customer data is invalid. {string.Join(" ", results)}");
             }
-            using(var connection = GetConnection())
+
+            using (var connection = GetConnection())
             {
                 connection.Open();
                

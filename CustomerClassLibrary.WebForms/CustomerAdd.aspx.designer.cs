@@ -132,6 +132,15 @@ namespace CustomerClassLibrary.WebForms
         protected global::System.Web.UI.WebControls.TextBox addressLine2;
 
         /// <summary>
+        /// addressLine2Error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label addressLine2Error;
+
+        /// <summary>
         /// addressType control.
         /// </summary>
         /// <remarks>

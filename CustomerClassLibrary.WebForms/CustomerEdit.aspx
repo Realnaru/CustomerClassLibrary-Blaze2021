@@ -4,7 +4,8 @@
     <h1>Edit customer</h1>
 
     <div class="row">
-        <div class="col-lg-3">
+
+    <div class="col-lg-3">
 
     <div class="form-group">
     </div>  
@@ -17,23 +18,23 @@
     <div class="form-group">
         <asp:Label runat="server" Text="Last name"></asp:Label>
         <asp:TextBox ID="lastName" CssClass="form-control" runat="server"></asp:TextBox>
-        <asp:Label ID="lastNameError" runat="server" Text=""></asp:Label>
+        <asp:Label CssClass="text-danger" ID="lastNameError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
         <asp:Label runat="server" Text="Phone number"></asp:Label>
         <asp:TextBox ID="phoneNumber" CssClass="form-control" runat="server"></asp:TextBox>
-        <asp:Label ID="phoneNumberError" runat="server" Text=""></asp:Label>
+        <asp:Label CssClass="text-danger" ID="phoneNumberError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
         <asp:Label runat="server" Text="Email"></asp:Label>
         <asp:TextBox ID="email" CssClass="form-control" runat="server"></asp:TextBox>
-        <asp:Label ID="emailError" runat="server" Text=""></asp:Label>
+        <asp:Label CssClass="text-danger" ID="emailError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
-        <asp:Label runat="server" Text="Email"></asp:Label>
+        <asp:Label runat="server" Text="Total purchase amount"></asp:Label>
         <asp:TextBox ID="purchaseAmount" CssClass="form-control" runat="server"></asp:TextBox>
      </div>
 
@@ -45,7 +46,7 @@
 
         </div>
 
-    <div class="col-lg-9">
+    <div class="col-lg-9 mt-5">
 
         <table class="table">
         <tr><th>Address line</th><th>Address line 2</th><th>Address type</th><th>City</th><th>Postal code</th>
@@ -73,8 +74,9 @@
     </table>
 
         <div class="row">
-            <div class =" col-lg-8">
+            <div class =" col-lg-12">
 
+                 <asp:Label ID="noteError" runat="server" Text=""></asp:Label>
                  <table class="table">
         <tr><th>Note</th><th class="text-center" colspan="2">Actions</th>
         </tr>
@@ -88,14 +90,13 @@
             </tr> 
         <%} %>
 
-            <tr>
-                <td class="text-right" colspan="3"><a class="btn btn-primary" href="NoteGroupEdit?customerId=<%= CustomerId %>">Edit all</a>
-                                                   <a class="btn btn-primary" href="NoteAdd?customerId=<%= CustomerId %>">Add note</a>
+            <tr>  
+                <td class="text-right" colspan="3"><a class="btn btn-primary" href="NoteGroupEdit?customerId=<%= CustomerId %>">Edit all</a>                                                  <a class="btn btn-primary" href="NoteAdd?customerId=<%= CustomerId %>">Add note</a>
             </td>
             </tr>
             
     </table>
-               
+           
             </div>
 
         </div>

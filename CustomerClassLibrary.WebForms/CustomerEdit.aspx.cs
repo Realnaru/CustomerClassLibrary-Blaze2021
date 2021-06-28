@@ -1,5 +1,6 @@
 ﻿using CustomerClassLibrary.Business;
 using CustomerClassLibrary.Common;
+using CustomerClassLibrary.Data.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,21 @@ namespace CustomerClassLibrary.WebForms
     {
         private CustomerService _customerService;
 
+        private AddressService _addressService;
+
+        private NoteService _noteService;
+
         public List<Address> Addresses { get; set; }
 
         public List<CustomerNote> Notes { get; set; }
 
-        public int CustomerId{get;set;}
+        public int CustomerId{get; set;}
 
         public CustomerEdit()
         {
             _customerService = new CustomerService();
+            _addressService = new AddressService();
+            _noteService = new NoteService();
         }
 
         public CustomerEdit(CustomerService customerService)
@@ -36,13 +43,16 @@ namespace CustomerClassLibrary.WebForms
 
             if (!IsPostBack)
             {
-                Addresses = LoadCustomer(customerIdReq);
+                LoadCustomer(customerIdReq);
+                Addresses = GetAddresses(customerIdReq);
                 Notes = GetNotes(customerIdReq);
             }
-    
+
+            Addresses = GetAddresses(CustomerId);
+            Notes = GetNotes(CustomerId);
         }
 
-        public List<Address> LoadCustomer(int customerId)
+        public void LoadCustomer(int customerId)
         {
             if (customerId != 0)
             {
@@ -55,11 +65,8 @@ namespace CustomerClassLibrary.WebForms
                 lastName.Text = customer.LastName;
                 phoneNumber.Text = customer.PhoneNumber;
                 email.Text = customer.Email;
-                purchaseAmount.Text = customer.TotalPurshasesAmount.ToString();
-
-                return addresses;
+                purchaseAmount.Text = customer.TotalPurshasesAmount.ToString();                
             }
-            return new List<Address>();
         }
 
         public void OnSaveClick(object sender, EventArgs e)
@@ -78,24 +85,33 @@ namespace CustomerClassLibrary.WebForms
             customer.PhoneNumber = phoneNumber?.Text;
             customer.Email = email?.Text;
             customer.TotalPurshasesAmount = totalAmount;
+            customer.AdressesList = Addresses;
+            customer.Note = Notes;
 
             try
             {
                 _customerService.ChangeCustomer(customer);
-                Response?.Redirect("CustomerList");
+                Response?.Redirect($"CustomerList");
             }
             catch (WrongDataException ex)
             {
                 ShowValidationErrors(ex);
             }
-            
+
             //Response?.Redirect($"CustomerEdit?customerId={CustomerId}");
+        }
+
+        public List<Address> GetAddresses(int customerId)
+        {
+
+            List<Address> addresses = _addressService.GetAllAddresses(customerId);
+
+            return addresses;
         }
 
         public List<CustomerNote> GetNotes(int customerId)
         {
-            var customer = _customerService.GetCustomer(customerId);
-            List<CustomerNote> notes = customer.Note;
+            List<CustomerNote> notes = _noteService.GetAllNotes(customerId);
             return notes;
         }
 
@@ -108,6 +124,7 @@ namespace CustomerClassLibrary.WebForms
             lastNameError.Text = errorMessagesAsList.Find(x => x.Contains("LastName"));
             phoneNumberError.Text = errorMessagesAsList.Find(x => x.Contains("PhoneNumber"));
             emailError.Text = errorMessagesAsList.Find(x => x.Contains("Email"));
+            noteError.Text = errorMessagesAsList.Find(x => x.Contains("Note"));
 
         }
     }
