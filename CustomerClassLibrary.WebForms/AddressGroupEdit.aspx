@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddressGroupEdit.aspx.cs" Inherits="CustomerClassLibrary.WebForms.AddressGroupEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <h1>Edit all addresses</h1>
+
     <asp:Repeater ID="addressRepeater" runat="server">
         <ItemTemplate>
 

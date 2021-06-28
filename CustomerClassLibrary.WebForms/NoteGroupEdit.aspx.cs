@@ -20,7 +20,16 @@ namespace CustomerClassLibrary.WebForms
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            int customerIdReq;
+            int.TryParse(Request.QueryString["customerId"], out customerIdReq);
 
+            if (customerIdReq != 0)
+            {
+                notes = _noteService.GetAllNotes(customerIdReq);
+            }
+
+            NoteRepeater.DataSource = notes;
+            NoteRepeater.DataBind();
         }
     }
 }

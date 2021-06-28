@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomerClassLibrary.Data.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,25 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class AddressGroupEdit : System.Web.UI.Page
     {
+        private AddressService _addressService;
+        public List<Address> Addresses { get; set; } = new List<Address>();
+
+        public AddressGroupEdit()
+        {
+            _addressService = new AddressService();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+            int customerIdReq;
+            int.TryParse(Request.QueryString["customerId"], out customerIdReq);
 
+            if (customerIdReq != 0)
+            {
+                Addresses = _addressService.GetAllAddresses(customerIdReq);
+            }
+            
+            addressRepeater.DataSource = Addresses;
+            addressRepeater.DataBind();
         }
     }
 }

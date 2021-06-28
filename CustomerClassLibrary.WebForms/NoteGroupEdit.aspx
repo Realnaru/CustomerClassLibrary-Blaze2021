@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NoteGroupEdit.aspx.cs" Inherits="CustomerClassLibrary.WebForms.NoteGroupEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <h1>Edit all notes</h1>
     
     <asp:Repeater ID="NoteRepeater" runat="server">
 

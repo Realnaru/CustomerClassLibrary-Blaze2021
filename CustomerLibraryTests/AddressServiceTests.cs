@@ -78,6 +78,32 @@ namespace CustomerLibraryTests
         }
 
         [Fact]
+        public void ShouldBeAbleToGetAllAddresses()
+        {
+            var addressMock = new Mock<IEntityRepository<Address>>();
+            var addressFixture = new CustomerAddressFixture();
+
+            int customerId = 2;
+            var firstAddressToGet = addressFixture.MockAddress();
+            var secondAddressToGet = addressFixture.MockAddress();
+            firstAddressToGet.AddressId = 1;
+            secondAddressToGet.AddressId = 2;
+            var addresses = new List<Address>();
+            addresses.Add(firstAddressToGet);
+            addresses.Add(secondAddressToGet);
+            
+            addressMock.Setup(x => x.ReadAll(customerId)).Returns(addresses);
+
+            var addressService = new AddressService(addressMock.Object);
+
+            var fetchedAddresses = addressService.GetAllAddresses(customerId);
+
+            addressMock.Verify(x => x.ReadAll(customerId), Times.Exactly(1));
+            Assert.Equal(firstAddressToGet, fetchedAddresses[0]);
+            Assert.Equal(secondAddressToGet, fetchedAddresses[1]);
+        }
+
+        [Fact]
         public void ShouldBeAbleToDeleteAddress()
         {
             var addressMock = new Mock<IEntityRepository<Address>>();

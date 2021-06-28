@@ -32,6 +32,11 @@ namespace CustomerClassLibrary.Data.Business
             return _addressRepository.Read(addressId);
         }
 
+        public List<Address> GetAllAddresses(int customerId)
+        {
+            return _addressRepository.ReadAll(customerId);
+        }
+
         public void ChangeAddress(Address address)
         {
 
