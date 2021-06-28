@@ -179,6 +179,16 @@ namespace CustomerClassLibrary.Data
 
         public void Update(Address address)
         {
+            var addressValidator = new AddressValidator();
+            List<Tuple<string, string>> results = new List<Tuple<string, string>>();
+
+            results = addressValidator.ValidateAdress(address);
+
+            if (results.Count > 0)
+            {
+                throw new WrongDataException($"Address data is invalid. {string.Join(" ", results)}");
+            }
+
             using (var connection = GetConnection())
             {
                 connection.Open();

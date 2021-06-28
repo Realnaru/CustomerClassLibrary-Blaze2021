@@ -24,6 +24,15 @@ namespace CustomerClassLibrary.WebForms
         protected global::System.Web.UI.WebControls.TextBox addressLine;
 
         /// <summary>
+        /// addressLineError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label addressLineError;
+
+        /// <summary>
         /// line2 control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace CustomerClassLibrary.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox line2;
+
+        /// <summary>
+        /// addressLine2error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label addressLine2error;
 
         /// <summary>
         /// addressType control.
@@ -42,6 +60,15 @@ namespace CustomerClassLibrary.WebForms
         protected global::System.Web.UI.WebControls.TextBox addressType;
 
         /// <summary>
+        /// addressTypeError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label addressTypeError;
+
+        /// <summary>
         /// city control.
         /// </summary>
         /// <remarks>
@@ -49,6 +76,15 @@ namespace CustomerClassLibrary.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox city;
+
+        /// <summary>
+        /// cityError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label cityError;
 
         /// <summary>
         /// postalCode control.
@@ -60,6 +96,15 @@ namespace CustomerClassLibrary.WebForms
         protected global::System.Web.UI.WebControls.TextBox postalCode;
 
         /// <summary>
+        /// postalCodeError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label postalCodeError;
+
+        /// <summary>
         /// state control.
         /// </summary>
         /// <remarks>
@@ -69,6 +114,15 @@ namespace CustomerClassLibrary.WebForms
         protected global::System.Web.UI.WebControls.TextBox state;
 
         /// <summary>
+        /// stateError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label stateError;
+
+        /// <summary>
         /// country control.
         /// </summary>
         /// <remarks>
@@ -76,5 +130,14 @@ namespace CustomerClassLibrary.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox country;
+
+        /// <summary>
+        /// countryError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label countryError;
     }
 }

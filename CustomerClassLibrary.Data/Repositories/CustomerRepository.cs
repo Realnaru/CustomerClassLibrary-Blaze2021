@@ -168,6 +168,15 @@ namespace CustomerClassLibrary.Data
 
         public void Update(Customer customer)
         {
+            var customerValidator = new CustomerValidator();
+            var results = new List<Tuple<string, string>>();
+
+            results = customerValidator.ValidateCustomer(customer);
+
+            if (results.Count > 0)
+            {
+                throw new WrongDataException($"Customer data is invalid. {string.Join(" ", results)}");
+            }
             using(var connection = GetConnection())
             {
                 connection.Open();

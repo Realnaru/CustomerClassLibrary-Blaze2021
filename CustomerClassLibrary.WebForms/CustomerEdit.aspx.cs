@@ -1,4 +1,5 @@
 ﻿using CustomerClassLibrary.Business;
+using CustomerClassLibrary.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,9 +79,16 @@ namespace CustomerClassLibrary.WebForms
             customer.Email = email?.Text;
             customer.TotalPurshasesAmount = totalAmount;
 
-            _customerService.ChangeCustomer(customer);
-
-            Response?.Redirect("CustomerList");
+            try
+            {
+                _customerService.ChangeCustomer(customer);
+                Response?.Redirect("CustomerList");
+            }
+            catch (WrongDataException ex)
+            {
+                ShowValidationErrors(ex);
+            }
+            
             //Response?.Redirect($"CustomerEdit?customerId={CustomerId}");
         }
 
@@ -89,6 +97,18 @@ namespace CustomerClassLibrary.WebForms
             var customer = _customerService.GetCustomer(customerId);
             List<CustomerNote> notes = customer.Note;
             return notes;
+        }
+
+        public void ShowValidationErrors(WrongDataException ex)
+        {
+            string errorMessages = ex.Message;
+            errorMessages = errorMessages.Replace('(', ' ').Replace(')', '.');
+            List<string> errorMessagesAsList = errorMessages.Split('.').ToList<string>();
+
+            lastNameError.Text = errorMessagesAsList.Find(x => x.Contains("LastName"));
+            phoneNumberError.Text = errorMessagesAsList.Find(x => x.Contains("PhoneNumber"));
+            emailError.Text = errorMessagesAsList.Find(x => x.Contains("Email"));
+
         }
     }
 }

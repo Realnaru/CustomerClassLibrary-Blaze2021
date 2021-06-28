@@ -26,6 +26,11 @@ namespace CustomerClassLibrary.WebForms
             {
                 Addresses = _addressService.GetAllAddresses(customerIdReq);
             }
+
+            if (Addresses.Count == 0)
+            {
+                Addresses.Add(new Address());
+            }
             
             addressRepeater.DataSource = Addresses;
             addressRepeater.DataBind();

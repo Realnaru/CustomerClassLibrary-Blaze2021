@@ -17,16 +17,19 @@
     <div class="form-group">
         <asp:Label runat="server" Text="Last name"></asp:Label>
         <asp:TextBox ID="lastName" CssClass="form-control" runat="server"></asp:TextBox>
+        <asp:Label ID="lastNameError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
         <asp:Label runat="server" Text="Phone number"></asp:Label>
         <asp:TextBox ID="phoneNumber" CssClass="form-control" runat="server"></asp:TextBox>
+        <asp:Label ID="phoneNumberError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
         <asp:Label runat="server" Text="Email"></asp:Label>
         <asp:TextBox ID="email" CssClass="form-control" runat="server"></asp:TextBox>
+        <asp:Label ID="emailError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">

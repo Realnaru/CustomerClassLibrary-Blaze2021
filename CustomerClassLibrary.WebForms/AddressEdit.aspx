@@ -12,36 +12,43 @@
     <div class="form-group">
         <asp:Label runat="server" Text="Address line"></asp:Label>
         <asp:TextBox ID="addressLine" CssClass="form-control" runat="server"></asp:TextBox>
+         <asp:Label ID="addressLineError" runat="server" Text=""></asp:Label>
     </div>    
     
     <div class="form-group">
         <asp:Label runat="server" Text="Address line 2"></asp:Label>
         <asp:TextBox ID="line2" CssClass="form-control" runat="server"></asp:TextBox>
+         <asp:Label ID="addressLine2error" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
         <asp:Label runat="server" Text="Address type"></asp:Label>
         <asp:TextBox ID="addressType" CssClass="form-control" runat="server"></asp:TextBox>
+         <asp:Label ID="addressTypeError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
         <asp:Label runat="server" Text="City"></asp:Label>
         <asp:TextBox ID="city" CssClass="form-control" runat="server"></asp:TextBox>
+         <asp:Label ID="cityError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
         <asp:Label runat="server" Text="Postal code"></asp:Label>
         <asp:TextBox ID="postalCode" CssClass="form-control" runat="server"></asp:TextBox>
+         <asp:Label ID="postalCodeError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
         <asp:Label runat="server" Text="State"></asp:Label>
         <asp:TextBox ID="state" CssClass="form-control" runat="server"></asp:TextBox>
+         <asp:Label ID="stateError" runat="server" Text=""></asp:Label>
      </div>
 
     <div class="form-group">
         <asp:Label runat="server" Text="Country"></asp:Label>
         <asp:TextBox ID="country" CssClass="form-control" runat="server"></asp:TextBox>
+         <asp:Label ID="countryError" runat="server" Text=""></asp:Label>
      </div>
 
         </div>

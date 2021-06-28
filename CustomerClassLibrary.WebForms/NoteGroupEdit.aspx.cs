@@ -27,6 +27,10 @@ namespace CustomerClassLibrary.WebForms
             {
                 notes = _noteService.GetAllNotes(customerIdReq);
             }
+            if (notes.Count == 0)
+            {
+                notes.Add(new CustomerNote());
+            }
 
             NoteRepeater.DataSource = notes;
             NoteRepeater.DataBind();
