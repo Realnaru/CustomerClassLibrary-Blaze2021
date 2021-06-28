@@ -13,6 +13,8 @@ namespace CustomerClassLibrary.WebForms
         private CustomerService _customerService;
         public List<Customer> Customers { get; set; }
 
+        public int SheetCount { get; set; } = 0;
+
         public CustomerList()
         {
             _customerService = new CustomerService();
@@ -29,8 +31,25 @@ namespace CustomerClassLibrary.WebForms
 
         public void LoadCustomers()
         {
-            Customers = _customerService.GetAllCustomers();
+            Customers = _customerService.GetCustomersPartially(SheetCount, 5);
         }
         
+        public void OnNextClick(object sender, EventArgs e)
+        {
+            if (Customers.Count == 5)
+            {
+                SheetCount++;
+                LoadCustomers();    
+            }
+        }
+
+        public void OnPrevClick(object sender, EventArgs e)
+        {
+            if (SheetCount > 0)
+            {
+                SheetCount--;
+                LoadCustomers();   
+            }
+        }
     }
 }

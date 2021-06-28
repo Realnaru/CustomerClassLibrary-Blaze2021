@@ -20,6 +20,9 @@
                 <td><a class="btn btn-primary" href="CustomerDelete?customerId=<%= customer.CustomerId %>">Delete</a></td>
             </tr> 
         <%} %>
+            <tr><td class="text-left" colspan="4"><asp:Button CssClass="btn btn-primary" onclick="OnPrevClick" runat="server" Text="Prev"/></td>
+                <td class="text-left"><asp:Button CssClass="btn btn-primary" OnClick="OnNextClick" runat="server" Text="Next"/></td>
+            </tr>
     </table>
     <a class="btn btn-lg btn-primary" href ="CustomerAdd">Add new customer</a>
 
