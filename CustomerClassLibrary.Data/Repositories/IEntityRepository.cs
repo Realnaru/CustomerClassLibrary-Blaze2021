@@ -16,6 +16,8 @@ namespace CustomerClassLibrary.Data.Repositories
 
         public List<TEntity> ReadAll(int entityId);
 
+        public List<TEntity> ReadPartially(int pageNumber, int rowsCount);
+
         public void Update(TEntity entity);
 
         public void Delete(TEntity entity);

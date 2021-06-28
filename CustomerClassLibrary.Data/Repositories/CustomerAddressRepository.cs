@@ -1,4 +1,5 @@
-﻿using CustomerClassLibrary.Data.Repositories;
+﻿using CustomerClassLibrary.Common;
+using CustomerClassLibrary.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,17 @@ namespace CustomerClassLibrary.Data
         public int Create(Address address)
         {
             int addressId;
+
+            var validator = new AddressValidator();
+
+            List<Tuple<string, string>> results = validator.ValidateAdress(address);
+
+            if (results.Count != 0)
+            {
+
+                throw new WrongDataException($"Address data is invalid. {string.Join(" ", results)}");
+            }
+
             using (var connection = GetConnection())
             {
                 connection.Open();
@@ -209,6 +221,11 @@ namespace CustomerClassLibrary.Data
         }
 
         public void Delete(Address entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Address> ReadPartially(int pageNumber, int rowsCount)
         {
             throw new NotImplementedException();
         }

@@ -94,6 +94,33 @@ namespace CustomerLibraryTests.IntegrationTests
         }
 
         [Fact]
+        public void ShouldBeAbleToReadCustomersPartially()
+        {
+            var customerRepository = new CustomerRepository();
+            var fixture = new CustomerRepositoryFixture();
+            customerRepository.DeleteAll();
+
+            var customer = fixture.MockCustomer();
+            var secondCustomer = fixture.MockCustomer();
+            var thirdCustomer = fixture.MockCustomer();
+            var fourthCustomer = fixture.MockCustomer();
+            var fithCustomer = fixture.MockCustomer();
+            var sixthCustomer = fixture.MockCustomer();
+
+            customerRepository.Create(customer);
+            customerRepository.Create(secondCustomer);
+            customerRepository.Create(thirdCustomer);
+            customerRepository.Create(fourthCustomer);
+            customerRepository.Create(fithCustomer);
+            customerRepository.Create(sixthCustomer);
+
+            List<Customer> customers = customerRepository.ReadPartially(0,5);
+
+            Assert.Equal(5, customers.Count);
+
+        }
+
+        [Fact]
         public void ShouldBeAbleToUpdateCustomer()
         {
             var customerRepository = new CustomerRepository();

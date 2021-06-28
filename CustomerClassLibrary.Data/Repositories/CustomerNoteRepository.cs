@@ -165,6 +165,11 @@ namespace CustomerClassLibrary.Data
         {
             throw new NotImplementedException();
         }
+
+        public List<CustomerNote> ReadPartially(int pageNumber, int rowsCount)
+        {
+            throw new NotImplementedException();
+        }
     }
 
         

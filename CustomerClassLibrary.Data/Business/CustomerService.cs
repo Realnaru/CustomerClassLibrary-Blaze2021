@@ -83,6 +83,11 @@ namespace CustomerClassLibrary.Business
             return customers;
         }
 
+        public List<Customer> GetCustomersPartially(int pageNumber, int rowsCount)
+        {
+            return _customerRepository.ReadPartially(pageNumber, rowsCount);
+        }
+
         public void ChangeCustomer(Customer customer)
         {
             using (var transactionScope = new TransactionScope())

@@ -130,6 +130,56 @@ namespace CustomerLibraryTests.CustomerLibraryTests
         }
 
         [Fact]
+        public void ShouldGetCustomersPartially()
+        {
+            var customerFixture = new CustomerRepositoryFixture();
+            var addressFixture = new CustomerAddressFixture();
+
+            var customerMock = new Mock<IEntityRepository<Customer>>();
+            var addressMock = new Mock<IEntityRepository<Address>>();
+            var noteMock = new Mock<IEntityRepository<CustomerNote>>();
+
+            var firstCustomerExpected = customerFixture.MockCustomer();
+            var secondCustomerExpected = customerFixture.MockCustomer();
+            var thirdCustomerExpected = customerFixture.MockCustomer();
+            var fourthCustomerExpected = customerFixture.MockCustomer();
+            var fifthCustomerExpected = customerFixture.MockCustomer();
+            //var addressExpected = addressFixture.MockAddress();
+            //var noteExpected = new CustomerNote();
+
+            List<Customer> expectedCustomers = new List<Customer>();
+            expectedCustomers.Add(firstCustomerExpected);
+            expectedCustomers.Add(secondCustomerExpected);
+            expectedCustomers.Add(thirdCustomerExpected);
+            expectedCustomers.Add(fourthCustomerExpected);
+            expectedCustomers.Add(fifthCustomerExpected);
+
+            //List<Address> expectedAddresses = new List<Address>();
+            //expectedAddresses.Add(addressExpected);
+
+            //List<CustomerNote> expectedNotes = new List<CustomerNote>();
+            //expectedNotes.Add(noteExpected);
+
+            customerMock.Setup(x => x.ReadPartially(0, 5)).Returns(() => expectedCustomers);
+            //addressMock.Setup(x => x.ReadAll(1)).Returns(expectedAddresses);
+            //noteMock.Setup(x => x.ReadAll(1)).Returns(expectedNotes);
+
+            var customerService = new CustomerService(customerMock.Object, addressMock.Object, noteMock.Object);
+
+            var fetchedCustomers = customerService.GetCustomersPartially(0, 5);
+
+            customerMock.Verify(x => x.ReadPartially(0, 5), Times.Exactly(1));
+
+            Assert.Equal(firstCustomerExpected, expectedCustomers[0]);
+            Assert.Equal(secondCustomerExpected, expectedCustomers[1]);
+            Assert.Equal(thirdCustomerExpected, expectedCustomers[2]);
+            Assert.Equal(fourthCustomerExpected, expectedCustomers[3]);
+            Assert.Equal(fifthCustomerExpected, expectedCustomers[4]);
+
+        }
+
+
+        [Fact]
         public void ShouldUpdateCustomer()
         {
             var customerMock = new Mock<IEntityRepository<Customer>>();

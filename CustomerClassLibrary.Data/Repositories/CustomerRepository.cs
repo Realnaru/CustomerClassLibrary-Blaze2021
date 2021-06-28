@@ -130,6 +130,42 @@ namespace CustomerClassLibrary.Data
             return customers;
         }
 
+        public List<Customer> ReadPartially(int pageNumber, int rowsCount)
+        {
+            var customers = new List<Customer>();
+            if ( pageNumber >= 0)
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    var command = new SqlCommand("SELECT * FROM [dbo].customer ORDER BY customer_id OFFSET(@PageNumber) * @RowsOfPage ROWS FETCH NEXT @RowsOfPage ROWS ONLY", connection);
+
+                    command.Parameters.Add(new SqlParameter("@PageNumber", SqlDbType.Int) { Value = pageNumber});
+                    command.Parameters.Add(new SqlParameter("@RowsOfPage", SqlDbType.Int) { Value = rowsCount});
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            customers.Add(new Customer()
+                            {
+                                CustomerId = (Int32)reader["customer_id"],
+                                FirstName = reader["first_name"]?.ToString(),
+                                LastName = reader["last_name"]?.ToString(),
+                                PhoneNumber = reader["customer_phone_number"]?.ToString(),
+                                Email = reader["customer_email"]?.ToString(),
+                                TotalPurshasesAmount = (decimal)reader["total_purchase_amount"]
+                            });
+                        }
+
+                    }
+
+                }
+                return customers;
+            }
+            return new List<Customer>();
+        }
+
         public void Update(Customer customer)
         {
             using(var connection = GetConnection())
