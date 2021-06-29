@@ -89,7 +89,17 @@ namespace CustomerClassLibrary.WebForms
             {
                 foreach(var note in notes)
                 { 
-                  _noteService.ChangeNote(note);                
+                    if (note.NoteId != 0)
+                    {
+                        _noteService.ChangeNote(note);
+                    } else
+                    {
+                        note.CustomerId = CustomerId;
+                        _noteService.CreateNote(note);
+                    }
+
+                    
+                                 
                 }
             }
 

@@ -19,6 +19,28 @@ namespace CustomerClassLibrary.WebForms
             _addressService = new AddressService();
         }
 
+        protected override void LoadViewState(object savedState)
+        {
+            base.LoadViewState(savedState);
+
+            Addresses = ViewState["MyAddresses"] as List<Address>;
+
+            if (Addresses != null)
+            {
+                addressRepeater.DataSource = Addresses;
+                addressRepeater.DataBind();
+            }
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+
+            addressRepeater.DataBind();
+            DataBind();
+            ViewState["MyAddresses"] = Addresses;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int customerIdReq;
@@ -75,11 +97,24 @@ namespace CustomerClassLibrary.WebForms
             {
                 foreach(var address in addresses)
                 {
-                    _addressService.ChangeAddress(address);
+                    if (address.AddressId != 0)
+                    {
+                        _addressService.ChangeAddress(address);
+                    } else
+                    {
+                        address.CustomerId = CustomerId;
+                        _addressService.CreateAddress(address);
+                    }
+                    
                 }
             }
 
             Response?.Redirect($"CustomerEdit?customerId={CustomerId}");
+        }
+
+        public void OnAddClick(object sender, EventArgs e)
+        {
+            Addresses.Add(new Address());
         }
     }
 }

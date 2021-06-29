@@ -19,6 +19,7 @@ namespace CustomerClassLibrary
         Canada
     }
 
+    [Serializable]
     public class Address
     {
         public int AddressId { get; set; }
