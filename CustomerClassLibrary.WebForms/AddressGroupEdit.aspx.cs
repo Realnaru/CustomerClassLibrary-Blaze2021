@@ -35,5 +35,10 @@ namespace CustomerClassLibrary.WebForms
             addressRepeater.DataSource = Addresses;
             addressRepeater.DataBind();
         }
+
+        public void OnSaveClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

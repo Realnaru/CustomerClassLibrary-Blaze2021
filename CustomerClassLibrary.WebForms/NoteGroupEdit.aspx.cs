@@ -12,7 +12,8 @@ namespace CustomerClassLibrary.WebForms
     public partial class NoteGroupEdit : System.Web.UI.Page
     {
         private NoteService _noteService;
-        private List<CustomerNote> notes { get; set; } = new List<CustomerNote>();
+        private List<CustomerNote> Notes { get; set; } = new List<CustomerNote>();
+        private int CustomerId { get; set; }
 
         public NoteGroupEdit()
         {
@@ -22,18 +23,54 @@ namespace CustomerClassLibrary.WebForms
         {
             int customerIdReq;
             int.TryParse(Request.QueryString["customerId"], out customerIdReq);
+            CustomerId = customerIdReq;
 
-            if (customerIdReq != 0)
-            {
-                notes = _noteService.GetAllNotes(customerIdReq);
+            if (!IsPostBack)
+            {  
+                if (CustomerId != 0)
+                {
+                    Notes = _noteService.GetAllNotes(CustomerId);
+                }
+
+                if (Notes.Count == 0)
+                {
+                    Notes.Add(new CustomerNote());
+                }
+
+                noteRepeater.DataSource = Notes;
+                noteRepeater.DataBind();
             }
-            if (notes.Count == 0)
+        }
+
+        public void OnSaveClick(object sender, EventArgs e)
+        {
+            List<CustomerNote> notes = new List<CustomerNote>();
+
+            int customerId = CustomerId;
+
+            if (noteRepeater.Items.Count != 0)
             {
-                notes.Add(new CustomerNote());
+                foreach (RepeaterItem item in noteRepeater.Items)
+                {
+                    int noteId;
+                    int.TryParse(((HiddenField)item.FindControl("noteId"))?.Value, out noteId);
+                    notes.Add(new CustomerNote()
+                    {
+                        NoteId = noteId,
+                        Note = ((TextBox)item.FindControl("note"))?.Text
+                    });
+                }
             }
 
-            NoteRepeater.DataSource = notes;
-            NoteRepeater.DataBind();
+            if (notes.Count != 0)
+            {
+                foreach(var note in notes)
+                {
+                    _noteService.ChangeNote(note);
+                }
+            }
+
+            Response.Redirect($"CustomerEdit?customerId={customerId}");    
         }
     }
 }
