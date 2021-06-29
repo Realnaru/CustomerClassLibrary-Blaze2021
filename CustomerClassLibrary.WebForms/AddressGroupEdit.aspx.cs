@@ -12,11 +12,11 @@ namespace CustomerClassLibrary.WebForms
     {
         private AddressService _addressService;
         public List<Address> Addresses { get; set; } = new List<Address>();
-
         public AddressGroupEdit()
         {
             _addressService = new AddressService();
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int customerIdReq;

@@ -13,8 +13,6 @@ namespace CustomerClassLibrary.WebForms
     {
         private CustomerService _customerService;
 
-        //public Customer Customer { get; set; } = new Customer();
-
         public AddCustomer()
         {
             _customerService = new CustomerService();
@@ -33,8 +31,6 @@ namespace CustomerClassLibrary.WebForms
             decimal.TryParse(purchaseAmount?.Text, out totalAmount);
 
             Enum.TryParse(addressType?.Text, out typeOfAddress);
-           
-            
             
             var customer = new Customer()
             {
@@ -44,7 +40,6 @@ namespace CustomerClassLibrary.WebForms
                 Email = email?.Text,
                 TotalPurshasesAmount = totalAmount
             };
-
 
             var address = new Address()
             {
@@ -95,15 +90,7 @@ namespace CustomerClassLibrary.WebForms
             phoneNumberError.Text = errorMessagesAsList.Find(x => x.Contains("PhoneNumber"));
             emailError.Text = errorMessagesAsList.Find(x => x.Contains("Email"));
             
-        }
-
-        //public void OnMoreClick(object sender, EventArgs e)
-
-        //{    
-        //        Customer.AdressesList.Add(new Address());  
-        //}
-
-        
+        }     
     }
 
 }

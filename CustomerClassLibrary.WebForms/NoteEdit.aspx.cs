@@ -27,12 +27,10 @@ namespace CustomerClassLibrary.WebForms
             NoteId = noteIdReq;
             CustomerId = _noteService.GetNote(noteIdReq).CustomerId;
             
-
             if (!IsPostBack)
             {
                 LoadNote(noteIdReq);
             }
-
         }
 
         public void LoadNote(int noteId)

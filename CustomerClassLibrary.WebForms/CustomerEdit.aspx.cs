@@ -97,8 +97,6 @@ namespace CustomerClassLibrary.WebForms
             {
                 ShowValidationErrors(ex);
             }
-
-            //Response?.Redirect($"CustomerEdit?customerId={CustomerId}");
         }
 
         public List<Address> GetAddresses(int customerId)
@@ -125,7 +123,6 @@ namespace CustomerClassLibrary.WebForms
             phoneNumberError.Text = errorMessagesAsList.Find(x => x.Contains("PhoneNumber"));
             emailError.Text = errorMessagesAsList.Find(x => x.Contains("Email"));
             noteError.Text = errorMessagesAsList.Find(x => x.Contains("Note"));
-
         }
     }
 }
