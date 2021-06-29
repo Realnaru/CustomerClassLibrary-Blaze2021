@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CustomerClassLibrary
 {
+    [Serializable]
     public class CustomerNote
     {
         public int NoteId { get; set; }

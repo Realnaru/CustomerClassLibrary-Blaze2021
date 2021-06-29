@@ -28,6 +28,11 @@
         </ItemTemplate>
 
     </asp:Repeater>
+
+    <asp:Button runat="server" CssClass="btn btn-primary btn-lg" 
+        OnClick="OnAddClick"
+        Text="Add" />
+
     <asp:Button runat="server" CssClass="btn btn-primary btn-lg" 
         OnClick="OnSaveClick"
         Text="Save" />

@@ -12,8 +12,30 @@ namespace CustomerClassLibrary.WebForms
     public partial class NoteGroupEdit : System.Web.UI.Page
     {
         private NoteService _noteService;
-        private List<CustomerNote> Notes { get; set; } = new List<CustomerNote>();
+        public List<CustomerNote> Notes { get; set; } = new List<CustomerNote>();
         private int CustomerId { get; set; }
+
+        protected override void LoadViewState(object savedState)
+        {
+            base.LoadViewState(savedState);
+
+            Notes = ViewState["MyNotes"] as List<CustomerNote>;
+
+            if (Notes != null)
+            {
+                noteRepeater.DataSource = Notes;
+                noteRepeater.DataBind();
+            }
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+
+            noteRepeater.DataBind();
+            DataBind();
+            ViewState["MyNotes"] = Notes;
+        }
 
         public NoteGroupEdit()
         {
@@ -23,10 +45,10 @@ namespace CustomerClassLibrary.WebForms
         {
             int customerIdReq;
             int.TryParse(Request.QueryString["customerId"], out customerIdReq);
-            CustomerId = customerIdReq;
+            CustomerId = customerIdReq; 
 
             if (!IsPostBack)
-            {  
+            {
                 if (CustomerId != 0)
                 {
                     Notes = _noteService.GetAllNotes(CustomerId);
@@ -40,6 +62,7 @@ namespace CustomerClassLibrary.WebForms
                 noteRepeater.DataSource = Notes;
                 noteRepeater.DataBind();
             }
+            
         }
 
         public void OnSaveClick(object sender, EventArgs e)
@@ -65,12 +88,21 @@ namespace CustomerClassLibrary.WebForms
             if (notes.Count != 0)
             {
                 foreach(var note in notes)
-                {
-                    _noteService.ChangeNote(note);
+                { 
+                  _noteService.ChangeNote(note);                
                 }
             }
 
             Response.Redirect($"CustomerEdit?customerId={customerId}");    
+        }
+
+        public void OnAddClick(object sender, EventArgs e)
+        {
+            Notes.Add(new CustomerNote()
+            {
+                CustomerId = this.CustomerId
+            }); 
+
         }
     }
 }
