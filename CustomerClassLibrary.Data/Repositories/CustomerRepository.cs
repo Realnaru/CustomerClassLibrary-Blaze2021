@@ -32,7 +32,7 @@ namespace CustomerClassLibrary.Data
 
                 var firstNameParam = new SqlParameter("@first_name", SqlDbType.NVarChar, 50)
                 {
-                    Value = customer.FirstName
+                    Value = customer.FirstName == null ? DBNull.Value : customer.FirstName
                 };
 
                  var lastNameParam = new SqlParameter("@last_name", SqlDbType.NVarChar, 50)
@@ -42,17 +42,17 @@ namespace CustomerClassLibrary.Data
 
                 var customerPhoneNumberParam = new SqlParameter("@customer_phone_number", SqlDbType.VarChar, 15)
                 {
-                    Value = customer.PhoneNumber
+                    Value = customer.PhoneNumber == null ? DBNull.Value : customer.PhoneNumber
                 };
 
                 var customerEmailParam = new SqlParameter("@customer_email", SqlDbType.NVarChar, 100)
                 {
-                    Value = customer.Email
+                    Value = customer.Email == null ? DBNull.Value : customer.Email
                 };
 
                 var totalPurchaseAmountParam = new SqlParameter("@total_purchase_amount", SqlDbType.Money)
                 {
-                    Value = customer.TotalPurshasesAmount
+                    Value = customer.TotalPurshasesAmount == null ? 0 : customer.TotalPurshasesAmount
                 };
 
                 command.Parameters.Add(firstNameParam);
@@ -122,7 +122,7 @@ namespace CustomerClassLibrary.Data
                             LastName = reader["last_name"]?.ToString(),
                             PhoneNumber = reader["customer_phone_number"]?.ToString(),
                             Email = reader["customer_email"]?.ToString(),
-                            TotalPurshasesAmount = (decimal)reader["total_purchase_amount"]
+                            TotalPurshasesAmount = (decimal)reader["total_purchase_amount"]  
                         });
                     }
                 }

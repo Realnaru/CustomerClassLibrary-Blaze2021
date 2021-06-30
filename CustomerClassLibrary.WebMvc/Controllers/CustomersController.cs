@@ -54,7 +54,7 @@ namespace CustomerClassLibrary.WebMvc.Controllers
             }
             catch
             {
-                return View("Error");
+                return View(customer);
             }
         }
 
