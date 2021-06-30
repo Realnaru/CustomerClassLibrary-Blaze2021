@@ -1,5 +1,7 @@
-﻿using CustomerClassLibrary.WebMvc.Controllers;
+﻿using CustomerClassLibrary.Data.Business;
+using CustomerClassLibrary.WebMvc.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,15 @@ namespace CustomerClassLibrary.WebMvc.Tests.Controllers
         {
             CustomersController controller = new CustomersController();
             controller.Index(); 
+        }
+
+        [TestMethod]
+        public void ShouldCreateCustomer()
+        {
+            var customerServiceMock = new Mock<ICustomerService>();
+            CustomersController controller = new CustomersController();
+            var customer = new Customer();
+            controller.Index();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace CustomerClassLibrary.Data.Business
     public interface ICustomerService
     {
         IReadOnlyCollection<Customer> GetAllCustomers();
+        public int CreateCustomer(Customer customer);
     }
 }

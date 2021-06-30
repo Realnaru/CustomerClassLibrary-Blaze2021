@@ -33,22 +33,28 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            return View();
+            var defaultValues = new Customer();
+            defaultValues.AdressesList = new List<Address>() { new Address() };
+            defaultValues.Note = new List<CustomerNote>() { new CustomerNote() };
+
+            return View(defaultValues);
         }
 
         // POST: Customers/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Customer customer)
         {
             try
             {
                 // TODO: Add insert logic here
+                _customerService.
+                    CreateCustomer(customer);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("Error");
             }
         }
 
