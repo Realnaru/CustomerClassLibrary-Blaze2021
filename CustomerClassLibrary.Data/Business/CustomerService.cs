@@ -114,18 +114,18 @@ namespace CustomerClassLibrary.Business
         {
             //using (var transactionScope = new TransactionScope())
             //{
-            //    foreach (var address in customer.AdressesList)
-            //    {
-            //        _addressRepository.Delete(address);
-            //    }
+            foreach (var address in customer.AdressesList)
+            {
+                _addressRepository.Delete(customer.CustomerId);
+            }
 
-            //    foreach (var note in customer.Note)
-            //    {
-            //        _noteRepository.Delete(note);
-            //    }
+            foreach (var note in customer.Note)
+            {
+                _noteRepository.Delete(note.CustomerId);
+            }
 
-                _customerRepository.Delete(customer);
-            //}
+            _customerRepository.Delete(customer);
+        //    }
         }
 
         IReadOnlyCollection<Customer> ICustomerService.GetAllCustomers()

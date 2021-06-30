@@ -96,24 +96,25 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         public ActionResult Delete(int id)
         {
             var customer = _customerService.GetCustomer(id);
+            _customerService.DeleteCustomer(customer);
+
             return View(customer);
         }
 
         // POST: Customers/Delete/5
         [HttpPost]
-        public ActionResult Delete(Customer customer)
+        public ActionResult Delete(int id, Customer customer)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                customer.CustomerId = id;
                 _customerService.DeleteCustomer(customer);
-                
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(customer);
+                return View();
             }
         }
     }
