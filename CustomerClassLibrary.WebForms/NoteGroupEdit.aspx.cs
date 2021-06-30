@@ -96,10 +96,7 @@ namespace CustomerClassLibrary.WebForms
                     {
                         note.CustomerId = CustomerId;
                         _noteService.CreateNote(note);
-                    }
-
-                    
-                                 
+                    }                 
                 }
             }
 
@@ -108,11 +105,7 @@ namespace CustomerClassLibrary.WebForms
 
         public void OnAddClick(object sender, EventArgs e)
         {
-            Notes.Add(new CustomerNote()
-            {
-                CustomerId = this.CustomerId
-            }); 
-
+            Notes.Add(new CustomerNote()); 
         }
     }
 }

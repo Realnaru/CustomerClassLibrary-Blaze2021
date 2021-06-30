@@ -11,8 +11,8 @@ namespace CustomerClassLibrary.Data
     {
         public SqlConnection GetConnection()
         {
-            return new SqlConnection("Server=WIN-QTLFNRNOL1C\\SQL2019;Database=customer_lib_Opishniak_R;Trusted_Connection=True;");
-            //GUS1WS-00202\SQLEXPRESS
+            return new SqlConnection("Server=GUS1WS-00202\\SQLEXPRESS;Database=customer_lib_Opishniak_R;Trusted_Connection=True;");
+            //GUS1WS-00202\\SQLEXPRESS
             //WIN-QTLFNRNOL1C\\SQL2019
         }
     }

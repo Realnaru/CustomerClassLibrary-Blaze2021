@@ -124,5 +124,10 @@ namespace CustomerClassLibrary.WebForms
             emailError.Text = errorMessagesAsList.Find(x => x.Contains("Email"));
             noteError.Text = errorMessagesAsList.Find(x => x.Contains("Note"));
         }
+
+        public void OnBackClick(object sender, EventArgs e)
+        {
+            Response.Redirect("CustomerList");
+        }
     }
 }

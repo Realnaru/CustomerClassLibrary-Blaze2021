@@ -41,6 +41,10 @@
     <asp:TextBox ID="id" CssClass="form-control" type="hidden" runat="server"></asp:TextBox>
 
     <asp:Button runat="server" CssClass="btn btn-primary" 
+                OnClick="OnBackClick" 
+                Text="Back to list" />
+
+    <asp:Button runat="server" CssClass="btn btn-primary" 
                 OnClick="OnSaveClick" 
                 Text="Save" />
 
