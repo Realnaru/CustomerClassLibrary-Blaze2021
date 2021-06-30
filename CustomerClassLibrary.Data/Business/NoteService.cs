@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomerClassLibrary.Data.Business
 {
-    public class NoteService
+    public class NoteService : INoteService
     {
         private readonly IEntityRepository<CustomerNote> _noteRepository;
 

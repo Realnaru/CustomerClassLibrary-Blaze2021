@@ -11,9 +11,14 @@ namespace CustomerClassLibrary.WebMvc.Controllers
     public class CustomersController : Controller
     {
         private ICustomerService _customerService;
+        private IAddressService _addressService;
+        private INoteService _noteService;
+
         public CustomersController()
         {
             _customerService = new CustomerService();
+            _addressService = new AddressService();
+            _noteService = new NoteService();
         }
 
         // GET: Customers
@@ -61,44 +66,54 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         // GET: Customers/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var customer = _customerService.GetCustomer(id);
+            return View(customer);
         }
 
         // POST: Customers/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Customer customer)
         {
             try
             {
                 // TODO: Add update logic here
+                List <Address> addresses = _addressService.GetAllAddresses(customer.CustomerId);
+                List<CustomerNote> notes = _noteService.GetAllNotes(customer.CustomerId);
 
+                customer.AdressesList = addresses;
+                customer.Note = notes;
+
+                _customerService.ChangeCustomer(customer);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(customer);
             }
         }
 
         // GET: Customers/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var customer = _customerService.GetCustomer(id);
+            return View(customer);
         }
 
         // POST: Customers/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Customer customer)
         {
             try
             {
                 // TODO: Add delete logic here
 
+                _customerService.DeleteCustomer(customer);
+                
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(customer);
             }
         }
     }

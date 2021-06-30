@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace CustomerClassLibrary.WebMvc.Tests.Controllers
 {
@@ -32,8 +33,13 @@ namespace CustomerClassLibrary.WebMvc.Tests.Controllers
         {
             var customerServiceMock = new Mock<ICustomerService>();
             CustomersController controller = new CustomersController();
+
             var customer = new Customer();
-            controller.Index();
+
+            var result = controller.Create(customer) as RedirectResult;
+
+            Assert.IsNotNull(result);
+            
         }
     }
 }

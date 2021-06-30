@@ -112,18 +112,20 @@ namespace CustomerClassLibrary.Business
 
         public void DeleteCustomer(Customer customer)
         {
-            _customerRepository.Delete(customer);
-            /*
-            foreach (var address in customer.AdressesList)
-            {
-                _addressRepository.Delete(address);
-            }
+            //using (var transactionScope = new TransactionScope())
+            //{
+            //    foreach (var address in customer.AdressesList)
+            //    {
+            //        _addressRepository.Delete(address);
+            //    }
 
-            foreach (var note in customer.Note)
-            {
-                _noteRepository.Delete(note);
-            }
-            */
+            //    foreach (var note in customer.Note)
+            //    {
+            //        _noteRepository.Delete(note);
+            //    }
+
+                _customerRepository.Delete(customer);
+            //}
         }
 
         IReadOnlyCollection<Customer> ICustomerService.GetAllCustomers()

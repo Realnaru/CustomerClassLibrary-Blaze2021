@@ -10,5 +10,11 @@ namespace CustomerClassLibrary.Data.Business
     {
         IReadOnlyCollection<Customer> GetAllCustomers();
         public int CreateCustomer(Customer customer);
+
+        public Customer GetCustomer(int customerId);
+
+        public void ChangeCustomer(Customer customer);
+
+        public void DeleteCustomer(Customer customer);
     }
 }

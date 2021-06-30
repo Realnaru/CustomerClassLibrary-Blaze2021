@@ -8,7 +8,7 @@ using System.Transactions;
 
 namespace CustomerClassLibrary.Data.Business
 {
-    public class AddressService
+    public class AddressService : IAddressService
     {
         private readonly IEntityRepository<Address> _addressRepository;
 
