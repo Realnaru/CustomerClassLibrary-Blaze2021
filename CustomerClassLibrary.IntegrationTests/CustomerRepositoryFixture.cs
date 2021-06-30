@@ -35,13 +35,14 @@ namespace CustomerLibraryTests.IntegrationTests
             };
 
             var customer = new Customer();
+            customer.CustomerId = 1;
             customer.FirstName = "John";
             customer.LastName = "Doe";
             customer.PhoneNumber = "1111111";
             customer.Email = "jd@gmail.com";
             customer.TotalPurshasesAmount = 100;
-            customer.AddAddress(address);
-            customer.AddNote(note);
+            customer.AdressesList.Add(address);
+            customer.Note.Add(note);
 
             return customer;
         }

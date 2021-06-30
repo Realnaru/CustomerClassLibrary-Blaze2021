@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using CustomerClassLibrary.Data;
+using CustomerClassLibrary.Data.Business;
 using CustomerClassLibrary.Data.Repositories;
 
 namespace CustomerClassLibrary.Business
 {
-    public class CustomerService
+    public class CustomerService : ICustomerService
     {
         private readonly IEntityRepository<Customer> _customerRepository;
 
@@ -123,6 +124,12 @@ namespace CustomerClassLibrary.Business
                 _noteRepository.Delete(note);
             }
             */
+        }
+
+        IReadOnlyCollection<Customer> ICustomerService.GetAllCustomers()
+        {
+            var customers = _customerRepository.ReadAll();
+            return customers.ToArray();
         }
     }
 }

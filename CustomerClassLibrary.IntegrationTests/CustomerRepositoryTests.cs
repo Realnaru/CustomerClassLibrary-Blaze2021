@@ -136,6 +136,8 @@ namespace CustomerLibraryTests.IntegrationTests
             createdCustomer.PhoneNumber = "999999";
             createdCustomer.Email = "dj@gmail.com";
             createdCustomer.TotalPurshasesAmount = 1000;
+            createdCustomer.AdressesList.Add(new Address());
+            createdCustomer.Note.Add(new CustomerNote());
 
             customerRepository.Update(createdCustomer);
 
