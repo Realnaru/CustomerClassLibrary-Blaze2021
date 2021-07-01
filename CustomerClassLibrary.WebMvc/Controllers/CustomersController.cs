@@ -32,7 +32,9 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         // GET: Customers/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var customer = _customerService.GetCustomer(id);
+
+            return View(customer);
         }
 
         // GET: Customers/Create
@@ -77,10 +79,10 @@ namespace CustomerClassLibrary.WebMvc.Controllers
             try
             {
                 // TODO: Add update logic here
-                List <Address> addresses = _addressService.GetAllAddresses(customer.CustomerId);
-                List<CustomerNote> notes = _noteService.GetAllNotes(customer.CustomerId);
+                var addresses = _addressService.GetAllAddresses(customer.CustomerId);
+                List<CustomerNote> notes = _noteService.GetAllNotes(customer.CustomerId).ToList<CustomerNote>();
 
-                customer.AdressesList = addresses;
+                customer.AdressesList = addresses.ToList<Address>();
                 customer.Note = notes;
 
                 _customerService.ChangeCustomer(customer);
@@ -109,6 +111,11 @@ namespace CustomerClassLibrary.WebMvc.Controllers
             {
                 // TODO: Add delete logic here
                 customer.CustomerId = id;
+                List<Address> addresses = _addressService.GetAllAddresses(customer.CustomerId).ToList<Address>();
+                List<CustomerNote> notes = _noteService.GetAllNotes(customer.CustomerId).ToList<CustomerNote>();
+
+                customer.AdressesList = addresses;
+                customer.Note = notes;
                 _customerService.DeleteCustomer(customer);
                 return RedirectToAction("Index");
             }

@@ -51,7 +51,7 @@ namespace CustomerClassLibrary.WebForms
             {
                 if (CustomerId != 0)
                 {
-                    Notes = _noteService.GetAllNotes(CustomerId);
+                    Notes = _noteService.GetAllNotes(CustomerId).ToList<CustomerNote>();
                 }
 
                 if (Notes.Count == 0)

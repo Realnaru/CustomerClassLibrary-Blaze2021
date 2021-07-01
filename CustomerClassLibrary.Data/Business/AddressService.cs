@@ -49,6 +49,12 @@ namespace CustomerClassLibrary.Data.Business
             _addressRepository.Delete(addressId);
         }
 
-        
+        IReadOnlyCollection<Address> IAddressService.GetAllAddresses(int customerId)
+        {
+            var customers = _addressRepository.ReadAll(customerId);
+            return customers.ToArray();
+        }
+
+
     }
 }

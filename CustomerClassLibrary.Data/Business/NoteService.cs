@@ -36,14 +36,25 @@ namespace CustomerClassLibrary.Data.Business
             _noteRepository.Update(note);
         }
 
-        public List<CustomerNote> GetAllNotes(int customerId)
+        //public List<CustomerNote> GetAllNotes(int customerId)
+        //{
+        //    return _noteRepository.ReadAll(customerId);
+        //}
+
+        IReadOnlyCollection<CustomerNote> INoteService.GetAllNotes(int customerId)
         {
-            return _noteRepository.ReadAll(customerId);
+            var notes = _noteRepository.ReadAll(customerId);
+            return notes.ToArray();
         }
 
         public void DeleteNote(int noteId)
         {
              _noteRepository.Delete(noteId);
+        }
+
+        public List<CustomerNote> GetAllNotes(int customerId)
+        {
+            throw new NotImplementedException();
         }
     }
 

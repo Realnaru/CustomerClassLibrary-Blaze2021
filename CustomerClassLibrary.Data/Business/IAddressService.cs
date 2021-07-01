@@ -8,6 +8,7 @@ namespace CustomerClassLibrary.Data.Business
 {
     public interface IAddressService
     {
-        public List<Address> GetAllAddresses(int customerId);
+        IReadOnlyCollection<Address> GetAllAddresses(int customerId);
+     
     }
 }
