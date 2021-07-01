@@ -98,7 +98,7 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         public ActionResult Delete(int id)
         {
             var customer = _customerService.GetCustomer(id);
-            _customerService.DeleteCustomer(customer);
+            //_customerService.DeleteCustomer(customer);
 
             return View(customer);
         }
