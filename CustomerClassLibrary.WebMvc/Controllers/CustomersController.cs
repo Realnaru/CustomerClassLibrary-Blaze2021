@@ -8,11 +8,14 @@ using CustomerClassLibrary.Data.Business;
 
 namespace CustomerClassLibrary.WebMvc.Controllers
 {
+    [Route("customers/{page?}/")]
     public class CustomersController : Controller
     {
         private ICustomerService _customerService;
         private IAddressService _addressService;
         private INoteService _noteService;
+
+        private int customersPerPage = 5;
 
         public CustomersController()
         {
@@ -22,9 +25,9 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         }
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(int page = 0)
         {
-            var customers = _customerService.GetAllCustomers();
+            var customers = _customerService.GetCustomersPartially(page, customersPerPage);
 
             return View(customers);
         }

@@ -25,7 +25,7 @@ namespace CustomerClassLibrary.WebMvc.Tests.Controllers
         public void ShouldReturnListOfCustomers()
         {
             CustomersController controller = new CustomersController();
-            controller.Index(); 
+            controller.Index(0); 
         }
 
         [TestMethod]

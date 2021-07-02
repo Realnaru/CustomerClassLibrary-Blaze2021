@@ -133,5 +133,11 @@ namespace CustomerClassLibrary.Business
             var customers = _customerRepository.ReadAll();
             return customers.ToArray();
         }
+
+        IReadOnlyCollection<Customer> ICustomerService.GetCustomersPartially(int pageNumber, int rowsCount)
+        {
+            var customers = _customerRepository.ReadPartially(pageNumber, rowsCount);
+            return customers.ToArray();
+        }
     }
 }
