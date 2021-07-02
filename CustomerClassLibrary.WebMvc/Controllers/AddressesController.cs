@@ -25,9 +25,9 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         }
 
         // GET: Address/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int addressId)
         {
-            var address = _addressService.GetAddress(id);
+            var address = _addressService.GetAddress(addressId);
             return View(address);
         }
 
@@ -47,7 +47,7 @@ namespace CustomerClassLibrary.WebMvc.Controllers
             {
                 // TODO: Add insert logic here
                 _addressService.CreateAddress(address);
-                return RedirectToAction("Index", new { customerId = customerId });
+                return RedirectToAction("Index", new { customerId = customerId});
             }
             catch
             {
@@ -56,50 +56,47 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         }
 
         // GET: Address/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int addressId)
         {
-            var address = _addressService.GetAddress(id);
+            var address = _addressService.GetAddress(addressId);
             return View(address);
         }
 
         // POST: Address/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Address address)
+        public ActionResult Edit(int addressId, Address anyAddress)
         {
-            var addressToGetAddressId = _addressService.GetAddress(id);
-            int idOfCustomer = addressToGetAddressId.CustomerId;
-
+            int customerId = _addressService.GetAddress(addressId).CustomerId;
             try
             {
-                _addressService.ChangeAddress(address);
+                _addressService.ChangeAddress(anyAddress);
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index", new { customerId = idOfCustomer});
+                return RedirectToAction("Index", new { customerId = customerId });
             }
             catch
             {
-                return View(address);
+                return View(anyAddress);
             }
         }
 
         // GET: Address/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int addressId)
         {
-            var address = _addressService.GetAddress(id);
-            int idOfCustomer = address.CustomerId;
+            var address = _addressService.GetAddress(addressId);
             return View(address);
         }
 
         // POST: Address/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Address address)
+        public ActionResult Delete(int addressId, Address address)
         {
-            int idOfCustomer = _addressService.GetAddress(id).CustomerId;
+            int customerId = _addressService.GetAddress(addressId).CustomerId;
             try
             {
                 // TODO: Add delete logic here
-                _addressService.DeleteAddress(id);
-                return RedirectToAction("Index", new { customerId = idOfCustomer});
+                _addressService.DeleteAddress(addressId);
+                return RedirectToAction("Index", new { customerId = customerId});
             }
             catch
             {

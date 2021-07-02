@@ -19,75 +19,82 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         // GET: Notes
         public ActionResult Index(int customerId)
         {
-            var notes =  _noteService.GetAllNotes(customerId);
+            var notes = _noteService.GetAllNotes(customerId);
+
             return View(notes);
         }
 
         // GET: Notes/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int noteId)
         {
-            return View();
+            var note = _noteService.GetNote(noteId);
+            return View(note);
         }
 
         // GET: Notes/Create
-        public ActionResult Create()
+        public ActionResult Create(int customerId)
         {
-            return View();
+            var note = new CustomerNote();
+            note.CustomerId = customerId;
+            return View(note);
         }
 
         // POST: Notes/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(int customerId, CustomerNote anyNote)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                _noteService.CreateNote(anyNote);
+                return RedirectToAction("Index", new { customerId = customerId});
             }
             catch
             {
-                return View();
+                return View(anyNote);
             }
         }
 
         // GET: Notes/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int noteId)
         {
-            return View();
+            var note = _noteService.GetNote(noteId);
+            return View(note);
         }
 
         // POST: Notes/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int customerId, CustomerNote anyNote)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                _noteService.ChangeNote(anyNote);
+                return RedirectToAction("Index", new { customerId = customerId});
             }
             catch
             {
-                return View();
+                return View(anyNote);
             }
         }
 
         // GET: Notes/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int noteId)
         {
-            return View();
+            var note = _noteService.GetNote(noteId);
+            return View(note);
         }
 
         // POST: Notes/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int noteId, CustomerNote anyNote)
         {
+            int customerId = _noteService.GetNote(noteId).CustomerId;
             try
             {
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                _noteService.DeleteNote(noteId);
+                return RedirectToAction("Index", new { customerId = customerId});
             }
             catch
             {

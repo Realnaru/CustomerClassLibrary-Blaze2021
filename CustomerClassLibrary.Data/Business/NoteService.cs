@@ -36,11 +36,6 @@ namespace CustomerClassLibrary.Data.Business
             _noteRepository.Update(note);
         }
 
-        //public List<CustomerNote> GetAllNotes(int customerId)
-        //{
-        //    return _noteRepository.ReadAll(customerId);
-        //}
-
         IReadOnlyCollection<CustomerNote> INoteService.GetAllNotes(int customerId)
         {
             var notes = _noteRepository.ReadAll(customerId);

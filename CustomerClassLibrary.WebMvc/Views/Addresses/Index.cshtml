@@ -54,11 +54,14 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AddressId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AddressId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AddressId })
+                @Html.ActionLink("Edit", "Edit", new { addressId = item.AddressId }) |
+                @Html.ActionLink("Details", "Details", new { addressId = item.AddressId }) |
+                @Html.ActionLink("Delete", "Delete", new { addressId = item.AddressId })
             </td>
         </tr>
     }
 
 </table>
+<div>
+    @Html.ActionLink("Back to customers", "../Customers/Index")
+</div>

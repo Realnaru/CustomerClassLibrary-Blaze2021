@@ -1,22 +1,16 @@
 ﻿@model IEnumerable<CustomerClassLibrary.CustomerNote>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Notes";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new {customerId = Model.FirstOrDefault().CustomerId})
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NoteId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerId)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Note)
         </th>
@@ -26,20 +20,23 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.NoteId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerId)
-        </td>
-        <td>
+            @Html.HiddenFor(modelItem => item.NoteId)
+        
+        
+            @Html.HiddenFor(modelItem => item.CustomerId)
+        
+        
             @Html.DisplayFor(modelItem => item.Note)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { noteId = item.NoteId }) |
+            @Html.ActionLink("Details", "Details", new {noteId = item.NoteId}) |
+            @Html.ActionLink("Delete", "Delete", new { noteId = item.NoteId })
         </td>
     </tr>
 }
 
 </table>
+<div>
+    @Html.ActionLink("Back to customers", "../Customers/Index")
+</div>
