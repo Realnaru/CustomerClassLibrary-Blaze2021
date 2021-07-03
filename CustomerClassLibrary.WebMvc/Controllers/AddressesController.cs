@@ -64,19 +64,19 @@ namespace CustomerClassLibrary.WebMvc.Controllers
 
         // POST: Address/Edit/5
         [HttpPost]
-        public ActionResult Edit(int addressId, Address anyAddress)
+        public ActionResult Edit(int addressId, Address address)
         {
             int customerId = _addressService.GetAddress(addressId).CustomerId;
             try
             {
-                _addressService.ChangeAddress(anyAddress);
+                _addressService.ChangeAddress(address);
                 // TODO: Add update logic here
 
                 return RedirectToAction("Index", new { customerId = customerId });
             }
             catch
             {
-                return View(anyAddress);
+                return View(address);
             }
         }
 

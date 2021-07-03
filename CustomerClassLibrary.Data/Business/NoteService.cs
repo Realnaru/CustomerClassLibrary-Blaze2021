@@ -36,7 +36,7 @@ namespace CustomerClassLibrary.Data.Business
             _noteRepository.Update(note);
         }
 
-        IReadOnlyCollection<CustomerNote> INoteService.GetAllNotes(int customerId)
+        public IReadOnlyCollection<CustomerNote> GetAllNotes(int customerId)
         {
             var notes = _noteRepository.ReadAll(customerId);
             return notes.ToArray();
@@ -47,10 +47,10 @@ namespace CustomerClassLibrary.Data.Business
              _noteRepository.Delete(noteId);
         }
 
-        public List<CustomerNote> GetAllNotes(int customerId)
-        {
-            throw new NotImplementedException();
-        }
+        //public List<CustomerNote> GetAllNotes(int customerId)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 
    

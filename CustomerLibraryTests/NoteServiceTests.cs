@@ -85,6 +85,7 @@ namespace CustomerLibraryTests
 
             List<CustomerNote> notesToReturn = new List<CustomerNote>();
             notesToReturn.Add(noteToGet);
+            
 
             List<CustomerNote> returnedNotes = new List<CustomerNote>();
 
@@ -95,7 +96,7 @@ namespace CustomerLibraryTests
 
             var noteService = new NoteService(noteMock.Object);
 
-            returnedNotes =  noteService.GetAllNotes(customerId);
+            returnedNotes =  noteService.GetAllNotes(customerId).ToList<CustomerNote>();
 
             noteMock.Verify(x => x.ReadAll(customerId), Times.Exactly(1));
             Assert.NotNull(returnedNotes);

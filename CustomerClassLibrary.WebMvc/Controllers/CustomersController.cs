@@ -15,7 +15,7 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         private IAddressService _addressService;
         private INoteService _noteService;
 
-        private int customersPerPage = 5;
+        private int CustomersPerPage = 5;
 
         public CustomersController()
         {
@@ -27,7 +27,10 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         // GET: Customers
         public ActionResult Index(int page = 0)
         {
-            var customers = _customerService.GetCustomersPartially(page, customersPerPage);
+            ViewBag.Page = page;
+            ViewBag.Pages = _customerService.GetAmountOfCustomers() / CustomersPerPage;
+
+            var customers = _customerService.GetCustomersPartially(page, CustomersPerPage);
 
             return View(customers);
         }

@@ -261,6 +261,20 @@ namespace CustomerClassLibrary.Data
             }
         }
 
+        public int GetAmountOfRows()
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                var command = new SqlCommand("SELECT COUNT(*) FROM [dbo].customer", connection);
+
+                int amount = (int)command.ExecuteScalar();
+
+                return amount;
+            }
+            
+        }
+
         //----------------------------------------------//
 
         public List<Customer> ReadAll(int entityId)

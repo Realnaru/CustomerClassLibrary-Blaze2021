@@ -29,7 +29,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
 <tr>
     <td>
         @Html.DisplayFor(modelItem => item.FirstName)
@@ -57,10 +58,9 @@
     </td>
 </tr>
 }
-
 </table>
 
 <div>
-    @Html.ActionLink("Prev", "Index", new { page = 0 })
-    @Html.ActionLink("Next", "Index", new { page = 1 })
+    @Html.ActionLink("Prev", "Index", new { page = ViewBag.Page == 0 ? ViewBag.Page : ViewBag.Page - 1 })
+    @Html.ActionLink("Next", "Index", new { page = ViewBag.Page <= ViewBag.Pages - 1 ? ViewBag.Page + 1 : ViewBag.Page })
 </div>

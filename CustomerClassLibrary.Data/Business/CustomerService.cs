@@ -139,5 +139,10 @@ namespace CustomerClassLibrary.Business
             var customers = _customerRepository.ReadPartially(pageNumber, rowsCount);
             return customers.ToArray();
         }
+
+        public int GetAmountOfCustomers()
+        {
+            return _customerRepository.GetAmountOfRows();
+        }
     }
 }

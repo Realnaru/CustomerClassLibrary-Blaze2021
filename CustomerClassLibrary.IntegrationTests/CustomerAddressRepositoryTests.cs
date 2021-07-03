@@ -28,6 +28,7 @@ namespace CustomerLibraryTests.IntegrationTests
             var customerRepository = new CustomerRepository();
 
             customerRepository.DeleteAll();
+
             var customer = fixture.MockCustomer();
             int customerId = customerRepository.Create(customer);
            

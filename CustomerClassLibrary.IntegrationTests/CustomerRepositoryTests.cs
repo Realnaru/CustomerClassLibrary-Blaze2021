@@ -29,6 +29,8 @@ namespace CustomerLibraryTests.IntegrationTests
             var addressFixture = new CustomerAddressFixture();
             var address = addressFixture.MockAddress();
 
+            customerRepository.DeleteAll();
+
             customer.FirstName = "John";
             customer.LastName = "Doe";
             customer.PhoneNumber = "1111111";
@@ -62,7 +64,9 @@ namespace CustomerLibraryTests.IntegrationTests
         {
             var customerRepository = new CustomerRepository();
             var fixture = new CustomerRepositoryFixture();
+
             customerRepository.DeleteAll();
+
             var customer = fixture.MockCustomer();
             int customerId = customerRepository.Create(customer);
 
@@ -81,7 +85,9 @@ namespace CustomerLibraryTests.IntegrationTests
         {
             var customerRepository = new CustomerRepository();
             var fixture = new CustomerRepositoryFixture();
+
             customerRepository.DeleteAll();
+
             var customer = fixture.MockCustomer();
             var secondCustomer = fixture.MockCustomer();
             int customerId = customerRepository.Create(customer);
@@ -98,6 +104,7 @@ namespace CustomerLibraryTests.IntegrationTests
         {
             var customerRepository = new CustomerRepository();
             var fixture = new CustomerRepositoryFixture();
+
             customerRepository.DeleteAll();
 
             var customer = fixture.MockCustomer();
@@ -125,7 +132,9 @@ namespace CustomerLibraryTests.IntegrationTests
         {
             var customerRepository = new CustomerRepository();
             var fixture = new CustomerRepositoryFixture();
+
             customerRepository.DeleteAll();
+
             var customer = fixture.MockCustomer();
             int customerId = customerRepository.Create(customer);
 
@@ -156,7 +165,9 @@ namespace CustomerLibraryTests.IntegrationTests
         {
             var customerRepository = new CustomerRepository();
             var fixture = new CustomerRepositoryFixture();
+
             customerRepository.DeleteAll();
+
             var customer = fixture.MockCustomer();
             int customerId = customerRepository.Create(customer);
 
@@ -168,6 +179,25 @@ namespace CustomerLibraryTests.IntegrationTests
 
             Assert.Null(deletedCustomer);
 
+        }
+
+        [Fact]
+        public void ShouldBeAbleToGetAmountOfCustomers()
+        {
+            var customerRepository = new CustomerRepository();
+            var fixture = new CustomerRepositoryFixture();
+
+            customerRepository.DeleteAll();
+
+            var customer = fixture.MockCustomer();
+            int customerId = customerRepository.Create(customer);
+
+            int amountOfCustomers = customerRepository.GetAmountOfRows();
+
+            Assert.Equal(1, amountOfCustomers);
+            
+
+           
         }
     }
 }

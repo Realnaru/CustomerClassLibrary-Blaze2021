@@ -8,7 +8,7 @@ namespace CustomerClassLibrary.Data.Business
 {
     public interface INoteService
     {
-        IReadOnlyCollection<CustomerNote> GetAllNotes(int customerId);
+        public IReadOnlyCollection<CustomerNote> GetAllNotes(int customerId);
 
         public int CreateNote(CustomerNote note);
 

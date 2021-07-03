@@ -190,8 +190,13 @@ namespace CustomerLibraryTests.CustomerLibraryTests
             var addressFixture = new CustomerAddressFixture();
 
             var customerToUpdate = customerFixture.MockCustomer();
+            customerToUpdate.CustomerId = 1;
+
             var addressToUpdate = addressFixture.MockAddress();
+            addressToUpdate.CustomerId = 1;
+
             var noteToUdate = new CustomerNote();
+            noteToUdate.CustomerId = 1;
 
             customerToUpdate.AddAddress(addressToUpdate);
             customerToUpdate.AddNote(noteToUdate);
@@ -238,6 +243,23 @@ namespace CustomerLibraryTests.CustomerLibraryTests
             customerMock.Verify(x => x.Delete(customerToDelete), Times.Exactly(1));
             //addressMock.Verify(x => x.Delete(addressToDelete), Times.Exactly(1));
             //noteMock.Verify(x => x.Delete(noteToDelete), Times.Exactly(1));
+        }
+
+        [Fact]
+        public void ShouldBeAbleToGetAllCustomers()
+        {
+            var customerMock = new Mock<IEntityRepository<Customer>>();
+            var addressMock = new Mock<IEntityRepository<Address>>();
+            var noteMock = new Mock<IEntityRepository<CustomerNote>>();
+
+            customerMock.Setup(x => x.GetAmountOfRows()).Returns(() => 1);
+
+            var customerService = new CustomerService(customerMock.Object, addressMock.Object, noteMock.Object);
+
+            int amountOfCustomers = customerService.GetAmountOfCustomers();
+
+            customerMock.Verify(x => x.GetAmountOfRows(), Times.Exactly(1));
+            Assert.Equal(1, amountOfCustomers);
         }
 
     }

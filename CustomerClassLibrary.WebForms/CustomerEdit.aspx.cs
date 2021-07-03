@@ -109,7 +109,7 @@ namespace CustomerClassLibrary.WebForms
 
         public List<CustomerNote> GetNotes(int customerId)
         {
-            List<CustomerNote> notes = _noteService.GetAllNotes(customerId);
+            List<CustomerNote> notes = _noteService.GetAllNotes(customerId).ToList<CustomerNote>();
             return notes;
         }
 

@@ -170,6 +170,11 @@ namespace CustomerClassLibrary.Data
         {
             throw new NotImplementedException();
         }
+
+        public int GetAmountOfRows()
+        {
+            throw new NotImplementedException();
+        }
     }
 
         
