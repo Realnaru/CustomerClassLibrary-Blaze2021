@@ -116,6 +116,10 @@
       <Project>{a51099f3-1e2e-4311-bad1-1c525796c47d}</Project>
       <Name>CustomerClassLibrary.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CustomerClassLibrary.IntegrationTests\CustomerClassLibrary.IntegrationTests.csproj">
+      <Project>{09115383-144D-443F-9A92-F5FA8E37B8A2}</Project>
+      <Name>CustomerClassLibrary.IntegrationTests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CustomerClassLibrary.WebMvc\CustomerClassLibrary.WebMvc.csproj">
       <Project>{41CC1924-7A61-4056-9654-970C60C73308}</Project>
       <Name>CustomerClassLibrary.WebMvc</Name>

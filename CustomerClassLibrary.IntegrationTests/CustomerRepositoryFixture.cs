@@ -28,9 +28,11 @@ namespace CustomerLibraryTests.IntegrationTests
             var fixtureAddress = new CustomerAddressFixture();
 
             var address = fixtureAddress.MockAddress();
+            address.CustomerId = 1;
 
             var note = new CustomerNote()
             {
+                CustomerId = 1,
                 Note = "Kiity Ipsum"
             };
 
@@ -41,8 +43,8 @@ namespace CustomerLibraryTests.IntegrationTests
             customer.PhoneNumber = "1111111";
             customer.Email = "jd@gmail.com";
             customer.TotalPurshasesAmount = 100;
-            customer.AdressesList.Add(address);
-            customer.Note.Add(note);
+            customer.AddAddress(address);
+            customer.AddNote(note);
 
             return customer;
         }

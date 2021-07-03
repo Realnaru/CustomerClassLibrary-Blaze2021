@@ -24,6 +24,18 @@ namespace CustomerClassLibrary.WebMvc.Controllers
             _noteService = new NoteService();
         }
 
+        public CustomersController(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
+
+        public CustomersController(ICustomerService customerService, IAddressService addressService, INoteService noteService)
+        {
+            _customerService = customerService;
+            _addressService = addressService;
+            _noteService = noteService;
+        }
+
         // GET: Customers
         public ActionResult Index(int page = 0)
         {
