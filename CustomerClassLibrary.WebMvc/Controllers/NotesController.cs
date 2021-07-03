@@ -16,6 +16,12 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         {
             _noteService = new NoteService();
         }
+
+        public NotesController(INoteService noteService)
+        {
+            _noteService = noteService;
+        }
+
         // GET: Notes
         public ActionResult Index(int customerId)
         {

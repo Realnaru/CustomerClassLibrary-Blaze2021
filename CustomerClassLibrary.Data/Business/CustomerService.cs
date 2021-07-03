@@ -41,7 +41,7 @@ namespace CustomerClassLibrary.Business
 
             using (var transactionScope = new TransactionScope())
             {
-                 customerId = _customerRepository.Create(customer);
+                customerId = _customerRepository.Create(customer);
 
                 foreach (var address in customer.AdressesList)
                 {

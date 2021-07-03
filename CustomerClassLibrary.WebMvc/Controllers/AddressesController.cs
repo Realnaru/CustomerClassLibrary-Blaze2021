@@ -16,6 +16,12 @@ namespace CustomerClassLibrary.WebMvc.Controllers
         {
             _addressService = new AddressService();
         }
+
+        public AddressesController(IAddressService addressService)
+        {
+            _addressService = addressService;
+        }
+
         // GET: Address
         public ActionResult Index(int customerId)
         {

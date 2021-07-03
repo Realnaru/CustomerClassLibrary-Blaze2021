@@ -1,4 +1,5 @@
-﻿using CustomerClassLibrary.Data.Business;
+﻿using CustomerClassLibrary.Common;
+using CustomerClassLibrary.Data.Business;
 using CustomerClassLibrary.WebMvc.Controllers;
 using CustomerLibraryTests.IntegrationTests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -83,14 +84,19 @@ namespace CustomerClassLibrary.WebMvc.Tests.Controllers
         public void ShouldNotCreateWrongCustomer()
         {
             var customerServiceMock = new Mock<ICustomerService>();
-
+            
             CustomersController controller = new CustomersController(customerServiceMock.Object);
 
             var customer = new Customer();
+            customer.AdressesList.Add(new Address());
+            customer.Note.Add(new CustomerNote());
+            customerServiceMock.Setup(x => x.CreateCustomer(customer)).Throws(new WrongDataException("Message"));
 
             var result = controller.Create(customer) as ViewResult;
 
-            //Assert.IsNotNull(result);
+            customerServiceMock.Verify(x => x.CreateCustomer(customer), Times.Exactly(1));
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
