@@ -1,5 +1,5 @@
-﻿using CustomerClassLibrary;
-using CustomerClassLibrary.Data;
+﻿using CustomerClassLibrary.Data.EFData;
+using CustomerLibraryTests.IntegrationTests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,23 +7,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CustomerLibraryTests.IntegrationTests
+namespace CustomerClassLibrary.IntegrationTests
 {
-    public class CustomerNoteRepositoryTests
+    public class EFCustomerNoteRepositoryTests
     {
         [Fact]
-        public void ShouldbeAbleToCreateNoteRepository()
+        public void ShouldBeAbleToCreateEFCustomerNoteRepository()
         {
-            var customerNoteRepository = new CustomerNoteRepository();
+            var EFNoteRepository = new EFCustomerNoteRepository();
 
-            Assert.NotNull(customerNoteRepository);
+            Assert.NotNull(EFNoteRepository);
         }
 
         [Fact]
         public void ShouldbeAbleToCreateCustomerNote()
         {
-            var customerNoteRepository = new CustomerNoteRepository();
-            var customerRepository = new CustomerRepository();
+            var customerNoteRepository = new EFCustomerNoteRepository();
+            var customerRepository = new EFCustomerRepository();
 
             customerRepository.DeleteAll();
 
@@ -36,20 +36,20 @@ namespace CustomerLibraryTests.IntegrationTests
             customerNote.Note = "Kitty ipsum dolor sit amet, shed everywhere shed everywhere";
 
             int customerNoteId = customerNoteRepository.Create(customerNote);
-            Assert.NotEqual(0, customerNoteId);      
+            Assert.NotEqual(0, customerNoteId);
         }
 
         [Fact]
         public void ShouldbeAbleToReadCustomerNote()
         {
-            var customerNoteRepository = new CustomerNoteRepository();
-            var customerRepository = new CustomerRepository();
+            var customerNoteRepository = new EFCustomerNoteRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
 
             var customerNote = new CustomerNote();
-            
+
             var customer = fixture.MockCustomer();
             int customerId = customerRepository.Create(customer);
 
@@ -68,8 +68,8 @@ namespace CustomerLibraryTests.IntegrationTests
         [Fact]
         public void ShouldbeAbleToUpdateCustomerNote()
         {
-            var customerNoteRepository = new CustomerNoteRepository();
-            var customerRepository = new CustomerRepository();
+            var customerNoteRepository = new EFCustomerNoteRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
@@ -98,8 +98,8 @@ namespace CustomerLibraryTests.IntegrationTests
         [Fact]
         public void ShouldbeAbleToDeleteCustomerNote()
         {
-            var customerNoteRepository = new CustomerNoteRepository();
-            var customerRepository = new CustomerRepository();
+            var customerNoteRepository = new EFCustomerNoteRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
@@ -124,8 +124,8 @@ namespace CustomerLibraryTests.IntegrationTests
         [Fact]
         public void ShouldToGetNotesByCustomerId()
         {
-            var customerNoteRepository = new CustomerNoteRepository();
-            var customerRepository = new CustomerRepository();
+            var customerNoteRepository = new EFCustomerNoteRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
@@ -140,9 +140,9 @@ namespace CustomerLibraryTests.IntegrationTests
 
             customerNoteRepository.Create(customerNote);
 
-            List<CustomerNote> Notes = customerNoteRepository.ReadAll(customerId);
+            List<CustomerNote> notes = customerNoteRepository.ReadAll(customerId);
 
-            var createdNote = Notes[1];
+            var createdNote = notes[1];
             Assert.Equal("Kitty ipsum dolor sit amet, shed everywhere shed everywhere", createdNote.Note);
         }
     }
