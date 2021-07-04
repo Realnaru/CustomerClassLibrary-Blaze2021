@@ -14,11 +14,11 @@ namespace CustomerLibrary.IntegrationTests.IntegrationTests
         {
             var customerAddressRepository = new CustomerAddressRepository();
     
-            var customer = MockAddress();
+            var address = MockAddress();
 
-            customerAddressRepository.Create(customer);
+            customerAddressRepository.Create(address);
 
-            return customer;
+            return address;
         }
 
         public Address MockAddress()

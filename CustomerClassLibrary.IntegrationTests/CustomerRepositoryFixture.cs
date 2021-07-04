@@ -32,7 +32,7 @@ namespace CustomerLibraryTests.IntegrationTests
 
             var note = new CustomerNote()
             {
-                CustomerId = 1,
+               CustomerId = 1,
                 Note = "Kiity Ipsum"
             };
 

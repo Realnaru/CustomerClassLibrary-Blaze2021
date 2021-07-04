@@ -23,9 +23,9 @@ namespace CustomerClassLibrary
     [Serializable]
     public class Address
     {
-        [Key, Column(Order = 0)]
+        [Key]
         public int AddressId { get; set; }
-        [Key, Column(Order = 1)]
+        //[Key, Column(Order = 1)]
         public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "The field is required"), 

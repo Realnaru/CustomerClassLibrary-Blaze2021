@@ -136,6 +136,7 @@ namespace CustomerClassLibrary.IntegrationTests
         {
             var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
+            var addressFixture = new CustomerAddressFixture();
 
             customerRepository.DeleteAll();
 
@@ -149,8 +150,8 @@ namespace CustomerClassLibrary.IntegrationTests
             createdCustomer.PhoneNumber = "999999";
             createdCustomer.Email = "dj@gmail.com";
             createdCustomer.TotalPurshasesAmount = 1000;
-            createdCustomer.AdressesList.Add(new Address());
-            createdCustomer.Note.Add(new CustomerNote());
+            createdCustomer.AdressesList.Add(addressFixture.MockAddress());
+            createdCustomer.Note.Add(new CustomerNote() { NoteId = 1, Note = "Kitty Ipsum"});
 
             customerRepository.Update(createdCustomer);
 

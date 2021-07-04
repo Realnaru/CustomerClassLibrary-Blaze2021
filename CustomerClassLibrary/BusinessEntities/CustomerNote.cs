@@ -11,9 +11,9 @@ namespace CustomerClassLibrary
     [Serializable]
     public class CustomerNote
     {
-        [Key, Column(Order = 0)]
+        [Key]
         public int NoteId { get; set; }
-        [Key, Column(Order = 1)]
+        //[Key, Column(Order = 1)]
         public int CustomerId { get; set; }
         [Required(ErrorMessage = "The field is required")]
         public string Note { get; set; }

@@ -1,6 +1,6 @@
-﻿using CustomerClassLibrary;
-using CustomerClassLibrary.Data;
+﻿using CustomerClassLibrary.Data.EFData;
 using CustomerLibrary.IntegrationTests.IntegrationTests;
+using CustomerLibraryTests.IntegrationTests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,30 +8,30 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CustomerLibraryTests.IntegrationTests
+namespace CustomerClassLibrary.IntegrationTests
 {
-    public class CustomerAddressRepositoryTests
+    public class EFAddressRepositoryTests
     {
         [Fact]
-        public void ShouldBeAbleToCreateAddressRepository()
+        public void ShouldBeAbleToCreateEFAddressRepository()
         {
-            var customerAddressRepository = new CustomerAddressRepository();
-
-            Assert.NotNull(customerAddressRepository);
+            var addressRepository = new EFAddressRepository();
+            Assert.NotNull(addressRepository);
         }
 
         [Fact]
         public void ShouldBeAbleToCreateAddress()
         {
-            var customerAddressRepository = new CustomerAddressRepository();
+            var addressRepository = new EFAddressRepository();
             var fixture = new CustomerRepositoryFixture();
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
 
             customerRepository.DeleteAll();
 
             var customer = fixture.MockCustomer();
-            int customerId = customerRepository.Create(customer);
-           
+
+            int customerId = customerRepository.Create(customer);    
+
             var address = new Address();
             address.CustomerId = customerId;
             address.AdressLine = "123";
@@ -42,31 +42,31 @@ namespace CustomerLibraryTests.IntegrationTests
             address.City = "Anytown";
             address.State = "Anystate";
 
-            int customerAddressId = customerAddressRepository.Create(address);
+            int addressId = addressRepository.Create(address);
 
-            Assert.NotEqual(0, customerAddressId);
+            Assert.NotEqual(0, addressId);
         }
 
         [Fact]
         public void ShouldBeAbleToReadAddress()
         {
-            var customerAddressRepository = new CustomerAddressRepository();
-            var customerRepository = new CustomerRepository();
+            var addressRepository = new EFAddressRepository();
+            var customerRepository = new EFCustomerRepository();
 
             var fixtureCustomer = new CustomerRepositoryFixture();
             var fixtureAddress = new CustomerAddressFixture();
-            
+
             customerRepository.DeleteAll();
 
             var address = fixtureAddress.MockAddress();
             var customer = fixtureCustomer.MockCustomer();
-            
+
 
             int customerId = customerRepository.Create(customer);
             address.CustomerId = customerId;
-            int addressId = customerAddressRepository.Create(address);
+            int addressId = addressRepository.Create(address);
 
-            var createdAddress = customerAddressRepository.Read(addressId);
+            var createdAddress = addressRepository.Read(addressId);
 
             Assert.NotNull(createdAddress);
 
@@ -83,18 +83,16 @@ namespace CustomerLibraryTests.IntegrationTests
         [Fact]
         public void ShouldBeAbleToUpdateAddress()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixtureCustomer = new CustomerRepositoryFixture();
 
-            var customerAddressRepository = new CustomerAddressRepository();
+            var customerAddressRepository = new EFAddressRepository();
             var fixtureAddress = new CustomerAddressFixture();
 
             customerRepository.DeleteAll();
 
             var customer = fixtureCustomer.MockCustomer();
             var address = fixtureAddress.MockAddress();
-
-            
 
             int customerId = customerRepository.Create(customer);
 
@@ -128,10 +126,10 @@ namespace CustomerLibraryTests.IntegrationTests
         [Fact]
         public void ShouldBeAbleToDeleteAddress()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixtureCustomer = new CustomerRepositoryFixture();
 
-            var customerAdressRepository = new CustomerAddressRepository();
+            var customerAdressRepository = new EFAddressRepository();
             var fixtureAddress = new CustomerAddressFixture();
 
             customerRepository.DeleteAll();
@@ -152,14 +150,14 @@ namespace CustomerLibraryTests.IntegrationTests
             Assert.Null(deletedAddress);
         }
 
-        [Fact] 
+        [Fact]
         public void ShouldReadAddressesByCustomerId()
         {
-            var customerRepository = new CustomerRepository();
-            var customerAddressRepository = new CustomerAddressRepository();
+            var customerRepository = new EFCustomerRepository();
+            var customerAddressRepository = new EFAddressRepository();
             var fixtureCustomer = new CustomerRepositoryFixture();
 
-            var customerAdressRepository = new CustomerAddressRepository();
+          
             var fixtureAddress = new CustomerAddressFixture();
 
             customerRepository.DeleteAll();
@@ -171,7 +169,7 @@ namespace CustomerLibraryTests.IntegrationTests
 
             address.CustomerId = customerId;
 
-            int addressId = customerAdressRepository.Create(address);
+            int addressId = customerAddressRepository.Create(address);
 
             var createdAddress = customerAddressRepository.Read(addressId);
 
@@ -187,7 +185,7 @@ namespace CustomerLibraryTests.IntegrationTests
 
             List<Address> addresses = customerAddressRepository.ReadAll(customerId);
 
-            var updatedAddress = addresses[0];
+            var updatedAddress = addresses[1];
 
             Assert.Equal("245", updatedAddress.AdressLine);
             Assert.Equal("Belleville Road", updatedAddress.AdressLine2);
