@@ -25,7 +25,11 @@ namespace CustomerClassLibrary.Data.EFData
 
         public void Delete(Customer entity)
         {
-            var customer = _context.Customers.Find(entity.CustomerId);
+            var customer = _context.Customers.
+                                    Include("AdressesList").
+                                    Include("Note").
+                                    First(x => x.CustomerId == entity.CustomerId);
+
             if (customer != null)
             {
                 _context.Customers.Remove(customer);
