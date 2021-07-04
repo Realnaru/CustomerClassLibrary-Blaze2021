@@ -12,6 +12,7 @@ namespace CustomerClassLibrary
 {
     public class Customer : Person
     {
+        [Key]
         public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "The field is required"),

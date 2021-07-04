@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using CustomerClassLibrary.Validators;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CustomerClassLibrary
 {
@@ -22,8 +23,9 @@ namespace CustomerClassLibrary
     [Serializable]
     public class Address
     {
+        [Key, Column(Order = 0)]
         public int AddressId { get; set; }
-
+        [Key, Column(Order = 1)]
         public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "The field is required"), 

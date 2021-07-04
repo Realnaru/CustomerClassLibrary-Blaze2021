@@ -1,29 +1,31 @@
-﻿using CustomerClassLibrary;
-using CustomerClassLibrary.Common;
-using CustomerClassLibrary.Data;
+﻿using CustomerClassLibrary.Common;
+using CustomerClassLibrary.Data.EFData;
 using CustomerLibrary.IntegrationTests.IntegrationTests;
+using CustomerLibraryTests.IntegrationTests;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CustomerLibraryTests.IntegrationTests
+namespace CustomerClassLibrary.IntegrationTests
 {
-    public class CustomerRepositoryTests
+    public class EFCustomerRepositoryTests
     {
         [Fact]
-        public void ShouldBeAbleToCreateCustomerRepository()
+        public void ShouldBeAbleToCreateEFCustomerRepository()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
+
             Assert.NotNull(customerRepository);
         }
 
         [Fact]
         public void ShouldBeAbleToCreateCustomer()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var customer = new Customer();
 
             var addressFixture = new CustomerAddressFixture();
@@ -37,7 +39,7 @@ namespace CustomerLibraryTests.IntegrationTests
             customer.Email = "jd@mail.com";
             customer.TotalPurshasesAmount = 1000;
             customer.AddAddress(address);
-            customer.AddNote(new CustomerNote());
+            customer.AddNote(new CustomerNote() { Note = "Kitty Ipsum"});
 
             int customerId = customerRepository.Create(customer);
 
@@ -47,22 +49,26 @@ namespace CustomerLibraryTests.IntegrationTests
         [Fact]
         public void ShouldThrowExceptionIfCustomerHasWrongData()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var customer = new Customer();
+
+            var addressFixture = new CustomerAddressFixture();
+            var address = addressFixture.MockAddress();
 
             customer.FirstName = "John";
             customer.PhoneNumber = "12345611111111111111";
             customer.Email = "111111111111111111111111111";
             customer.TotalPurshasesAmount = 1000;
+            customer.AddAddress(address);
+            customer.AddNote(new CustomerNote() { Note = "Kitty Ipsum" });
 
-            Assert.Throws<WrongDataException>(() => customerRepository.Create(customer));
-
+            Assert.Throws<DbEntityValidationException>(() => customerRepository.Create(customer));
         }
 
         [Fact]
         public void ShouldBeAbleToReadCustomer()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
@@ -79,10 +85,11 @@ namespace CustomerLibraryTests.IntegrationTests
             Assert.Equal(customer.TotalPurshasesAmount, createdCustomer.TotalPurshasesAmount);
         }
 
+
         [Fact]
         public void ShouldBeAbleToReadAllCustomers()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
@@ -94,13 +101,13 @@ namespace CustomerLibraryTests.IntegrationTests
 
             List<Customer> customers = customerRepository.ReadAll();
 
-            Assert.Equal(2, customers.Count);  
+            Assert.Equal(2, customers.Count);
         }
 
         [Fact]
         public void ShouldBeAbleToReadCustomersPartially()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
@@ -119,7 +126,7 @@ namespace CustomerLibraryTests.IntegrationTests
             customerRepository.Create(fithCustomer);
             customerRepository.Create(sixthCustomer);
 
-            List<Customer> customers = customerRepository.ReadPartially(0,5);
+            List<Customer> customers = customerRepository.ReadPartially(0, 5);
 
             Assert.Equal(5, customers.Count);
         }
@@ -127,7 +134,7 @@ namespace CustomerLibraryTests.IntegrationTests
         [Fact]
         public void ShouldBeAbleToUpdateCustomer()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
@@ -159,7 +166,7 @@ namespace CustomerLibraryTests.IntegrationTests
         [Fact]
         public void ShouldBeAbleToDeleteCustomer()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
@@ -179,7 +186,7 @@ namespace CustomerLibraryTests.IntegrationTests
         [Fact]
         public void ShouldBeAbleToGetAmountOfCustomers()
         {
-            var customerRepository = new CustomerRepository();
+            var customerRepository = new EFCustomerRepository();
             var fixture = new CustomerRepositoryFixture();
 
             customerRepository.DeleteAll();
@@ -189,7 +196,7 @@ namespace CustomerLibraryTests.IntegrationTests
 
             int amountOfCustomers = customerRepository.GetAmountOfRows();
 
-            Assert.Equal(1, amountOfCustomers);  
+            Assert.Equal(1, amountOfCustomers);
         }
     }
 }
