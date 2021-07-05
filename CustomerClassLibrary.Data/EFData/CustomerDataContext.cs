@@ -9,8 +9,9 @@ namespace CustomerClassLibrary.Data.EFData
 {
     public class CustomerDataContext : DbContext
     {
-        public CustomerDataContext() : base("Server=WIN-QTLFNRNOL1C\\SQL2019;Database=customer_lib_Opishniak_R;Trusted_Connection=True;")
-        {
+        public CustomerDataContext() : base("Server=GUS1WS-00202\\SQLEXPRESS;Database=customer_lib_Opishniak_R;Trusted_Connection=True;")
+        {                                   //"Server=GUS1WS-00202\\SQLEXPRESS;"
+                                            //Server=WIN-QTLFNRNOL1C\\SQL2019
 
         }
 

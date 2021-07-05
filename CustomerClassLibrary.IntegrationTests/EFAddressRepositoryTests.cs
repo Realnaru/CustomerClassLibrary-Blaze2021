@@ -61,7 +61,6 @@ namespace CustomerClassLibrary.IntegrationTests
             var address = fixtureAddress.MockAddress();
             var customer = fixtureCustomer.MockCustomer();
 
-
             int customerId = customerRepository.Create(customer);
             address.CustomerId = customerId;
             int addressId = addressRepository.Create(address);
@@ -195,5 +194,31 @@ namespace CustomerClassLibrary.IntegrationTests
             Assert.Equal("Ontario", updatedAddress.State);
             Assert.Equal("Canada", updatedAddress.Country);
         }
+
+        //[Fact]
+        //public void ShouldNotBeAbleToDeleteLastAddress()
+        //{
+        //    var customerRepository = new EFCustomerRepository();
+        //    var fixtureCustomer = new CustomerRepositoryFixture();
+
+        //    var customerAdressRepository = new EFAddressRepository();
+        //    var fixtureAddress = new CustomerAddressFixture();
+
+        //    customerRepository.DeleteAll();
+
+        //    var customer = fixtureCustomer.MockCustomer();
+
+        //    int customerId = customerRepository.Create(customer);
+
+        //    var customerFromBD = customerRepository.Read(customerId);
+
+        //    int addressId = customerFromBD.AdressesList[0].AddressId;
+
+        //    customerAdressRepository.Delete(addressId);
+
+        //    var deletedAddress = customerAdressRepository.Read(addressId);
+
+        //    Assert.NotNull(deletedAddress);
+        //}
     }
 }
