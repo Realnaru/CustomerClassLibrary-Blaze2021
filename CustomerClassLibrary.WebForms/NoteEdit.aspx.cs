@@ -10,7 +10,7 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class NoteEdit : System.Web.UI.Page
     {
-        private NoteService _noteService;
+        private INoteService _noteService;
 
         public int NoteId { get; set; }
 
@@ -18,6 +18,11 @@ namespace CustomerClassLibrary.WebForms
         public NoteEdit()
         {
             _noteService = new NoteService();
+        }
+
+        public NoteEdit(INoteService noteService)
+        {
+            _noteService = noteService;
         }
         protected void Page_Load(object sender, EventArgs e)
         {

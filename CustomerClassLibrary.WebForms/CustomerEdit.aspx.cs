@@ -12,11 +12,11 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class CustomerEdit : System.Web.UI.Page
     {
-        private CustomerService _customerService;
+        private ICustomerService _customerService;
 
-        private AddressService _addressService;
+        private IAddressService _addressService;
 
-        private NoteService _noteService;
+        private INoteService _noteService;
 
         public List<Address> Addresses { get; set; }
 
@@ -31,9 +31,11 @@ namespace CustomerClassLibrary.WebForms
             _noteService = new NoteService();
         }
 
-        public CustomerEdit(CustomerService customerService)
+        public CustomerEdit(ICustomerService customerService, IAddressService addressService, INoteService noteService)
         {
             _customerService = customerService;
+            _addressService = addressService;
+            _noteService = noteService;
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -102,7 +104,7 @@ namespace CustomerClassLibrary.WebForms
         public List<Address> GetAddresses(int customerId)
         {
 
-            List<Address> addresses = _addressService.GetAllAddresses(customerId);
+            List<Address> addresses = _addressService.GetAllAddresses(customerId).ToList<Address>();
 
             return addresses;
         }

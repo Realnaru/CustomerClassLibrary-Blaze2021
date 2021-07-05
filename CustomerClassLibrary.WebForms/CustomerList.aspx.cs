@@ -1,4 +1,5 @@
 ﻿using CustomerClassLibrary.Business;
+using CustomerClassLibrary.Data.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class CustomerList : System.Web.UI.Page
     {
-        private CustomerService _customerService;
+        private ICustomerService _customerService;
         public List<Customer> Customers { get; set; }
 
         public int SheetCount { get; set; } = 0;
@@ -20,7 +21,7 @@ namespace CustomerClassLibrary.WebForms
             _customerService = new CustomerService();
         }
 
-        public CustomerList(CustomerService customerService)
+        public CustomerList(ICustomerService customerService)
         {
             _customerService = customerService;
         }
@@ -31,7 +32,7 @@ namespace CustomerClassLibrary.WebForms
 
         public void LoadCustomers()
         {
-            Customers = _customerService.GetCustomersPartially(SheetCount, 5);
+            Customers = _customerService.GetCustomersPartially(SheetCount, 5).ToList<Customer>();
         }
         
         public void OnNextClick(object sender, EventArgs e)

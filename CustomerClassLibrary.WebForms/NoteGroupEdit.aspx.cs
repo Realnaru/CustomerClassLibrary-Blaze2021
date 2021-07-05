@@ -11,7 +11,7 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class NoteGroupEdit : System.Web.UI.Page
     {
-        private NoteService _noteService;
+        private INoteService _noteService;
         public List<CustomerNote> Notes { get; set; } = new List<CustomerNote>();
         private int CustomerId { get; set; }
 
@@ -40,6 +40,11 @@ namespace CustomerClassLibrary.WebForms
         public NoteGroupEdit()
         {
             _noteService = new NoteService();
+        }
+
+        public NoteGroupEdit(INoteService noteService)
+        {
+            _noteService = noteService;
         }
         protected void Page_Load(object sender, EventArgs e)
         {

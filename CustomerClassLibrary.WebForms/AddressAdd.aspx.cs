@@ -11,13 +11,18 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class AddressAdd : System.Web.UI.Page
     {
-        private AddressService _addressService;
+        private IAddressService _addressService;
 
         public int CustomerId { get; set; }
 
         public AddressAdd()
         {
             _addressService = new AddressService();
+        }
+
+        public AddressAdd(IAddressService addressService)
+        {
+            _addressService = addressService;
         }
         protected void Page_Load(object sender, EventArgs e)
         {

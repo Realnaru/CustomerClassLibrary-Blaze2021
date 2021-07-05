@@ -1,4 +1,5 @@
 ﻿using CustomerClassLibrary.Business;
+using CustomerClassLibrary.Data.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,18 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class CustomerDelete : System.Web.UI.Page
     {
-        private CustomerService _customerService;
+        private ICustomerService _customerService;
 
         public CustomerDelete()
         {
             _customerService = new CustomerService();
         }
+
+        public CustomerDelete(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

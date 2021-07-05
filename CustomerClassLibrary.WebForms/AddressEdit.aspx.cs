@@ -12,13 +12,18 @@ namespace CustomerClassLibrary.WebForms
     public partial class AddressEdit : System.Web.UI.Page
     {
 
-        private AddressService _addressService;
+        private IAddressService _addressService;
         private int AddressId { get; set; }
         private int CustomerId { get; set; }
 
         public AddressEdit()
         {
             _addressService = new AddressService();
+        }
+
+        public AddressEdit(IAddressService addressService)
+        {
+            _addressService = addressService;
         }
 
         protected void Page_Load(object sender, EventArgs e)

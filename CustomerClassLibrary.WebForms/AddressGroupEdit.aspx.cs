@@ -10,13 +10,18 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class AddressGroupEdit : System.Web.UI.Page
     {
-        private AddressService _addressService;
+        private IAddressService _addressService;
 
         private int CustomerId;
         public List<Address> Addresses { get; set; } = new List<Address>();
         public AddressGroupEdit()
         {
             _addressService = new AddressService();
+        }
+
+        public AddressGroupEdit(IAddressService addressService)
+        {
+            _addressService = addressService;
         }
 
         protected override void LoadViewState(object savedState)

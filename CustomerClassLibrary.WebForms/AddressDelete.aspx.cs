@@ -10,13 +10,18 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class AddressDelete : System.Web.UI.Page
     {
-        private AddressService _addressService;
+        private IAddressService _addressService;
 
         public int CustomerId { get; set; }
 
         public AddressDelete()
         {
             _addressService = new AddressService();
+        }
+
+        public AddressDelete(IAddressService addressService)
+        {
+            _addressService = addressService;
         }
         protected void Page_Load(object sender, EventArgs e)
         {

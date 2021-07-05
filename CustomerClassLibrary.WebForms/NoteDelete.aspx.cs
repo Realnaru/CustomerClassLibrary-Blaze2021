@@ -12,12 +12,12 @@ namespace CustomerClassLibrary.WebForms
 { 
     public partial class NoteDelete : System.Web.UI.Page
     {
-        private NoteService _noteService;
+        private INoteService _noteService;
         private int CustomerId { get; set; }
 
-        public NoteDelete()
+        public NoteDelete(INoteService noteService)
         {
-            _noteService = new NoteService();
+            _noteService = noteService;
         }
         protected void Page_Load(object sender, EventArgs e)
         {

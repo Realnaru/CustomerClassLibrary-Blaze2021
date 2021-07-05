@@ -1,5 +1,6 @@
 ﻿using CustomerClassLibrary.Business;
 using CustomerClassLibrary.Common;
+using CustomerClassLibrary.Data.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,16 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class AddCustomer : System.Web.UI.Page
     {
-        private CustomerService _customerService;
+        private ICustomerService _customerService;
 
         public AddCustomer()
         {
             _customerService = new CustomerService();
+        }
+
+        public AddCustomer(ICustomerService customerService)
+        {
+            _customerService = customerService;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -88,8 +94,7 @@ namespace CustomerClassLibrary.WebForms
 
             lastNameError.Text = errorMessagesAsList.Find(x => x.Contains("LastName"));
             phoneNumberError.Text = errorMessagesAsList.Find(x => x.Contains("PhoneNumber"));
-            emailError.Text = errorMessagesAsList.Find(x => x.Contains("Email"));
-            
+            emailError.Text = errorMessagesAsList.Find(x => x.Contains("Email"));     
         }     
     }
 
