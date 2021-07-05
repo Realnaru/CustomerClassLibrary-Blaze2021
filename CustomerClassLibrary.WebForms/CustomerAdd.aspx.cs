@@ -45,7 +45,7 @@ namespace CustomerClassLibrary.WebForms
             {
                 AdressLine = addressLine?.Text,
                 AdressLine2 = addressLine2?.Text,
-                AddressType = typeOfAddress,
+                AddressTypeEnum = typeOfAddress,
                 City = city?.Text,
                 PostalCode = postalcode?.Text,
                 State = state?.Text,

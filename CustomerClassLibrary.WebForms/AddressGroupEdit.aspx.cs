@@ -84,7 +84,7 @@ namespace CustomerClassLibrary.WebForms
                         AddressId = addressId,
                         AdressLine = ((TextBox)item.FindControl("addressLine"))?.Text,
                         AdressLine2 = ((TextBox)item.FindControl("addressLine2"))?.Text,
-                        AddressType = typeOfAddress,
+                        AddressTypeEnum = typeOfAddress,
                         City = ((TextBox)item.FindControl("city"))?.Text,
                         PostalCode = ((TextBox)item.FindControl("postalCode"))?.Text,
                         State = ((TextBox)item.FindControl("state"))?.Text,

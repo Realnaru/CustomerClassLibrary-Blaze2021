@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace CustomerClassLibrary
 {
-    [Serializable]
+    [Serializable, Table("dbo.customer_note")]
     public class CustomerNote
     {
-        [Key]
+        [Key, Column("note_id")]
         public int NoteId { get; set; }
-        //[Key, Column(Order = 1)]
+        [Column("customer_id")]
         public int CustomerId { get; set; }
-        [Required(ErrorMessage = "The field is required")]
+        [Required(ErrorMessage = "The field is required"), Column("note")]
         public string Note { get; set; }
 
     }

@@ -15,7 +15,7 @@ namespace CustomerLibraryTests
             Assert.Null(address.AdressLine);
             Assert.Null(address.AdressLine2);
             Assert.Null(address.City);
-            Assert.Equal(AddressType.Shipping, address.AddressType);
+            Assert.Equal(AddressType.Shipping, address.AddressTypeEnum);
             Assert.Null(address.PostalCode);
 
         }
@@ -28,7 +28,7 @@ namespace CustomerLibraryTests
             address.CustomerId = 1;
             address.AdressLine = "4 Privet Drive";
             address.AdressLine2 = "Little Whinging";
-            address.AddressType = AddressType.Billing;
+            address.AddressTypeEnum = AddressType.Billing;
             address.City = "Surrey";
             address.Country = "USA";
             address.State = "England";
@@ -38,7 +38,7 @@ namespace CustomerLibraryTests
             Assert.Equal(1, address.CustomerId);
             Assert.Equal("4 Privet Drive", address.AdressLine);
             Assert.Equal("Little Whinging", address.AdressLine2);
-            Assert.Equal(AddressType.Billing, address.AddressType);
+            Assert.Equal(AddressType.Billing, address.AddressTypeEnum);
             Assert.Equal("Surrey", address.City);
             Assert.Equal("USA", address.Country);
             Assert.Equal("England", address.State);

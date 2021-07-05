@@ -37,7 +37,7 @@ namespace CustomerClassLibrary.WebForms
             address.CustomerId = CustomerId;
             address.AdressLine = addressLine?.Text;
             address.AdressLine2 = addressLine2?.Text;
-            address.AddressType = typeOfAddress;
+            address.AddressTypeEnum = typeOfAddress;
             address.City = city?.Text;
             address.PostalCode = postalCode?.Text;
             address.State = state?.Text;

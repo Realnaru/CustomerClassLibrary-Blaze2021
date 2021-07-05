@@ -50,7 +50,7 @@ namespace CustomerClassLibrary.Data
 
                 var addressTypeParam = new SqlParameter("@address_type", SqlDbType.VarChar, 8)
                 {
-                    Value = (AddressType)address.AddressType
+                    Value = (AddressType)address.AddressTypeEnum
                 };
 
                 var cityParam = new SqlParameter("@city", SqlDbType.NVarChar, 50)
@@ -117,7 +117,7 @@ namespace CustomerClassLibrary.Data
                                 CustomerId = (Int32)reader["customer_id"],
                                 AdressLine = reader["address_line"].ToString(),
                                 AdressLine2 = reader["address_line2"].ToString(),
-                                AddressType = (AddressType)Enum.Parse(typeof(AddressType), addressType),
+                                AddressTypeEnum = (AddressType)Enum.Parse(typeof(AddressType), addressType),
                                 City = reader["city"].ToString(),
                                 PostalCode = reader["postal_code"].ToString(),
                                 State = reader["state"].ToString(),
@@ -161,7 +161,7 @@ namespace CustomerClassLibrary.Data
                                 CustomerId = (Int32)reader["customer_id"],
                                 AdressLine = reader["address_line"].ToString(),
                                 AdressLine2 = reader["address_line2"].ToString(),
-                                AddressType = (AddressType)Enum.Parse(typeof(AddressType), addressType),
+                                AddressTypeEnum = (AddressType)Enum.Parse(typeof(AddressType), addressType),
                                 City = reader["city"].ToString(),
                                 PostalCode = reader["postal_code"].ToString(),
                                 State = reader["state"].ToString(),
@@ -199,7 +199,7 @@ namespace CustomerClassLibrary.Data
                 command.Parameters.Add(new SqlParameter("@address_id", SqlDbType.Int) { Value = address.AddressId });
                 command.Parameters.Add(new SqlParameter("@address_line", SqlDbType.NVarChar, 100) { Value = address.AdressLine });
                 command.Parameters.Add(new SqlParameter("@address_line2", SqlDbType.NVarChar, 100) { Value = address.AdressLine2 });
-                command.Parameters.Add(new SqlParameter("@address_type", SqlDbType.VarChar, 8) { Value = address.AddressType.ToString() });
+                command.Parameters.Add(new SqlParameter("@address_type", SqlDbType.VarChar, 8) { Value = address.AddressTypeEnum.ToString() });
                 command.Parameters.Add(new SqlParameter("@city", SqlDbType.NVarChar, 50) { Value = address.City });
                 command.Parameters.Add(new SqlParameter("@postal_code", SqlDbType.VarChar, 6) { Value = address.PostalCode });
                 command.Parameters.Add(new SqlParameter("@state", SqlDbType.NVarChar, 20) { Value = address.State });

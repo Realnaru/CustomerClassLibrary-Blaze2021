@@ -27,7 +27,7 @@ namespace CustomerLibrary.IntegrationTests.IntegrationTests
 
             address.AdressLine = "123";
             address.AdressLine2 = "Main St";
-            address.AddressType = AddressType.Billing;
+            address.AddressTypeEnum = AddressType.Billing;
             address.PostalCode = "123456";
             address.Country = "Canada";
             address.City = "Anytown";

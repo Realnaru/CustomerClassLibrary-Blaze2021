@@ -36,7 +36,7 @@ namespace CustomerClassLibrary.IntegrationTests
             address.CustomerId = customerId;
             address.AdressLine = "123";
             address.AdressLine2 = "Main St";
-            address.AddressType = AddressType.Billing;
+            address.AddressTypeEnum = AddressType.Billing;
             address.PostalCode = "123456";
             address.Country = "USA";
             address.City = "Anytown";
@@ -73,7 +73,7 @@ namespace CustomerClassLibrary.IntegrationTests
             Assert.Equal(address.CustomerId, createdAddress.CustomerId);
             Assert.Equal(address.AdressLine, createdAddress.AdressLine);
             Assert.Equal(address.AdressLine2, createdAddress.AdressLine2);
-            Assert.Equal(address.AddressType, createdAddress.AddressType);
+            Assert.Equal(address.AddressTypeEnum, createdAddress.AddressTypeEnum);
             Assert.Equal(address.City, createdAddress.City);
             Assert.Equal(address.PostalCode, createdAddress.PostalCode);
             Assert.Equal(address.State, createdAddress.State);
@@ -104,7 +104,7 @@ namespace CustomerClassLibrary.IntegrationTests
 
             createdAddress.AdressLine = "245";
             createdAddress.AdressLine2 = "Belleville Road";
-            createdAddress.AddressType = AddressType.Shipping;
+            createdAddress.AddressTypeEnum = AddressType.Shipping;
             createdAddress.City = "Napanee";
             createdAddress.PostalCode = "K7R3M7";
             createdAddress.State = "Ontario";
@@ -116,7 +116,7 @@ namespace CustomerClassLibrary.IntegrationTests
 
             Assert.Equal("245", updatedAddress.AdressLine);
             Assert.Equal("Belleville Road", updatedAddress.AdressLine2);
-            Assert.Equal(AddressType.Shipping, updatedAddress.AddressType);
+            Assert.Equal(AddressType.Shipping, updatedAddress.AddressTypeEnum);
             Assert.Equal("Napanee", updatedAddress.City);
             Assert.Equal("K7R3M7", updatedAddress.PostalCode);
             Assert.Equal("Ontario", updatedAddress.State);
@@ -175,7 +175,7 @@ namespace CustomerClassLibrary.IntegrationTests
 
             createdAddress.AdressLine = "245";
             createdAddress.AdressLine2 = "Belleville Road";
-            createdAddress.AddressType = AddressType.Shipping;
+            createdAddress.AddressTypeEnum = AddressType.Shipping;
             createdAddress.City = "Napanee";
             createdAddress.PostalCode = "K7R3M7";
             createdAddress.State = "Ontario";
@@ -189,7 +189,7 @@ namespace CustomerClassLibrary.IntegrationTests
 
             Assert.Equal("245", updatedAddress.AdressLine);
             Assert.Equal("Belleville Road", updatedAddress.AdressLine2);
-            Assert.Equal(AddressType.Shipping, updatedAddress.AddressType);
+            Assert.Equal(AddressType.Shipping, updatedAddress.AddressTypeEnum);
             Assert.Equal("Napanee", updatedAddress.City);
             Assert.Equal("K7R3M7", updatedAddress.PostalCode);
             Assert.Equal("Ontario", updatedAddress.State);

@@ -7,30 +7,33 @@ using System.ComponentModel.DataAnnotations;
 using CustomerClassLibrary.Data.Common;
 using CustomerClassLibrary.Common;
 using CustomerClassLibrary.Validators;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CustomerClassLibrary 
 {
+    [Table("dbo.customer")]
     public class Customer : Person
     {
-        [Key]
+        [Key, Column("customer_id")]
         public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "The field is required"),
             EnsureOneItemAttribute(ErrorMessage = "The field is required")]
         public List<Address> AdressesList { get; set; } = new List<Address>();
 
-        [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Phone Number should have E164 standart")]
+        [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Phone Number should have E164 standart"),
+                            Column("customer_phone_number")]
         public string PhoneNumber { get; set; }
 
         [RegularExpression(@"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                     @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$",
-                      ErrorMessage = "Email adress should be valid")]
+                      ErrorMessage = "Email adress should be valid"), Column("customer_email")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "The field is required"),
             EnsureOneItemAttribute(ErrorMessage = "The field is required")]
         public List<CustomerNote> Note { get; set; } = new List<CustomerNote>();
-
+        [Column("total_purchase_amount")]
         public decimal? TotalPurshasesAmount { get; set; }
 
         public void AddAddress(Address address)

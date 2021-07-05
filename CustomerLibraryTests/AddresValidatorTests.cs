@@ -78,7 +78,7 @@ namespace CustomerLibraryTests
 
             address1.AdressLine = "123456";
             address1.AdressLine2 = "123456";
-            address1.AddressType = AddressType.Billing;
+            address1.AddressTypeEnum = AddressType.Billing;
             address1.City = "123456";
             address1.PostalCode = "123456";
             address1.State = "1234567";
