@@ -56,7 +56,7 @@ namespace CustomerClassLibrary.WebForms
             {
                 if (CustomerId != 0)
                 {
-                    Addresses = _addressService.GetAllAddresses(customerIdReq);
+                    Addresses = _addressService.GetAllAddresses(customerIdReq).ToList<Address>();
                 }
 
                 if (Addresses.Count == 0)
