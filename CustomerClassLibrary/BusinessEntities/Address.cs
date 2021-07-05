@@ -14,11 +14,6 @@ namespace CustomerClassLibrary
         Shipping,
         Billing
     }
-    public enum Countries
-    {
-        USA,
-        Canada
-    }
 
     [Serializable, Table("dbo.customer_address")]
     public class Address
