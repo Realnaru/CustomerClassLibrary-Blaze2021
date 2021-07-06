@@ -62,5 +62,26 @@ namespace CustomerClassLibrary.WebForms.Tests
             noteServiceMock.Verify(x => x.GetAllNotes(1), Times.Exactly(1));
             Assert.Collection(notes, item => Assert.Equal(customer.Note[0], item));
         }
+
+        [Fact]
+        public void ShouldBeAbleToEditCustomer()
+        {
+            var customerServiceMock = new Mock<ICustomerService>();
+            var addressServiceMock = new Mock<IAddressService>();
+            var noteServiceMock = new Mock<INoteService>();
+
+            var customerEdit = new CustomerEdit(customerServiceMock.Object, addressServiceMock.Object, noteServiceMock.Object);
+
+            try
+            {
+                customerEdit.OnSaveClick(this, EventArgs.Empty);
+            }
+            catch (System.Web.HttpException)
+            {
+
+            }
+
+            customerServiceMock.Verify(x => x.ChangeCustomer(It.IsAny<Customer>()));
+        }
     }
 }

@@ -34,15 +34,15 @@ namespace CustomerClassLibrary.WebForms
             
             if (!IsPostBack)
             {
-                LoadNote(noteIdReq);
+                noteText.Text = LoadNote(noteIdReq);
             }
         }
 
-        public void LoadNote(int noteId)
+        public string LoadNote(int noteId)
         {
             var note = _noteService.GetNote(noteId);
 
-            noteText.Text = note.Note;
+             return note.Note;
         }
 
         public void OnSaveClick(object sender, EventArgs e)
@@ -55,7 +55,6 @@ namespace CustomerClassLibrary.WebForms
             _noteService.ChangeNote(note);
 
             Response?.Redirect($"CustomerEdit?customerId={CustomerId}");
-
         }
     }
 }

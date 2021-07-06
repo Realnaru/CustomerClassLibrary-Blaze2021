@@ -33,12 +33,12 @@ namespace CustomerClassLibrary.WebForms.Tests
             {
                 customerDelete.DeleteCustomer(1);
             }
-            catch (System.Web.HttpException){
+            catch (System.Web.HttpException)
+            {
 
             }
 
-            customerServiceMock.Verify(x => x.DeleteCustomer(customer), Times.Exactly(1));
-            
+            customerServiceMock.Verify(x => x.DeleteCustomer(customer), Times.Exactly(1));         
         }
     }
 }

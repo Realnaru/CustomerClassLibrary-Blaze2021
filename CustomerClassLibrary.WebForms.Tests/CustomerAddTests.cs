@@ -1,4 +1,5 @@
-﻿using CustomerClassLibrary.Data.Business;
+﻿using CustomerClassLibrary.Common;
+using CustomerClassLibrary.Data.Business;
 using CustomerLibraryTests.IntegrationTests;
 using Moq;
 using System;
@@ -29,15 +30,13 @@ namespace CustomerClassLibrary.WebForms.Tests
 
         //    var addCustomer = new AddCustomer(customerServiceMock.Object);
 
-            
-
         //    try
         //    {
         //        addCustomer.OnAddClick(this, EventArgs.Empty);
         //    }
-        //    catch(System.Web.HttpException)
+        //    catch (System.Web.HttpException)
         //    {
-                
+
         //    }
 
         //    customerServiceMock.Verify(x => x.CreateCustomer(It.IsAny<Customer>()));
