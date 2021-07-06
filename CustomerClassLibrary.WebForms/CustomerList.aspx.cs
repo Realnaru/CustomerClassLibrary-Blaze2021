@@ -1,4 +1,5 @@
 ﻿using CustomerClassLibrary.Business;
+using CustomerClassLibrary.Data.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,9 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class CustomerList : System.Web.UI.Page
     {
-        private CustomerService _customerService;
+        private ICustomerService _customerService;
         public List<Customer> Customers { get; set; }
+        public int AmountOfCustomers { get; set; }
 
         public int SheetCount { get; set; } = 0;
 
@@ -20,27 +22,36 @@ namespace CustomerClassLibrary.WebForms
             _customerService = new CustomerService();
         }
 
-        public CustomerList(CustomerService customerService)
+        public CustomerList(ICustomerService customerService)
         {
             _customerService = customerService;
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            GetAmountOfCustomers();
             LoadCustomers();
         }
 
-        public void LoadCustomers()
+        public void GetAmountOfCustomers()
         {
-            Customers = _customerService.GetCustomersPartially(SheetCount, 5);
+            AmountOfCustomers = _customerService.GetAmountOfCustomers();
+        }
+
+        public void LoadCustomers()
+        { 
+            Customers = _customerService.GetCustomersPartially(SheetCount, 5).ToList<Customer>();
+            nextButton.Enabled = SheetCount < AmountOfCustomers / 5 ? true : false;
+            prevButton.Enabled = SheetCount > 0 ? true : false;
         }
         
         public void OnNextClick(object sender, EventArgs e)
         {
-            if (Customers.Count == 5)
+            
+            if (SheetCount < AmountOfCustomers / 5)
             {
                 SheetCount++;
                 LoadCustomers();    
-            }
+            } 
         }
 
         public void OnPrevClick(object sender, EventArgs e)

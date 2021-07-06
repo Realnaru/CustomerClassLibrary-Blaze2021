@@ -10,13 +10,18 @@ namespace CustomerClassLibrary.WebForms
 {
     public partial class AddressGroupEdit : System.Web.UI.Page
     {
-        private AddressService _addressService;
+        private IAddressService _addressService;
 
         private int CustomerId;
         public List<Address> Addresses { get; set; } = new List<Address>();
         public AddressGroupEdit()
         {
             _addressService = new AddressService();
+        }
+
+        public AddressGroupEdit(IAddressService addressService)
+        {
+            _addressService = addressService;
         }
 
         protected override void LoadViewState(object savedState)
@@ -51,7 +56,7 @@ namespace CustomerClassLibrary.WebForms
             {
                 if (CustomerId != 0)
                 {
-                    Addresses = _addressService.GetAllAddresses(customerIdReq);
+                    Addresses = _addressService.GetAllAddresses(customerIdReq).ToList<Address>();
                 }
 
                 if (Addresses.Count == 0)
@@ -84,7 +89,7 @@ namespace CustomerClassLibrary.WebForms
                         AddressId = addressId,
                         AdressLine = ((TextBox)item.FindControl("addressLine"))?.Text,
                         AdressLine2 = ((TextBox)item.FindControl("addressLine2"))?.Text,
-                        AddressType = typeOfAddress,
+                        AddressTypeEnum = typeOfAddress,
                         City = ((TextBox)item.FindControl("city"))?.Text,
                         PostalCode = ((TextBox)item.FindControl("postalCode"))?.Text,
                         State = ((TextBox)item.FindControl("state"))?.Text,

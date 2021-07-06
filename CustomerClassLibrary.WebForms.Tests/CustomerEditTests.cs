@@ -41,7 +41,7 @@ namespace CustomerClassLibrary.WebForms.Tests
 
             var customerService = new CustomerService(customerMockRepository.Object, addressMockRepository.Object, noteMockRepository.Object);
 
-            var customerEdit = new CustomerEdit(customerService);
+            //var customerEdit = new CustomerEdit(customerService);
             //customerEdit.OnSaveClick(this, EventArgs.Empty);
 
             //customerMockRepository.Verify(x => x.Update(It.IsAny<Customer>()));

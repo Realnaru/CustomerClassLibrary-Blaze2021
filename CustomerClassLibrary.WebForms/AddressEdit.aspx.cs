@@ -12,13 +12,18 @@ namespace CustomerClassLibrary.WebForms
     public partial class AddressEdit : System.Web.UI.Page
     {
 
-        private AddressService _addressService;
+        private IAddressService _addressService;
         private int AddressId { get; set; }
         private int CustomerId { get; set; }
 
         public AddressEdit()
         {
             _addressService = new AddressService();
+        }
+
+        public AddressEdit(IAddressService addressService)
+        {
+            _addressService = addressService;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -43,7 +48,7 @@ namespace CustomerClassLibrary.WebForms
 
                 addressLine.Text = address.AdressLine;
                 line2.Text = address.AdressLine2;
-                addressType.Text = address.AddressType.ToString();
+                addressType.Text = address.AddressTypeEnum.ToString();
                 city.Text = address.City;
                 postalCode.Text = address.PostalCode;
                 state.Text = address.State;
@@ -61,7 +66,7 @@ namespace CustomerClassLibrary.WebForms
 
                 address.AddressId = AddressId;
                 address.AdressLine = addressLine?.Text;
-                address.AddressType = typeOfAddress;
+                address.AddressTypeEnum = typeOfAddress;
                 address.AdressLine2 = line2?.Text;
                 address.City = city?.Text;
                 address.PostalCode = postalCode?.Text;
