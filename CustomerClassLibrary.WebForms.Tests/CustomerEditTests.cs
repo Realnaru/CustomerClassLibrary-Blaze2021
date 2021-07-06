@@ -1,4 +1,5 @@
 ﻿using CustomerClassLibrary.Business;
+using CustomerClassLibrary.Data.Business;
 using CustomerClassLibrary.Data.Repositories;
 using CustomerLibrary.IntegrationTests.IntegrationTests;
 using CustomerLibraryTests.IntegrationTests;
@@ -21,31 +22,45 @@ namespace CustomerClassLibrary.WebForms.Tests
         }
 
         [Fact]
-        public void ShouldBeAbleToEditCustomer()
+        public void ShouldBeAbleToGetAddresses()
         {
-            var customerMockRepository = new Mock<IEntityRepository<Customer>>();
-            var addressMockRepository = new Mock<IEntityRepository<Address>>();
-            var noteMockRepository = new Mock<IEntityRepository<CustomerNote>>();
+            var customerServiceMock = new Mock<ICustomerService>();
+            var addressServiceMock = new Mock<IAddressService>();
+            var noteServiceMock = new Mock<INoteService>();
 
-            //var customerFixture = new CustomerRepositoryFixture();
-            //var addressFixture = new CustomerAddressFixture();
-            //var note = new CustomerNote()
-            //{
-            //    Note = "Kitty Ipsum"
-            //};
+            var customerRepositoryFixture = new CustomerRepositoryFixture();
 
-            //var customer = customerFixture.MockCustomer();
-            //var address = addressFixture.MockAddress();
+            var customer = customerRepositoryFixture.MockCustomer();
 
-            //customer.AddAddress(address);
+            customerServiceMock.Setup(x => x.GetCustomer(1)).Returns(customer);
+            addressServiceMock.Setup(x => x.GetAllAddresses(1)).Returns(customer.AdressesList);
+            
+            var customerEdit = new CustomerEdit(customerServiceMock.Object, addressServiceMock.Object, noteServiceMock.Object);
+            List<Address> addresses = customerEdit.GetAddresses(1);
 
-            var customerService = new CustomerService(customerMockRepository.Object, addressMockRepository.Object, noteMockRepository.Object);
+            addressServiceMock.Verify(x => x.GetAllAddresses(1), Times.Exactly(1));
+            Assert.Collection(addresses, item => Assert.Equal(customer.AdressesList[0], item));
+        }
 
-            //var customerEdit = new CustomerEdit(customerService);
-            //customerEdit.OnSaveClick(this, EventArgs.Empty);
+        [Fact]
+        public void ShouldBeAbleToGetNotes()
+        {
+            var customerServiceMock = new Mock<ICustomerService>();
+            var addressServiceMock = new Mock<IAddressService>();
+            var noteServiceMock = new Mock<INoteService>();
 
-            //customerMockRepository.Verify(x => x.Update(It.IsAny<Customer>()));
-            //addressMockRepository.Verify(x => x.Update(It.IsAny<Address>()));
+            var customerRepositoryFixture = new CustomerRepositoryFixture();
+
+            var customer = customerRepositoryFixture.MockCustomer();
+
+            customerServiceMock.Setup(x => x.GetCustomer(1)).Returns(customer);
+            noteServiceMock.Setup(x => x.GetAllNotes(1)).Returns(customer.Note);
+
+            var customerEdit = new CustomerEdit(customerServiceMock.Object, addressServiceMock.Object, noteServiceMock.Object);
+            List<CustomerNote> notes = customerEdit.GetNotes(1);
+
+            noteServiceMock.Verify(x => x.GetAllNotes(1), Times.Exactly(1));
+            Assert.Collection(notes, item => Assert.Equal(customer.Note[0], item));
         }
     }
 }

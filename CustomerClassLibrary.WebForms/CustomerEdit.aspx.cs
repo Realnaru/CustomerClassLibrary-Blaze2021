@@ -60,8 +60,6 @@ namespace CustomerClassLibrary.WebForms
             {
                 var customer = _customerService.GetCustomer(customerId);
 
-                List<Address> addresses = customer.AdressesList;
-
                 id.Text = customer.CustomerId.ToString();
                 firstName.Text = customer.FirstName;
                 lastName.Text = customer.LastName;

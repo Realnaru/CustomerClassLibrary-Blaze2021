@@ -16,6 +16,7 @@ namespace CustomerClassLibrary.WebForms
         public int AmountOfCustomers { get; set; }
 
         public int SheetCount { get; set; } = 0;
+        public int CustomersPerPage { get; set; } = 5;
 
         public CustomerList()
         {
@@ -26,6 +27,14 @@ namespace CustomerClassLibrary.WebForms
         {
             _customerService = customerService;
         }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+            nextButton.Enabled = SheetCount < AmountOfCustomers / CustomersPerPage ? true : false;
+            prevButton.Enabled = SheetCount > 0 ? true : false;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             GetAmountOfCustomers();
@@ -38,16 +47,15 @@ namespace CustomerClassLibrary.WebForms
         }
 
         public void LoadCustomers()
-        { 
-            Customers = _customerService.GetCustomersPartially(SheetCount, 5).ToList<Customer>();
-            nextButton.Enabled = SheetCount < AmountOfCustomers / 5 ? true : false;
-            prevButton.Enabled = SheetCount > 0 ? true : false;
+        {
+            Customers = _customerService.GetCustomersPartially(SheetCount, CustomersPerPage).ToList<Customer>();
+            
         }
         
         public void OnNextClick(object sender, EventArgs e)
         {
             
-            if (SheetCount < AmountOfCustomers / 5)
+            if (SheetCount < AmountOfCustomers / CustomersPerPage)
             {
                 SheetCount++;
                 LoadCustomers();    
@@ -59,8 +67,8 @@ namespace CustomerClassLibrary.WebForms
             if (SheetCount > 0)
             {
                 SheetCount--;
-                LoadCustomers();   
-            }
+                LoadCustomers();
+            } 
         }
     }
 }

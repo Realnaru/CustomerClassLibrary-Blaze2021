@@ -66,13 +66,15 @@ namespace CustomerClassLibrary.WebForms.Tests
 
             var customerList = new CustomerList(customerServiceMock.Object);
 
-            customerList.OnNextClick(customerList, EventArgs.Empty);
+            customerList.SheetCount = 1;
 
-            //customerServiceMock.Verify(x => x.GetCustomersPartially(1, 5));
+            //customerList.OnNextClick(this, EventArgs.Empty);
+            customerList.LoadCustomers();
+            customerServiceMock.Verify(x => x.GetCustomersPartially(1, 5));
 
-            //Assert.NotNull(customerList.Customers);
-            //Assert.Single(customerList.Customers);
-            //Assert.Collection(customerList.Customers, item => Assert.Equal(customer, item));
+            Assert.NotNull(customerList.Customers);
+            Assert.Single(customerList.Customers);
+            Assert.Collection(customerList.Customers, item => Assert.Equal(customer, item));
         }
     }
 }
